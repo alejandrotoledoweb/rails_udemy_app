@@ -7,18 +7,8 @@ Things you may want to cover:
 
 * Ruby version
 
-* System dependencies
+3.2.2
 
-* Configuration
+# live demo link
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://rails-udemy-app.fly.dev/
