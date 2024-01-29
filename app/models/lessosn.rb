@@ -4,7 +4,7 @@ class Lessosn < ApplicationRecord
   validates :title,:content, :course, presence: true
 
   extend FriendlyId
-  friendly_idc    :title, use: :slugged
+  friendly_id :title, use: :slugged
 
 
 end
