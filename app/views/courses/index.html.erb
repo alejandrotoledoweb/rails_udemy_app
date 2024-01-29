@@ -1,0 +1,35 @@
+<section class="w-full" data-controller="search" >
+
+  <header class="flex justify-between items-center mb-1">
+    <h2 class="font-bold text-4xl mt-2">Courses</h2>
+    <%= link_to "New course", new_course_path, data:{ turbo_frame: "modal"}, class: "rounded-lg py-2 px-5 bg-blue-600 text-white font-medium" %>
+  </header>
+  <!-- Search Input -->
+
+  <%#
+  <input type="text" data-search-target="input" data-action="keyup->search#search" placeholder="Search by title..." class="rounded-lg py-2 px-4 border border-gray-300 mb-4">
+  %>
+
+  <%= search_form_for @q, html: { class: "flex items-start space-x-4 mt-4 mb-4" } do |f| %>
+    <%= f.search_field :title_cont, placeholder: "Search by title",
+                                    class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 " %>
+    <%= f.label :language, 'Language', class: "text-base font-bold my-auto" %>
+    <%= f.select :language_cont, language_options, {include_blank: true},
+                                    class: " px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    <%= f.label :language, 'Level', class: "text-base font-bold my-auto" %>
+    <%= f.select :level_cont, level_options, {include_blank: true},
+                                    class: "block px-4 py-2 border border-gray-300 rounded-md border-rounded shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+
+    <%= f.submit "Search",
+                 class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer" %>
+  <% end %>
+
+  <%= button_to raw("#{icon('fa-solid fa-refresh fa-lg', 'fa-solid')} Refresh"), courses_path, method: :get,
+                                   class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer mb-4" %>
+
+
+  <!-- Courses Cards -->
+  <main id="courses" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <%= render @courses, search_target: "courses" %>
+  </main>
+</section>

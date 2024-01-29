@@ -1,0 +1,9 @@
+<div class="absolute inset-0 bg-black opacity-50"></div>
+<div class="z-10 rounded-xl bg-white p-8 shadow-lg">
+  <h2 class="mb-4 text-2xl">Confirmation</h2>
+  <p class="mb-4 text-base">Are you sure you want to perform this action?</p>
+  <%= form_with url: "", html: { method: :delete, id: "delete-form", class: "hidden" }, remote: false do |form| %>
+  <% end %>
+  <%= button_tag 'Yes', type: 'submit', form: 'delete-form', class: 'bg-blue-300 text-black px-4 py-2 rounded hover:bg-blue-400' %>
+  <%= button_tag 'No', type: 'button', class: 'bg-gray-300 text-black px-4 py-2 rounded ml-2 hover:bg-gray-400', data: { action: 'click->modal#close' } %>
+</div>

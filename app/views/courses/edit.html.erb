@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "edit-modal" do %>
+  <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+    <div class="z-10 rounded-xl bg-white p-8 shadow-lg scale-75">
+      <h1 class="font-bold text-4xl">Editing course</h1>
+      <%= render "form", course: @course %>
+      <a href="<%= request.referrer %>" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-lg hover:bg-slate-300">Go back</a>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<h1 class="text-3xl font-bold underline mb-4">Home page</h1>
+<p class="text-base text-slate-700">Ruby on rails app home page</p>
+<p class="text-base text-slate-700">Page under construction...</p>
+<div class="my-4">
+  <!-- <i class="fa-brands fa-font-awesome"></i>
+  <i class="fa-solid fa-user-secret"></i>
+  <i class="fa-regular fa-bell"></i> -->
+</div>
+
+
+<hr class="my-2 text-">
+
+<div class="my-4">
+
+  <%= link_to courses_path, class: "text-xl pb-4" do %>
+    <!-- <%= icon('fa-brands', 'font-awesome') %> Courses -->
+    <i class="fa-brands fa-font-awesome fa-xl"></i> See all your Courses
+  <% end %>
+  <!-- <%= icon('fa-brands', 'font-awesome')%>
+  <%= icon('fa-solid', 'user-secret')%>
+  <%= icon('fa-regular', 'bell')%> -->
+
+</div>
+
+<button data-tooltip-target="tooltip-default" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Information Tooltip</button>
+<div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    Udemy course
+    <div class="tooltip-arrow" data-popper-arrow></div>
+</div>
+

@@ -1,0 +1,14 @@
+<p>Current User: <%= @user.email %></p>
+
+<%= form_for(@user, class: "contents h-fit", local: true) do |form| %>
+
+  <% Role.all.each do |role| %>
+    <div class="block my-2">
+      <%= label_tag "role_#{role.id}", role.name.capitalize %>
+      <%= check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id), id: "role_#{role.id}" %>
+    </div>
+  <% end %>
+
+  <%= form.submit "Update User", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+
+<% end %>

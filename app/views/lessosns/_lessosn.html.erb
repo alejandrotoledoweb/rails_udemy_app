@@ -1,0 +1,22 @@
+<div id="<%= dom_id lessosn %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= lessosn.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= lessosn.content %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Course:</strong>
+    <%= lessosn.course_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this lessosn", lessosn, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this lessosn", edit_lessosn_path(lessosn), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

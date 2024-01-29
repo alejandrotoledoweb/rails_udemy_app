@@ -1,0 +1,78 @@
+<section class="max-w-4xl mx-auto px-4 py-8" data-controller="modal">
+  <%= search_form_for @q, html: { class: "flex items-center space-x-4" } do |f| %>
+    <%= f.search_field :email_cont, placeholder: "Search by email",
+                                    class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    <%= f.submit "Search",
+                 class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer" %>
+  <% end %>
+  <%= button_to raw("#{icon('fa-solid fa-refresh fa-md mr-2', 'font-solid')} Refresh"), users_path, method: :get,class: "mt-2 px-4 py-2 text-white bg-blue-500 rounded-md shadow hover:bg-blue-600" %>
+  <h2 class="text-2xl font-bold text-gray-800 my-6">Users</h2>
+  <!-- Responsive Table -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-gray-800">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2 text-blue-500 hover:text-blue-400"><%= sort_link(@q, :email, "Email") %></th>
+          <th class="border px-4 py-2">Joined</th>
+          <th class="border px-4 py-2 text-blue-500 hover:text-blue-400"><%= sort_link(@q, :sign_in_count, "Sign In Count") %></th>
+          <th class="border px-4 py-2">Last Sign In At</th>
+          <th class="border px-4 py-2">Roles</th>
+          <th class="border px-4 py-2">Confirmed Email</th>
+          <th class="border px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="border px-4 py-2">
+              <%= link_to "#{user.email}",  user_path(user), class: "hover:underline px-1" %>
+            </td>
+            <td class="border px-2 py-2 ">
+              <%= time_ago_in_words(user.created_at) %> ago
+            </td>
+            <td class="border px-4 py-2">
+              <%= user.sign_in_count %>
+            </td>
+            <td class="border px-4 py-2">
+              <%= user.last_sign_in_at ? user.last_sign_in_at.strftime("%B %d, %Y %H:%M") : "Never" %>
+            </td>
+            <td class="border px-4 py-2">
+              <% user.roles.map do |rol|  %>
+                <p class="my-2 mx-1"> <%= rol.name %> </p>
+              <% end %>
+            </td>
+            <td class="border px-4 py-2">
+              <% if user.confirmed_at.present? && user.confirmation_sent_at.present? %>
+                <span
+                  class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-green-500 rounded-full">YES</span>
+              <% else %>
+                <span
+                    class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-red-500 rounded-full">NO</span>
+              <% end %>
+            </td>
+            <td class="border px-4 py-2">
+              <!-- <%= button_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mb-2" %> -->
+              <% if current_user != user && policy(user).destroy? %>
+                <%= button_tag 'Delete',
+                type: 'button',
+                data: {
+                    action: 'click->modal#open',
+                    modal_url_value: user_path(user)
+                },
+                class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mb-2"
+                %>
+              <% end %>
+              <% if policy(user).edit? %>
+                <%= link_to "Edit", edit_user_path(user.id), method: :edit, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold  my-2 py-1 px-2 rounded" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <!-- modal -->
+    <div data-modal-target="modal" id="modal" class="fixed inset-0 flex hidden items-center justify-center">
+      <%= render 'shared/confirmation_modal' %>
+    </div>
+  </div>
+</section>

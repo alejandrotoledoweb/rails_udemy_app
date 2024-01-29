@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Udemy Rails App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <%= favicon_link_tag 'ruby-icon.png' %>
+  </head>
+
+  <%= render "layouts/header" %>
+  <%= render "layouts/messages" %>
+  <body>
+    <main class=" mx-auto mt-6 px-5">
+      <%= yield %>
+      <%= turbo_frame_tag "modal" %>
+      <%= turbo_frame_tag "edit-modal" %>
+    </main>
+  </body>
+</html>
