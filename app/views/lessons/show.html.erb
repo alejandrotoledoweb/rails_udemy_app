@@ -1,14 +1,14 @@
 <div class="mx-auto md:w-2/3 w-full flex" data-controller="modal-course">
   <div class="">
     <%= render @lesson %>
-    <%= link_to "Edit this lesson", edit_lesson_path(@lesson), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this lesson", edit_lesson_path(@lesson), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
     <div class="inline-block">
-      <%= link_to "Back to Course", course_path(@lesson.course), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Back to Course", course_path(@lesson.course), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
     </div>
     <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
       action: 'click->modal-course#open',
       modal_url_value: lesson_path(@lesson)
-    }, class: "rounded-lg py-3 ml-2 mb-2 px-5 bg-red-600 text-white font-medium hover:bg-red-700" %>
+    }, class: "rounded-lg py-3 ml-2 mb-2 px-5 bg-red-500 text-white font-medium hover:bg-red-600" %>
 
   <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
     <%= render 'shared/course_confirmation_modal' %>
