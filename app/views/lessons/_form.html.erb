@@ -1,10 +1,10 @@
-<%= form_with(model: lessosn, class: "contents") do |form| %>
-  <% if lessosn.errors.any? %>
+<%= form_with(model: lesson, class: "contents") do |form| %>
+  <% if lesson.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(lessosn.errors.count, "error") %> prohibited this lessosn from being saved:</h2>
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
       <ul>
-        <% lessosn.errors.each do |error| %>
+        <% lesson.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -21,9 +21,10 @@
     <%= form.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+
   <div class="my-5">
     <%= form.label :course_id %>
-    <%= form.text_field :course_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :course_id, Course.all.map {|c| [c.title, c.id]}, {},  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
