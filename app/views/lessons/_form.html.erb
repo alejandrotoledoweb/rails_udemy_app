@@ -17,8 +17,10 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :content %>
-    <%= form.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <h3 class="text-base mt-10 mb-4">
+      <%= form.label :content, "Content" %>
+    </h3>
+    <%= form.rich_text_area :content, rows: 8, class: "block shadow rounded-md border border-gray-200 outline-none px-3 pb-24 mt-2 w-full text-top" %>
   </div>
 
 

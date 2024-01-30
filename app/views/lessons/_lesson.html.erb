@@ -1,8 +1,10 @@
-<div id="<%= dom_id lesson %>" data-controller="modal-course">
+<div id="<%= dom_id lesson %>" >
+ <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
+ <%= link_to "/#{lesson.course.title}", course_path(lesson.course), class: "text-blue-500 hover:underline"  %>
+ <span class="text-blue-500">/<%= lesson.title %></span>
+
+ <h3 class="text-lg mt-4"><strong>Lesson:</strong> <%= lesson.title.capitalize %></h3>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= lesson.title %>
-  </p>
   <p class="my-5">
     <strong class="block font-medium mb-1">Content:</strong>
     <%= lesson.content %>
@@ -16,11 +18,6 @@
     <%= link_to "Edit this lesson", edit_lesson_path(lesson), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
-  <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
-      action: 'click->modal-course#open',
-      modal_url_value: lesson_path(@lesson)
-    }, class: "rounded-lg py-3 mb-2 px-5 bg-red-600 text-white font-medium hover:bg-red-700" %>
-  <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
-    <%= render 'shared/course_confirmation_modal' %>
-  </div>
+
+
 </div>
