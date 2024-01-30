@@ -2,13 +2,13 @@
   <div class="">
     <%= render @lesson %>
     <div class="inline-block">
-      <%= link_to "Back to Course", course_path(@lesson.course), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
+      <%= link_to "Back to Course", course_path(@lesson.course.id), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
     </div>
     <% if policy(@lesson).edit? %>
-      <%= link_to "Edit this lesson", edit_lesson_path(@lesson), class: "mt-2 ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
+      <%= link_to "Edit this lesson", edit_course_lesson_path(@course, @lesson), class: "mt-2 ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
       <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
       action: 'click->modal-course#open',
-      modal_url_value: lesson_path(@lesson)
+      modal_url_value: course_lesson_path(@course, @lesson)
     }, class: "rounded-lg py-3 ml-2 mb-2 px-5 bg-red-500 text-white font-medium hover:bg-red-600" %>
     <% end %>
     <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">

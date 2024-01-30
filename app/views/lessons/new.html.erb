@@ -1,12 +1,12 @@
 <div class="mx-auto md:w-2/3 w-full">
   <h2 class="font-bold text-3xl">New lesson for:</h2>
 
-  <p><%= @lesson.course.title %></p>
+  <h2 class="mt-4 text-xl"><%= @course.title %></h2>
 
   <%= render "form", lesson: @lesson %>
 
   <%# <%= link_to "Back to lessons", lessons_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"  %>
 
-  <%= link_to "Go Back", course_path(@lesson.course), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-lg hover:bg-slate-300" %>
+  <%= link_to "Go Back", course_path(@course), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-lg hover:bg-slate-300" %>
 
 </div>
