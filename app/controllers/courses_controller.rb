@@ -64,6 +64,7 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
+    authorize @course
     @course.destroy!
 
     respond_to do |format|

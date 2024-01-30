@@ -2,6 +2,7 @@
  <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
  <%= link_to "/#{lesson.course.title}", course_path(lesson.course), class: "text-blue-500 hover:underline"  %>
  <span class="text-blue-500">/<%= lesson.title %></span>
+ <h2 class="text-xl font-bold mt-10">Lesson Details</h2>
 
  <h3 class="text-lg mt-4"><strong>Lesson:</strong> <%= lesson.title.capitalize %></h3>
   <p class="my-5">
