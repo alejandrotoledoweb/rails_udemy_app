@@ -18,11 +18,22 @@
     <br>
     <p><strong>Price:</strong> $ <%= @course.price %> </p>
     <br>
+    <p class="mb-4 font-bold">Lessons:</p>
+    <ul>
+      <% @course.lessons.map do |c| %>
+        <li class="list-disc ml-4">
+          <%= link_to "#{c.title}", c, class: "font-bold hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
+    <br>
+    <div class="mb-1">
+      <%= link_to "Add new lesson", new_lesson_path(course_id: @course.id), class: "mt-2 rounded-lg py-3 px-5 bg-blue-300 inline-block font-medium hover:bg-gray-300"  %>
+    </div>
     <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
     <div class="inline-block ml-2">
       <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium hover:bg-gray-300" %>
     </div>
-
     <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: "sm:ml-1 md:ml-2 my-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
   </div>
 </div>

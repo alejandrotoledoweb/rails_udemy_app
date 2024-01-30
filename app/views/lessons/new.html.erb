@@ -3,5 +3,6 @@
 
   <%= render "form", lesson: @lesson %>
 
-  <%= link_to "Back to lessons", lessons_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%# <%= link_to "Back to lessons", lessons_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"  %>
+  <a href="<%= request.referrer %>" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-lg hover:bg-slate-300">Go back</a>
 </div>

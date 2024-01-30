@@ -1,10 +1,13 @@
 <article id="<%= dom_id course %>" data-title="<%= course.title.downcase %>" data-search-target="courses" data-controller="modal-course" class="<%= "bg-slate-200" if course.id.even? %> rounded-lg border border-slate-400 p-4">
-  <h2 class="font-bold text-xl mb-2"><%= course.title %></h2>
+  <h2 class="font-bold text-xl mb-2">
+    <%= course.title %>
+  </h2>
   <p class="text-gray-700 mb-4"><%= course.description %></p>
   <p class="text-gray-700 mb-4"><%= course.short_description %></p>
   <p class="text-gray-700 mb-4">Language: <%= course.language %></p>
   <p class="text-gray-700 mb-4">Level: <%= course.level %></p>
   <p class="text-gray-700 mb-4">Price: $ <%= course.price %></p>
+  <p class="text-gray-700 mb-4">Lessons:  <%= course.lessons.count %></p>
 
   <section class="text-sm text-gray-600 mb-4">
     User: <%= course.user %>

@@ -8,6 +8,7 @@ export default class extends Controller {
   }
 
   open(event) {
+    console.log("clicked");
     event.preventDefault();
     const deleteForm = document.getElementById("delete-form");
     deleteForm.action = event.currentTarget.dataset.modalUrlValue;
