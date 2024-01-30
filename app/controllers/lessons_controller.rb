@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1 or /lessons/1.json
   def show
+    authorize @lesson
   end
 
   # GET /lessons/new
