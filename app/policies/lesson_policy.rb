@@ -7,7 +7,7 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def create?
-    # @record.course.user_id == @user.id
+    @record.course.user_id == @user.id
   end
 
   def update?

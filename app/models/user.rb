@@ -16,7 +16,7 @@ class User < ApplicationRecord
          :rememberable,
          :validatable,
          :trackable,
-        #  :confirmable # add it when the send email works
+         :confirmable # add it when the send email works
 
   def to_s
     email
