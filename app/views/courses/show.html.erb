@@ -3,7 +3,6 @@
     <!-- <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %> -->
-
     <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
     <span class="text-blue-500">/<%= @course.title %></span>
     <h2 class="text-xl font-bold mt-10">Course Details</h2>
@@ -30,7 +29,6 @@
     </ul>
     <br>
     <div class="mb-1">
-
       <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-3 px-5 bg-blue-300 inline-block font-medium hover:bg-blue-400"  %>
     </div>
     <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
