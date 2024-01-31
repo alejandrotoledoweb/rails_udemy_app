@@ -15,6 +15,6 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.has_role? :admin || @record.user.id == @user.id
+    @record.user.id == @user.id
   end
 end
