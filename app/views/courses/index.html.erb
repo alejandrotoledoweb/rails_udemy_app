@@ -1,7 +1,10 @@
+<% content_for(:title) do %>
+  Rails Udemy | All Courses
+<% end %>
 <section class="w-full" data-controller="search" >
 
   <header class="flex justify-between items-center mb-1">
-    <h2 class="font-bold text-4xl mt-2">Courses</h2>
+    <h2 class="font-bold text-4xl mt-2">Courses, total: <%= @courses.count %> </h2>
     <%= link_to "New course", new_course_path, data:{ turbo_frame: "modal"}, class: "rounded-lg py-2 px-5 bg-blue-600 text-white font-medium" %>
   </header>
   <!-- Search Input -->
@@ -31,5 +34,10 @@
   <!-- Courses Cards -->
   <main id="courses" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <%= render @courses, search_target: "courses" %>
+
   </main>
+  <div class="my-12 mx-auto flex justify-center">
+
+    <%== pagy_nav(@pagy) %>
+  </div>
 </section>

@@ -1,3 +1,6 @@
+<% content_for(:title) do %>
+  Rails Udemy | All Users
+<% end %>
 <section class="max-w-4xl mx-auto px-4 py-8" data-controller="modal">
   <%= search_form_for @q, html: { class: "flex items-center space-x-4" } do |f| %>
     <%= f.search_field :email_cont, placeholder: "Search by email",

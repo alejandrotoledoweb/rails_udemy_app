@@ -11,11 +11,13 @@ User.find_or_create_by!(email: 'admin@gmail.com') do |user|
   user.password = 'admin123456'
   user.password_confirmation = 'admin123456'
   user.add_role :admin
+  user.skip_confirmation!
 end
 User.find_or_create_by!(email: 'atoledofr@gmail.com') do |user|
   user.password = 'admin123456'
   user.password_confirmation = 'admin123456'
   user.add_role :admin
+  user.skip_confirmation!
 end
 
 puts 'User Created'

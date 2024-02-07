@@ -80,3 +80,5 @@ gem "friendly_id", "~> 5.4.0"
 gem "ransack"
 gem "rolify"
 gem "pundit"
+gem "exception_notification"
+gem "pagy" # "~> 6.4" # omit patch digit

@@ -6,7 +6,8 @@ class CoursesController < ApplicationController
     # @courses = Course.all.order(id: :asc)
 
     @q = Course.ransack(params[:q])
-    @courses = @q.result(distinct: true).order(created_at: :desc)
+    # @courses = @q.result(distinct: true).order(created_at: :desc) #before pagy
+    @pagy, @courses = pagy(@q.result(distinct: true).order(created_at: :desc))
   end
 
   # GET /courses/1 or /courses/1.json
@@ -29,35 +30,35 @@ class CoursesController < ApplicationController
     @course.user = current_user
     authorize @course
 
-      if @course.save
-        redirect_to courses_url, notice: "Course was successfully created."
-      else
-        render(
-          turbo_stream: turbo_stream.replace(
-            "course_form",
-            partial: "courses/form",
-            locals: {
-              course: @course
-            }
-            )
-        )
-      end
-  end
-
-  # PATCH/PUT /courses/1 or /courses/1.json
-  def update
-    authorize @course
-    if @course.update(course_params)
-        redirect_to courses_url, notice: "Course was successfully updated."
+    if @course.save
+      redirect_to courses_url, notice: "Course was successfully created."
     else
       render(
         turbo_stream: turbo_stream.replace(
           "course_form",
           partial: "courses/form",
           locals: {
-            course: @course
-          }
-          )
+            course: @course,
+          },
+        ),
+      )
+    end
+  end
+
+  # PATCH/PUT /courses/1 or /courses/1.json
+  def update
+    authorize @course
+    if @course.update(course_params)
+      redirect_to courses_url, notice: "Course was successfully updated."
+    else
+      render(
+        turbo_stream: turbo_stream.replace(
+          "course_form",
+          partial: "courses/form",
+          locals: {
+            course: @course,
+          },
+        ),
       )
     end
   end
@@ -74,13 +75,14 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.friendly.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.friendly.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def course_params
+    params.require(:course).permit(:title, :description, :short_description, :language, :level, :price)
+  end
 end

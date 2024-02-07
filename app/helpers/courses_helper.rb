@@ -1,4 +1,6 @@
 module CoursesHelper
+  include Pagy::Frontend
+
   def language_options
     %w[English Spanish French German Chinese]
   end
