@@ -1,4 +1,4 @@
-<div id="<%= dom_id lesson %>" >
+<div id="<%= dom_id lesson %>" class="">
  <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
  <%= link_to "/#{lesson.course.title}", course_path(lesson.course), class: "text-blue-500 hover:underline"  %>
  <span class="text-blue-500">/<%= lesson.title %></span>
