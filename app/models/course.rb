@@ -9,6 +9,7 @@ class Course < ApplicationRecord
 
   has_rich_text :description
   has_many :lessons, dependent: :destroy
+  has_many :enrollments
 
   def to_s
     title

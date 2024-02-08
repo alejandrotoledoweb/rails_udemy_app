@@ -5,11 +5,11 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :email, use: :slugged
 
+  has_many :courses, dependent: :destroy
+  has_many :enrollments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
-  has_many :courses, dependent: :destroy
   devise :database_authenticatable,
          :registerable,
          :recoverable,

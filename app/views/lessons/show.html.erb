@@ -1,3 +1,6 @@
+<% content_for(:title) do %>
+  <%= @lesson.course.title.capitalize %> | Lesson: <%= @lesson.title %>
+<% end %>
 <div class="mx-auto md:w-full w-full flex" data-controller="modal-course">
   <div class="ml-10">
     <%= render @lesson %>
