@@ -2,10 +2,15 @@ class Enrollment < ApplicationRecord
   belongs_to :course
   belongs_to :user
 
-  validates :user,:course, presence: true
+  validates :user, :course, presence: true
   validates_uniqueness_of :course_id, scope: :user_id
   validates_uniqueness_of :user_id, scope: :course_id
 
+  validate :cant_subscribe_to_own_course
+
+  def to_s
+    user.to_s + " " + course.to_s
+  end
 
   protected
 
@@ -16,5 +21,4 @@ class Enrollment < ApplicationRecord
       end
     end
   end
-
 end

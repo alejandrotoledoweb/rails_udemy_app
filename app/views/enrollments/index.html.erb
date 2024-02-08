@@ -1,14 +1,25 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
+<div class="lg:w-8/12 mx-auto w-full ">
+  <div class="flex justify-around items-center">
     <h1 class="font-bold text-4xl">Enrollments</h1>
     <%= link_to "New enrollment", new_enrollment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-
-  <div id="enrollments" class="min-w-full">
-    <%= render @enrollments %>
+  <div id="enrollments" class="min-w-full overflow-auto">
+    <table class="border-collapse lg:w-10/12 mx-auto mt-4 w-full">
+      <thead class="h-16 border border-gray-300">
+        <tr>
+          <th class="text-left pl-2  sm:px-1 border border-gray-300">Course</th>
+          <th class="text-left pl-2 sm:px-1 border border-gray-300">User</th>
+          <th class="text-left pl-2 sm:px-1 border border-gray-300">Rating</th>
+          <th class="text-left pl-2 sm:px-1 border border-gray-300">Review</th>
+          <th class="text-left pl-2 sm:px-1 border border-gray-300">Price</th>
+          <% if action_name != "show" %>
+            <th>Actions</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @enrollments %>
+      </tbody>
+    </table>
   </div>
 </div>

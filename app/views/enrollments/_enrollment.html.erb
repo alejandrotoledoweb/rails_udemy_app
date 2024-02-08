@@ -1,32 +1,30 @@
-<div id="<%= dom_id enrollment %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Course:</strong>
-    <%= enrollment.course_id %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= enrollment.user_id %>
-  </p>
+  <tr id="<%= dom_id enrollment %>" class="border-collapse w-full mx-auto border-blue-400 border">
+    <td class=" text-left pl-2 border border-blue-400">
+      <%# <strong class="block font-medium mb-1">Course:</strong> %>
+      <%= enrollment.course.title %>
+    </td>
+    <td class=" text-left border  border-blue-400 px-2">
+      <%# <strong class="block font-medium mb-1">User:</strong> %>
+      <%= enrollment.user.email %>
+    </td>
+    <td class=" text-center border  border-blue-400 px-2">
+      <%# <strong class="block font-medium mb-1">Rating:</strong> %>
+      <%= enrollment.rating %>
+    </td>
+    <td class=" text-center border  border-blue-400">
+      <%# <strong class="block font-medium mb-1">Review:</strong> %>
+      <%= enrollment.review %>
+    </td>
+    <td class=" text-center border  border-blue-400">
+      <%# <strong class="block font-medium mb-1">Price:</strong> %>
+      <%= number_to_currency(enrollment.price) %>
+    </td>
+    <% if action_name != "show" %>
+      <td class=" flex flex-row text-center justify-center my-2">
+        <%# <%= link_to "Show this enrollment", enrollment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Edit this enrollment", edit_enrollment_path(enrollment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium "  %>
+      </td>
+    <% end %>
+  </tr>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Rating:</strong>
-    <%= enrollment.rating %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Review:</strong>
-    <%= enrollment.review %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= enrollment.price %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this enrollment", enrollment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this enrollment", edit_enrollment_path(enrollment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
