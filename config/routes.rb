@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :courses do
     resources :lessons
+    resources :enrollments, only: %i[new create]
   end
   resources :users, only: %i[index destroy edit show update]
   get "/users/:id/delete_confirmation",

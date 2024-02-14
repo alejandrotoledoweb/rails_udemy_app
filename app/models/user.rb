@@ -31,4 +31,8 @@ class User < ApplicationRecord
     add_role(:teacher) unless has_role? :teacher
     add_role(:admin) if User.count == 1 && !has_role?(:admin)
   end
+
+  def buy_course(course)
+    self.enrollments.create(course: course, price: course.price)
+  end
 end

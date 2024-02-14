@@ -356,6 +356,7 @@ DEPENDENCIES
   letter_opener
   pagy
   pg (~> 1.1)
+  pry (~> 0.14.2)
   puma (>= 5.0)
   pundit
   rack-livereload
