@@ -1,4 +1,4 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto md:w-2/3 w-full flex" data-controller="modal-course">
   <div class="mx-auto">
     <section class="flex flex-col">
       <span class="my-2"><strong>Course: </strong> <%= @enrollment.course.title %></span>
@@ -15,9 +15,9 @@
     }, class: "rounded-lg py-3 mb-2 px-3 ml-3 bg-red-500 text-white font-medium hover:bg-red-700" %>
         <!-- modal -->
         <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
-          <%= render 'shared/course_confirmation_modal' %>
+          <%= render 'shared/destroy_review_modal', enrollment: @enrollment %>
         </div>
-        <%= link_to "Back to enrollments", enrollments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <a href="<%= request.referrer %>" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-lg hover:bg-slate-300">Go back</a>
       <% end %>
     </section>
   </div>

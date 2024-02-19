@@ -33,7 +33,7 @@ module CoursesHelper
     user_course = course.enrollments.where(user: current_user )
     if current_user
       if course.enrollments.where(user: current_user).any?
-        if user_course.where(rating:[0,nil, ""], review: [0, nil, ""]).any?
+        if user_course.pending_review.any?
           link_to "Edit a review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
         else
           "You have a review already"

@@ -3,6 +3,8 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["modalCourse"];
 
+  // confirmation modal for delete method in general
+
   connect() {
     console.log("Modal course connected");
   }

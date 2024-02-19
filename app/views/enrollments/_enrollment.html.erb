@@ -47,7 +47,7 @@
     }, class: "rounded-lg py-1 px-3 ml-3 bg-red-500 text-white font-medium hover:bg-red-700" %>
       <!-- modal -->
       <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
-        <%= render 'shared/course_confirmation_modal' %>
+        <%= render 'shared/destroy_review_modal', enrollment: enrollment %>
       </div>
     </td>
   <% end %>

@@ -12,6 +12,9 @@
     <button class="rounded-lg py-1 px-3 mb-4 bg-blue-100 font-medium  hover:bg-blue">
       <%= link_to "Edit your review", edit_enrollment_path(course.enrollments.where(user:current_user).first) %>
     </button>
+    <button class="rounded-lg py-1 px-3 mb-4 bg-blue-100 font-medium  hover:bg-blue">
+      <%= link_to "See review", enrollment_path(course.enrollments.where(user:current_user).first)  %>
+    </button>
   <% end %>
   <section class="text-sm text-gray-600 mb-4">
     User: <%= course.user %>
