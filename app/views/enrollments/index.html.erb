@@ -1,16 +1,20 @@
-<div class="lg:w-8/12 mx-auto w-full ">
+<div class=" mx-auto w-full ">
   <div class="flex justify-around items-center">
     <h1 class="font-bold text-4xl">Enrollments</h1>
     <%# <%= link_to "New enrollment", new_enrollment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
   <div id="enrollments" class="min-w-full overflow-auto">
-    <table class="border-collapse lg:w-10/12 mx-auto mt-4 w-full">
+    <table class="border-collapse lg:w-11/12 mx-auto mt-4 w-full">
       <thead class="h-16 border border-blue-500">
         <tr>
-          <th class="text-left pl-2  sm:px-1 border border-blue-500">Course</th>
+          <th class="text-center pl-2 sm:px-1 border border-blue-500">ID</th>
+          <th class="text-left pl-2 sm:px-1 border border-blue-500">Date</th>
+          <th class="text-left pl-2 sm:px-1 border border-blue-500">Course</th>
+          <th class="text-left pl-2 sm:px-1 border border-blue-500">Price</th>
           <th class="text-left pl-2 sm:px-1 border border-blue-500">User</th>
+          <th class="text-left pl-2 sm:px-1 border border-blue-500">Updated</th>
           <th class="text-left pl-2 sm:px-1 border border-blue-500">Rating</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Review</th>
+          <th class="text-left pl-2 sm:px-1 border border-blue-500 min-w-52">Review</th>
           <th class="text-left pl-2 sm:px-1 border border-blue-500">Price</th>
           <% if action_name != "show" %>
             <th>Actions</th>

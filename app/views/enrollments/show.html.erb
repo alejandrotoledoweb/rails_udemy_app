@@ -1,12 +1,24 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-
-    <%= render @enrollment %>
-
-    <%= link_to "Edit this enrollment", edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this enrollment", enrollment_path(@enrollment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to "Back to enrollments", enrollments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <section class="flex flex-col">
+      <span class="my-2"><strong>Course: </strong> <%= @enrollment.course.title %></span>
+      <span class="my-2">User: <%= @enrollment.user.name.present? ? @enrollment.user.name : @enrollment.user.email %></span>
+      <span class="my-2">Rating: <%= @enrollment.rating.present? ? raw("#{icon("fa-solid fa-star fa-xs text-yellow-300", "font-solid")} #{@enrollment.rating}") : 0 %></span>
+      <span class="my-2">Review: <%= @enrollment.review.present? ? @enrollment.review : 'N/A' %></span>
+    </section>
+    <section>
+      <% if policy(@enrollment).edit? %>
+        <%= link_to "Edit this review", edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
+     action: 'click->modal-course#open',
+      modal_url_value: enrollment_path(@enrollment)
+    }, class: "rounded-lg py-3 mb-2 px-3 ml-3 bg-red-500 text-white font-medium hover:bg-red-700" %>
+        <!-- modal -->
+        <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
+          <%= render 'shared/course_confirmation_modal' %>
+        </div>
+        <%= link_to "Back to enrollments", enrollments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>
+    </section>
   </div>
 </div>

@@ -1,30 +1,54 @@
-
-  <tr id="<%= dom_id enrollment %>" class="border-collapse w-full mx-auto border-blue-400 border">
-    <td class=" text-left pl-2 border border-blue-400">
-      <%# <strong class="block font-medium mb-1">Course:</strong> %>
-      <%= enrollment.course.title %>
+<tr id="<%= dom_id enrollment %>" class="border-collapse w-full mx-auto border-blue-400 border" data-controller="modal-course">
+  <td class=" text-center pl-2 border border-blue-400 w-9">
+    <%# <strong class="block font-medium mb-1">Course:</strong> %>
+    <%= enrollment.id %>
+  </td>
+  <td class=" text-left px-2 border border-blue-400 w-36">
+    <%= enrollment.created_at.strftime( "%d/%m/%y - %H:%M" ) %>
+  </td>
+  <td class=" text-left px-2 border border-blue-400">
+    <%# <strong class="block font-medium mb-1">Course:</strong> %>
+    <%= enrollment.course.title %>
+  </td>
+  <td class=" text-left px-2 border border-blue-400">
+    <%# <strong class="block font-medium mb-1">Course:</strong> %>
+    <%= number_to_currency(enrollment.course.price) %>
+  </td>
+  <td class=" text-left border  border-blue-400 px-2">
+    <%# <strong class="block font-medium mb-1">User:</strong> %>
+    <%= enrollment.user.email %>
+  </td>
+  <td class=" text-left border  border-blue-400 px-2">
+    <%# <strong class="block font-medium mb-1">User:</strong> %>
+    <%= enrollment.rating.present? ?  enrollment.updated_at.strftime( "%d/%m/%y - %H:%M" ) : "-" %>
+  </td>
+  <td class=" text-center border  border-blue-400 px-2">
+    <%# <strong class="block font-medium mb-1">Rating:</strong> %>
+    <%= enrollment.rating.present? ? raw("#{icon("fa-solid fa-star fa-sm text-yellow-300", "font-solid")} #{enrollment.rating}") : "-" %>
+  </td>
+  <td class=" text-left border px-2 border-blue-400 w-20">
+    <%# <strong class="block font-medium mb-1">Review:</strong> %>
+    <%= enrollment.review.present? ? enrollment.review : "-" %>
+  </td>
+  <td class=" text-center border px-2 border-blue-400">
+    <%# <strong class="block font-medium mb-1">Price:</strong> %>
+    <%= number_to_currency(enrollment.price) %>
+  </td>
+  <% if action_name != "show" %>
+    <td class=" flex flex-row text-center justify-center my-2 mx-4">
+      <%# <%= link_to "Show this enrollment", enrollment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "See Review", enrollment, class: "rounded-lg py-1 mx-2 px-2 bg-gray-100 inline-block font-sm  "  %>
+      <% if policy(enrollment).edit? %>
+        <%= link_to (enrollment.review.present? ? "Edit Review" : "Add Review") , edit_enrollment_path(enrollment), class: "rounded-lg py-1 mx-2 px-5 bg-gray-100 inline-block font-medium "  %>
+      <% end  %>
+      <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
+      action: 'click->modal-course#open',
+      modal_url_value: enrollment_path(enrollment)
+    }, class: "rounded-lg py-1 px-3 ml-3 bg-red-500 text-white font-medium hover:bg-red-700" %>
+      <!-- modal -->
+      <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
+        <%= render 'shared/course_confirmation_modal' %>
+      </div>
     </td>
-    <td class=" text-left border  border-blue-400 px-2">
-      <%# <strong class="block font-medium mb-1">User:</strong> %>
-      <%= enrollment.user.email %>
-    </td>
-    <td class=" text-center border  border-blue-400 px-2">
-      <%# <strong class="block font-medium mb-1">Rating:</strong> %>
-      <%= enrollment.rating %>
-    </td>
-    <td class=" text-center border  border-blue-400">
-      <%# <strong class="block font-medium mb-1">Review:</strong> %>
-      <%= enrollment.review %>
-    </td>
-    <td class=" text-center border  border-blue-400">
-      <%# <strong class="block font-medium mb-1">Price:</strong> %>
-      <%= number_to_currency(enrollment.price) %>
-    </td>
-    <% if action_name != "show" %>
-      <td class=" flex flex-row text-center justify-center my-2">
-        <%# <%= link_to "Show this enrollment", enrollment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-        <%= link_to "Edit this enrollment", edit_enrollment_path(enrollment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium "  %>
-      </td>
-    <% end %>
-  </tr>
-
+  <% end %>
+</tr>

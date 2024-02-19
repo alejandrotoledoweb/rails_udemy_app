@@ -2,7 +2,6 @@
   <% if enrollment.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
-
       <ul>
         <% enrollment.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,28 +9,22 @@
       </ul>
     </div>
   <% end %>
-
   <div class="my-5">
-    <%= form.label :course_id %>
-    <%= form.select :course_id, Course.all.map {|c| [c.title, c.id]} ,{},class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :rating, class: "font-bold" %>
+    <div class="flex mt-2">
+      <% (1..5).each do |rating| %>
+        <label class="inline-flex items-center mr-4 gap-x-1">
+          <%= radio_button(:enrollment, :rating, rating) %>
+          <%= rating %>
+        </label>
+      <% end %>
+    </div>
   </div>
-
   <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.select :user_id, User.all.map {|u| [u.email, u.id]}, {},class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :rating %>
-    <%= form.number_field :rating, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :review %>
+    <%= form.label :review, class: "font-bold" %>
     <%= form.text_area :review, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Update", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
