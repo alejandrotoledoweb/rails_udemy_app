@@ -1,9 +1,10 @@
+require 'pry'
 class LessonPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      scope.all
+    end
   end
 
   def create?
@@ -26,6 +27,7 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def show?
-    @user.has_role? :admin || @record.course.user_id == @user.id
+    # binding.pry
+     @record.course.user_id == @user.id || @record.course.bought(@user) || @user.has_role?(:admin)
   end
 end

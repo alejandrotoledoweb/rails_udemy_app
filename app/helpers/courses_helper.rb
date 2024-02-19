@@ -13,7 +13,7 @@ module CoursesHelper
     if current_user
       if course.user === current_user
          link_to "See Analytics", course_path(course), class: ""
-      elsif course.enrollments.where(user: current_user).any?
+      elsif course.enrollments.where(user_id: current_user.id, course_id: course.id).any?
         link_to "Continue", course_path(course), class: ""
       elsif course.price > 0
         link_to "Buy this course", new_course_enrollment_path(course), class: ""

@@ -33,6 +33,7 @@ class Course < ApplicationRecord
   end
 
   def bought(user)
-    self.enrollments.where(user_id: [user.id], course_id: [self.id].empty?)
+    puts "=======> #{user.id}, #{self.id}"
+    self.enrollments.where(user_id: [user.id], course_id: [self.id]).any?
   end
 end
