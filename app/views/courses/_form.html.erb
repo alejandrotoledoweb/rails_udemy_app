@@ -38,7 +38,7 @@
 
   <div class="my-5">
     <%= form.label :price %>
-    <%= form.number_field :price, in: 10.0..250.0, value: 10, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :price, in: 0.0..250.0, default_value: 10, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

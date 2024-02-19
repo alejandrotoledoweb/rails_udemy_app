@@ -31,7 +31,7 @@ class EnrollmentsController < ApplicationController
       redirect_to new_course_enrollment_path(@course), notice: "You can't access paid courses yet."
 
     else
-      @enrollment = current_user.bought(@course)
+      @enrollment = current_user.buy_course(@course)
       redirect_to course_path(@course), notice: "Successfully enrolled the course!"
     end
   end
