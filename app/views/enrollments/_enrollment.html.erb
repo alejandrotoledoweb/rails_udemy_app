@@ -1,4 +1,4 @@
-<tr id="<%= dom_id enrollment %>" class="border-collapse w-full mx-auto border-blue-400 border" data-controller="modal-course">
+<tr id="<%= dom_id enrollment %>" class="border-collapse w-full mx-auto border-blue-400 border text-sm" data-controller="modal-course">
   <td class=" text-center pl-2 border border-blue-400 w-9">
     <%# <strong class="block font-medium mb-1">Course:</strong> %>
     <%= enrollment.id %>
@@ -37,7 +37,10 @@
   <% if action_name != "show" %>
     <td class=" flex flex-row text-center justify-center my-2 mx-4">
       <%# <%= link_to "Show this enrollment", enrollment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <% if enrollment.review.present? %>
+
       <%= link_to "See Review", enrollment, class: "rounded-lg py-1 mx-2 px-2 bg-gray-100 inline-block font-sm  "  %>
+    <% end %>
       <% if policy(enrollment).edit? %>
         <%= link_to (enrollment.review.present? ? "Edit Review" : "Add Review") , edit_enrollment_path(enrollment), class: "rounded-lg py-1 mx-2 px-5 bg-gray-100 inline-block font-medium "  %>
       <% end  %>
