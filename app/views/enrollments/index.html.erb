@@ -3,6 +3,22 @@
     <h1 class="font-bold text-4xl">Enrollments</h1>
     <%# <%= link_to "New enrollment", new_enrollment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
+  <div class="border-collapse lg:w-11/12 mx-auto mt-4 w-full">
+
+    <%= search_form_for @q, html: { class: "flex space-x-4" } do |f| %>
+    <%= f.search_field :course_title_cont, placeholder: "Search by course title",
+                                    class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-48" %>
+    <%= f.search_field :review_cont, placeholder: "Search by review",
+                                    class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-48" %>
+    <%= f.search_field :rating_eq, placeholder: "Rating",
+                                    class: "block px-2 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-20" %>
+    <%= f.search_field :price_eq, placeholder: "Price",
+                                    class: "block px-2 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-20" %>
+    <%= f.submit "Search",
+                 class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer" %>
+  <% end %>
+  <%= button_to raw("#{icon('fa-solid fa-refresh fa-md mr-2', 'font-solid')} Refresh"), enrollments_url, method: :get,class: "mt-2 px-4 py-2 text-white bg-blue-500 rounded-md shadow hover:bg-blue-600" %>
+  </div>
   <div id="enrollments" class="min-w-full overflow-auto">
     <table class="border-collapse lg:w-11/12 mx-auto mt-4 w-full">
       <thead class="h-16 border border-blue-500">
@@ -25,5 +41,8 @@
         <%= render @enrollments %>
       </tbody>
     </table>
+    <div class="flex justify-center mt-6">
+    <%== pagy_nav(@pagy) %>
+  </div>
   </div>
 </div>
