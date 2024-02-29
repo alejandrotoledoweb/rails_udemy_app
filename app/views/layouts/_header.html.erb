@@ -16,14 +16,10 @@
     <div class="bg-blue-300 hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
         class="bg-blue-300 font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-
         <li>
           <%= link_to raw("#{icon('fa-solid fa-graduation-cap', 'font-solid')} Courses"), courses_path,
                 class: "#{ 'font-bold' if current_page?(courses_path) } block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
         </li>
-
-
-
         <% if current_user %>
           <li>
             <span
@@ -31,30 +27,57 @@
               <%= link_to "Account settings #{current_user.email}" , edit_user_registration_path %>
             </span>
           </li>
-
-          <% if current_user.has_role? :admin %>
-          <li class="relative">
-            <button data-action="click->header#toggle" class="block py-2 px-3 text-gray-900 rounded md:p-0 dark:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
-              Admin <i class="fas fa-chevron-down"></i>
-            </button>
-            <ul data-header-target="menu" class="absolute hidden text-gray-700 pt-4 w-32">
-              <li>
-                <%= link_to raw("#{icon('fa-solid fa-users', 'font-solid pl-2 my-2')} Users"), users_path, class: "#{'font-bold' if current_page?(users_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+          <% if current_user.has_role? :student %>
+            <li class="relative">
+              <button data-action="click->header#toggleStudent" class="block py-2 px-3 text-gray-900 rounded md:p-0 dark:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
+                Learn <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul data-header-target="studentMenu" class="hidden md:absolute text-gray-700 pt-4 w-36 ">
+                <li>
+                  <%= link_to raw("#{icon('fa-solid fa-book', 'font-solid pl-2 my-2 ')} My courses"), purchased_courses_path, class: "#{'font-bold' if current_page?(purchased_courses_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                </li>
+              </ul>
             </li>
-            <li>
-                <%= link_to raw("#{icon('fa-solid fa-lock-open', 'font-solid pl-2 my-2')} Enrollments"), enrollments_path, class: "#{'font-bold' if current_page?(enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
-            </li>
-            </ul>
-          </li>
-
           <% end %>
-
+          <% if current_user.has_role? :teacher %>
+            <li class="relative">
+              <button data-action="click->header#toggleTeacher" class="block py-2 px-3 text-gray-900 rounded md:p-0 dark:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
+                Teacher <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul data-header-target="teacherMenu" class="md:absolute hidden text-gray-700 pt-4 w-36">
+                <li>
+                  <%= link_to raw("#{icon('fa-solid fa-plus', 'font-solid pl-2 my-2 ')} New course"), new_course_path, class: "#{'font-bold' if current_page?(new_course_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                </li>
+                <li>
+                  <%= link_to raw("#{icon('fa-solid fa-book', 'font-solid pl-2 my-2 pr-1')} My courses"), created_courses_path, class: "#{'font-bold' if current_page?(created_courses_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                </li>
+                <li>
+                  <%= link_to raw("#{icon('fa-solid fa-users', 'font-solid pl-2 my-2 pr-1')} My students"), my_students_enrollments_path, class: "#{'font-bold' if current_page?(my_students_enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
+          <% if current_user.has_role? :admin %>
+            <li class="relative">
+              <button data-action="click->header#toggle" class="block py-2 px-3 text-gray-900 rounded md:p-0 dark:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
+                Admin <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul data-header-target="menu" class="md:absolute hidden text-gray-700 pt-4 w-36">
+                <li>
+                  <%= link_to raw("#{icon('fa-solid fa-users', 'font-solid pl-2 my-2')} Users"), users_path, class: "#{'font-bold' if current_page?(users_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                </li>
+                <li>
+                  <%= link_to raw("#{icon('fa-solid fa-lock-open', 'font-solid pl-2 my-2')} Enrollments"), enrollments_path, class: "#{'font-bold' if current_page?(enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
           <li>
             <span
             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent  text-bold">
-            <%= form_with url: destroy_user_session_path, method: :delete do %>
-              <%= submit_tag 'Log out', class: "hover:cursor-pointer" %>
-            <% end %>
+              <%= form_with url: destroy_user_session_path, method: :delete do %>
+                <%= submit_tag 'Log out', class: "hover:cursor-pointer" %>
+              <% end %>
             </span>
           </li>
         <% end %>
@@ -62,6 +85,3 @@
     </div>
   </div>
 </nav>
-
-
-

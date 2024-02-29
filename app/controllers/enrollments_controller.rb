@@ -2,33 +2,33 @@ class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy ]
   before_action :set_course, only: %i[new]
 
-  # GET /enrollments or /enrollments.json
   def index
-    # @enrollments = Enrollment.all
-
+    @ransack_path = enrollments_path
     @q = Enrollment.ransack(params[:q])
     @pagy, @enrollments = pagy(@q.result(distinct: true).includes(:course).order(created_at: :desc))
     authorize @enrollments
   end
 
-  # GET /enrollments/1 or /enrollments/1.json
+  def my_students
+    @ransack_path = my_students_enrollments_path
+    @q = Enrollment.ransack(params[:q])
+    enrollments = @q.result.joins(:course).where(courses: {user: current_user })
+    @pagy, @enrollments = pagy(enrollments)
+    render 'index'
+  end
+
   def show
   end
 
-  # GET /enrollments/new
   def new
     @enrollment = Enrollment.new
   end
 
-  # GET /enrollments/1/edit
   def edit
     authorize @enrollment
   end
 
-  # POST /enrollments or /enrollments.json
   def create
-
-
     @course = Course.friendly.find(params[:enrollment][:course_id])
 
     if @course.price > 0
@@ -40,7 +40,6 @@ class EnrollmentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
     authorize @enrollment
     respond_to do |format|
@@ -54,7 +53,6 @@ class EnrollmentsController < ApplicationController
     end
   end
 
-  # DELETE /enrollments/1 or /enrollments/1.json
   def destroy
     authorize @enrollment
     @enrollment.destroy!
@@ -71,12 +69,10 @@ class EnrollmentsController < ApplicationController
     @course = Course.friendly.find(params[:course_id])
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_enrollment
     @enrollment = Enrollment.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def enrollment_params
     params.require(:enrollment).permit(:course_id, :user_id, :rating, :review)
   end
