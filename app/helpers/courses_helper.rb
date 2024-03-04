@@ -30,13 +30,13 @@ module CoursesHelper
   end
 
   def review_button(course)
-    user_course = course.enrollments.where(user: current_user )
+    user_course = course.enrollments.where(user_id: current_user.id )
     if current_user
-      if course.enrollments.where(user: current_user).any?
+      if user_course.any?
         if user_course.pending_review.any?
-          link_to "Edit a review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
+          link_to "Add review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
         else
-          "You have a review already"
+          link_to "Edit review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
         end
       end
     end

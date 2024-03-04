@@ -37,14 +37,14 @@
   <% if action_name != "show" %>
     <td class=" flex flex-row text-center justify-center my-2 mx-4">
       <%# <%= link_to "Show this enrollment", enrollment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <% if enrollment.review.present? %>
+      <% if enrollment.rating.present? %>
 
       <%= link_to "See Review", enrollment, class: "rounded-lg py-1 mx-2 px-2 bg-gray-100 inline-block font-sm  "  %>
     <% end %>
       <% if policy(enrollment).edit? %>
         <%= link_to (enrollment.review.present? ? "Edit Review" : "Add Review") , edit_enrollment_path(enrollment), class: "rounded-lg py-1 mx-2 px-5 bg-gray-100 inline-block font-medium "  %>
       <% end  %>
-      <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
+      <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Delete Review"), type: "button", data: {
       action: 'click->modal-course#open',
       modal_url_value: enrollment_path(enrollment)
     }, class: "rounded-lg py-1 px-3 ml-3 bg-red-500 text-white font-medium hover:bg-red-700" %>
