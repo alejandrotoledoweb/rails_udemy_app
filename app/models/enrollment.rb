@@ -1,6 +1,8 @@
 class Enrollment < ApplicationRecord
-  belongs_to :course
-  belongs_to :user
+  belongs_to :course, counter_cache: true
+  # Course.find_each { |course| Course.reset_counters(course.id, :enrollments)}
+  belongs_to :user, counter_cache: true
+  # User.find_each { |user| User.reset_counters(user.id, :enrollments)}
 
   validates :user, :course, presence: true
   validates_uniqueness_of :course_id, scope: :user_id
@@ -12,6 +14,16 @@ class Enrollment < ApplicationRecord
 
   def to_s
     user.to_s + " " + course.to_s
+  end
+
+  after_save do
+    unless rating.nil? || rating.zero?
+      course.update_rating
+    end
+  end
+
+  after_destroy do
+    course.update_rating
   end
 
   def self.ransackable_attributes(auth_object = nil)

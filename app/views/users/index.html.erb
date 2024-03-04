@@ -20,6 +20,8 @@
           <th class="border px-4 py-2 text-blue-500 hover:text-blue-400"><%= sort_link(@q, :sign_in_count, "Sign In Count") %></th>
           <th class="border px-4 py-2">Last Sign In At</th>
           <th class="border px-4 py-2">Roles</th>
+          <th class="border px-4 py-2">Courses</th>
+          <th class="border px-4 py-2">Enrollments</th>
           <th class="border px-4 py-2">Confirmed Email</th>
           <th class="border px-4 py-2">Actions</th>
         </tr>
@@ -43,6 +45,12 @@
               <% user.roles.map do |rol|  %>
                 <p class="my-2 mx-1"> <%= rol.name %> </p>
               <% end %>
+            </td>
+            <td class="border px-4 py-2">
+              <%= user.courses_count %>
+            </td>
+            <td class="border px-4 py-2">
+              <%= user.enrollments_count %>
             </td>
             <td class="border px-4 py-2">
               <% if user.confirmed_at.present? && user.confirmation_sent_at.present? %>

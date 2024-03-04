@@ -21,6 +21,18 @@
           <%= @user.sign_in_count %>
         </td>
       </tr>
+      <tr>
+        <td class="border px-4 py-2 text-sm"><strong>Courses created:</strong></td>
+        <td class="border px-4 py-2 text-sm">
+          <%= @user.courses_count %>
+        </td>
+      </tr>
+      <tr>
+        <td class="border px-4 py-2 text-sm"><strong>Enrollments:</strong></td>
+        <td class="border px-4 py-2 text-sm">
+          <%= @user.enrollments_count %>
+        </td>
+      </tr>
 
       <tr>
         <td class="border px-4 py-2 text-sm"><strong>Current sign in at:</strong></td>
