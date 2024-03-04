@@ -34,7 +34,7 @@
               </button>
               <ul data-header-target="studentMenu" class="hidden md:absolute text-gray-700 pt-4 w-36 -left-6 ">
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-book', 'font-solid pl-2 my-2 ')} My courses"), purchased_courses_path, class: "#{'font-bold' if current_page?(purchased_courses_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                  <%= link_to raw("#{icon('fa-solid fa-book w-8', 'font-solid pl-2 my-2 ')} My courses"), purchased_courses_path, class: "#{'font-bold' if current_page?(purchased_courses_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
                 </li>
               </ul>
             </li>
@@ -46,13 +46,13 @@
               </button>
               <ul data-header-target="teacherMenu" class="md:absolute hidden text-gray-700 pt-4 w-36 -left-6">
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-plus', 'font-solid pl-2 my-2 ')} New course"), new_course_path, class: "#{'font-bold' if current_page?(new_course_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                  <%= link_to raw("#{icon('fa-solid fa-plus w-8', 'font-solid pl-2 my-2 ')} New course"), new_course_path, class: "#{'font-bold' if current_page?(new_course_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
                 </li>
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-book', 'font-solid pl-2 my-2 pr-1')} My courses"), created_courses_path, class: "#{'font-bold' if current_page?(created_courses_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                  <%= link_to raw("#{icon('fa-solid fa-book w-8', 'font-solid pl-2 my-2 pr-1')} My courses"), created_courses_path, class: "#{'font-bold' if current_page?(created_courses_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
                 </li>
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-users', 'font-solid pl-2 my-2 pr-1')} My students"), my_students_enrollments_path, class: "#{'font-bold' if current_page?(my_students_enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                  <%= link_to raw("#{icon('fa-solid fa-users w-8', 'font-solid pl-2 my-2 pr-1')} My students"), my_students_enrollments_path, class: "#{'font-bold' if current_page?(my_students_enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
                 </li>
               </ul>
             </li>
@@ -64,10 +64,10 @@
               </button>
               <ul data-header-target="menu" class="md:absolute hidden text-gray-700 pt-4 w-36 -left-6">
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-users', 'font-solid pl-2 my-2')} Users"), users_path, class: "#{'font-bold' if current_page?(users_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                  <%= link_to raw("#{icon('fa-solid fa-users w-8', 'font-solid pl-2 my-2')} Users"), users_path, class: "#{'font-bold' if current_page?(users_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
                 </li>
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-lock-open', 'font-solid pl-2 my-2')} Enrollments"), enrollments_path, class: "#{'font-bold' if current_page?(enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+                  <%= link_to raw("#{icon('fa-solid fa-lock-open w-8', 'font-solid pl-2 my-2')} Enrollments"), enrollments_path, class: "#{'font-bold' if current_page?(enrollments_path)} block py-2 px-3 text-gray-900 rounded bg-gray-100 md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
                 </li>
               </ul>
             </li>

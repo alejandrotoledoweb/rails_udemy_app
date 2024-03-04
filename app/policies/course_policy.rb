@@ -7,11 +7,11 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def create?
-    @user.has_role? :admin
+    @user.has_role?(:teacher) || @user.has_role?(:admin)
   end
 
   def update?
-    @user.has_role? :admin
+    @record.user.id == @user.id ||  @user.has_role?(:admin)
   end
 
   def destroy?
