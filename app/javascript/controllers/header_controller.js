@@ -15,17 +15,19 @@ export default class extends Controller {
   toggle() {
     this.menuTarget.classList.toggle("hidden");
 
-    if (this.teacherMenuTarget || this.studentMenuTarget) {
+    if (this.teacherMenuTarget) {
       this.teacherMenuTarget.classList.add("hidden");
+    }
+    if (this.studentMenuTarget) {
       this.studentMenuTarget.classList.add("hidden");
     }
   }
   toggleTeacher() {
     this.teacherMenuTarget.classList.toggle("hidden");
 
-    if (this.menuTarget || this.studentMenuTarget) {
-      this.menuTarget.classList.add("hidden");
+    if (this.studentMenuTarget || this.menuTarget) {
       this.studentMenuTarget.classList.add("hidden");
+      this.menuTarget.classList.add("hidden");
     }
   }
   toggleStudent() {
@@ -43,11 +45,11 @@ export default class extends Controller {
       if (this.studentMenuTarget) {
         this.studentMenuTarget.classList.add("hidden");
       }
-      if (this.menuTarget) {
-        this.menuTarget.classList.add("hidden");
-      }
       if (this.teacherMenuTarget) {
         this.teacherMenuTarget.classList.add("hidden");
+      }
+      if (this.menuTarget) {
+        this.menuTarget.classList.add("hidden");
       }
     }
   }
