@@ -9,7 +9,8 @@ class StaticPagesController < ApplicationController
 
     @ransack_path = courses_path
     @q = Course.ransack(params[:q])
-    @courses = Course.all.limit(3)
+    @popular_courses = Course.order(enrollments_count: :desc).limit(3)
+    @top_rated_courses = Course.order(average_rating: :desc, created_at: :desc).limit(3)
     @latest_courses = Course.all.limit(3).order(created_at: :desc)
   end
 end
