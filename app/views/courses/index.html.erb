@@ -9,9 +9,9 @@
     <% end %>
   </header>
   <!-- Search Input -->
-  <%#
-  <input type="text" data-search-target="input" data-action="keyup->search#search" placeholder="Search by title..." class="rounded-lg py-2 px-4 border border-gray-300 mb-4">
-  %>
+  <%# it only filters with items on screen, does not query more items %>
+  <%# <input type="text" data-search-target="input" data-action="keyup->search#search" placeholder="Search by title..." class="rounded-lg py-2 px-4 border border-gray-300 mb-4"> %>
+
   <%= search_form_for @q, url: @ransack_path , html: { class: "flex items-start flex-wrap gap-x-4 gap-y-4 mt-4 mb-4" } do |f| %>
     <%= f.search_field :title_cont, placeholder: "Search by title",
                                     class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 " %>
@@ -29,9 +29,9 @@
                  class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer" %>
   <% end %>
   <div class="mb-4">
-    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :price, "Order by price") %></span>
-    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :average_rating, "|  Order by rating") %></span>
-    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :enrollments_count, "| Order by students") %></span>
+    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :price, "Price") %></span>
+    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :average_rating, "| Top rated") %></span>
+    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :enrollments_count, "| Popular") %></span>
   </div>
   <%= button_to raw("#{icon('fa-solid fa-refresh fa-lg', 'fa-solid')} Refresh"), @ransack_path, method: :get,
                                    class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer mb-4" %>
