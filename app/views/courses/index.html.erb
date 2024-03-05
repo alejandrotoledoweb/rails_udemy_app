@@ -28,6 +28,11 @@
     <%= f.submit "Search",
                  class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer" %>
   <% end %>
+  <div class="mb-4">
+    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :price, "Order by price") %></span>
+    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :average_rating, "|  Order by rating") %></span>
+    <span class=" text-blue-500 none hover:underline"><%= sort_link(@q, :enrollments_count, "| Order by students") %></span>
+  </div>
   <%= button_to raw("#{icon('fa-solid fa-refresh fa-lg', 'fa-solid')} Refresh"), @ransack_path, method: :get,
                                    class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer mb-4" %>
   <!-- Courses Cards -->

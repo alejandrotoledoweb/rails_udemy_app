@@ -31,3 +31,14 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+.trix-content {
+  div {
+    height: 80px;
+    overflow-y: scroll;
+    margin-bottom: 1rem;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 0.5rem;
+  }
+}

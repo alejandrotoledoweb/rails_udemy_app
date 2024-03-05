@@ -30,7 +30,12 @@ class Course < ApplicationRecord
       title
       updated_at
       user_id
+      average_rating
     ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["enrollments", "lessons", "rich_text_description", "user"]
   end
 
   def bought(user)
