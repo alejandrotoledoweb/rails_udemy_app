@@ -32,7 +32,7 @@
   max-width: 100% !important;
 }
 
-.trix-content {
+/* .trix-content {
   div {
     height: 80px;
     overflow-y: scroll;
@@ -41,4 +41,4 @@
     border-radius: 10px;
     padding: 0.5rem;
   }
-}
+} */
