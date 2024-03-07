@@ -17,6 +17,7 @@ module CoursesHelper
         link_to course_path(course) do
           "Continue Learning #{number_to_percentage(course.progress(current_user), :precision => 0)}"
 
+
           # course.user_lessons.where(user: current_user).count
           # course.lessons_count
         end
@@ -45,5 +46,9 @@ module CoursesHelper
         end
       end
     end
+  end
+
+  def purchased_course(user, course)
+    course.enrollments.where(user: user).any?
   end
 end
