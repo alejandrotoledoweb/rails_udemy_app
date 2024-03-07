@@ -11,6 +11,7 @@
   <% end %>
   <div class="my-5">
     <%= form.label :rating, class: "font-bold" %>
+    <%= icon("fa-solid fa-star text-yellow-400 fa-md", "fa-solid") %>
     <div class="flex mt-2">
       <% (1..5).each do |rating| %>
         <label class="inline-flex items-center mr-4 gap-x-1">

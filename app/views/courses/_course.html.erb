@@ -30,10 +30,11 @@
     </button>
 
     <% if purchased_course(current_user, course) %>
-    <progress value="<%= course.progress(current_user) %>" max="100" class="w-full bg-lime-600 text-lime-600">
-      <%= course.progress(current_user) %>%
-    </progress>
+      <progress value="<%= course.progress(current_user) %>" max="100" class="w-full">
+        <%= course.progress(current_user) %>%
+      </progress>
     <% end %>
+
     <%= link_to "Show", course_path(course), class: "rounded-lg py-1 px-3 bg-gray-100 font-medium  hover:bg-gray-300" %>
     <% if policy(course).edit? %>
       <%= link_to raw("#{icon("fa-solid fa-pencil fa-xs", "font-solid")} Edit"), edit_course_path(course), data: { turbo_frame: "edit-modal" }, class: "rounded-lg py-1 px-3 bg-gray-100 font-medium hover:bg-gray-300" %>

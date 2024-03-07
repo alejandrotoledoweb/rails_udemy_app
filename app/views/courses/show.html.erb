@@ -1,19 +1,16 @@
 <% content_for(:title) do %>
   Courses | <%= @course.title %>
 <% end %>
-<div class="mx-auto md:w-full w-full flex text-left">
-  <div class="ml-10">
-    <!-- <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %> -->
-    <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
-    <span class="text-blue-500">/<%= @course.title %></span>
-    <h2 class="text-xl font-bold mt-10">Course Details</h2>
+<section class="w-full ml-4">
+  <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
+  <span class="text-blue-500">/<%= @course.title %></span>
+</section>
+<div class="mx-auto w-full grid grid-cols-1 md:grid-cols-3 ">
+  <section class="flex flex-col col-span-1 md:col-span-2 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
     <br>
-    <h2 class="text-xl"><strong>Title:</strong> <%= @course.title %> </h2>
+    <h2 class="text-xl font-bold text-center"><%= @course.title %> </h2>
     <br>
-    <p><strong>Description:</strong> <%= @course.description %> </p>
-    <br>
+    <p class="text-base"><strong>Description:</strong> <%= @course.description %> </p>
     <p><strong>Short description:</strong> <%= @course.short_description %> </p>
     <br>
     <p><strong>Language:</strong> <%= @course.language %> </p>
@@ -22,10 +19,27 @@
     <br>
     <p><strong>Price:</strong> $ <%= @course.price %> </p>
     <br>
-    <p><strong>Rating:</strong> <%= @course.average_rating %> <%= icon("fa-solid fa-star text-yellow-400f fa-xs", "fa-solid") %> </p>
+    <p><strong>Rating:</strong> <%= @course.average_rating %> <%= icon("fa-solid fa-star text-yellow-400 fa-xs", "fa-solid") %> </p>
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
     <p><strong>Lessons:</strong> <%= @course.lessons_count %> </p>
     <br>
+    <br>
+    <div class="mb-1">
+      <% if current_user.id == @course.user.id %>
+        <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-3 px-5 bg-blue-300 inline-block font-medium hover:bg-blue-400"  %>
+      <% end %>
+    </div>
+    <div class="flex justify-start items-center flex-wrap gap-y-2 gap-x-2">
+      <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300  " %>
+      <% if policy(@course).destroy? && policy(@course).update? %>
+        <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300 " %>
+        <section class="inline-block ">
+          <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: " rounded-lg py-3 px-5 bg-red-100 font-medium hover:bg-red-300" %>
+        </section>
+      <% end %>
+    </div>
+  </section>
+  <section class="flex flex-col col-span-1 md:col-span-1 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
     <p class="mb-4 font-bold">Lessons:</p>
     <ul>
       <% @course.lessons.map do |lesson| %>
@@ -37,18 +51,5 @@
         </li>
       <% end %>
     </ul>
-    <br>
-    <div class="mb-1">
-      <% if current_user.id == @course.user.id %>
-        <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-3 px-5 bg-blue-300 inline-block font-medium hover:bg-blue-400"  %>
-      <% end %>
-    </div>
-    <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
-    <% if policy(@course).destroy? && policy(@course).update? %>
-      <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: "sm:ml-1 md:ml-2 mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
-      <div class="inline-block ml-2">
-        <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-100 font-medium hover:bg-red-300" %>
-      </div>
-    <% end %>
-  </div>
+  </section>
 </div>
