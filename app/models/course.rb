@@ -11,6 +11,12 @@ class Course < ApplicationRecord
   has_rich_text :description
   has_many :lessons, dependent: :destroy
   has_many :enrollments
+  has_many :user_lessons, through: :lessons
+
+  scope :popular_courses, -> { order(enrollments_count: :desc).limit(3)}
+  scope :top_rated_courses, -> { order(average_rating: :desc, created_at: :desc).limit(3)}
+  scope :latest_courses, -> { order(created_at: :desc).limit(3)}
+  scope :purchased_courses, -> { joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)}
 
   def to_s
     title
@@ -43,12 +49,19 @@ class Course < ApplicationRecord
     self.enrollments.where(user_id: [user.id], course_id: [self.id]).any?
   end
 
+  def progress(user)
+    if self.lessons_count != 0
+      (user_lessons.where(user: user).count.to_f/self.lessons_count).to_f*100
+    else
+      100
+    end
+  end
+
   def update_rating
     if enrollments.any? && enrollments.where.not(rating: nil).any?
       update_column :average_rating, (enrollments.average(:rating).round(2).to_f)
     else
       update_column :average_rating, (0)
-
     end
   end
 end

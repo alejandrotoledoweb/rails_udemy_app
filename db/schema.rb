@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_01_195353) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_195218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,6 +114,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_195353) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "user_lessons", force: :cascade do |t|
+    t.bigint "lesson_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_user_lessons_on_lesson_id"
+    t.index ["user_id"], name: "index_user_lessons_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -156,4 +165,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_195353) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "courses"
+  add_foreign_key "user_lessons", "lessons"
+  add_foreign_key "user_lessons", "users"
 end

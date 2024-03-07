@@ -28,9 +28,12 @@
     <br>
     <p class="mb-4 font-bold">Lessons:</p>
     <ul>
-      <% @course.lessons.map do |c| %>
+      <% @course.lessons.map do |lesson| %>
         <li class="list-disc ml-4">
-          <%= link_to "#{c.title}", course_lesson_path(@course, c), class: "font-bold hover:underline" %>
+          <%= link_to "#{lesson.title} ", course_lesson_path(@course, lesson), class: "font-bold hover:underline" %>
+          <% if lesson.viewed(current_user) %>
+            VIEWED <i class="fa-solid fa-check-square text-lime-500"></i>
+          <% end %>
         </li>
       <% end %>
     </ul>
@@ -42,10 +45,10 @@
     </div>
     <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
     <% if policy(@course).destroy? && policy(@course).update? %>
-    <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: "sm:ml-1 md:ml-2 mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
-    <div class="inline-block ml-2">
-      <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-100 font-medium hover:bg-red-300" %>
-    </div>
+      <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: "sm:ml-1 md:ml-2 mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
+      <div class="inline-block ml-2">
+        <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-100 font-medium hover:bg-red-300" %>
+      </div>
     <% end %>
   </div>
 </div>
