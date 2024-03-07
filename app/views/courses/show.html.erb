@@ -6,13 +6,15 @@
   <span class="text-blue-500">/<%= @course.title %></span>
 </section>
 <div class="mx-auto w-full grid grid-cols-1 md:grid-cols-3 ">
-  <section class="flex flex-col col-span-1 md:col-span-2 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
+  <section class="flex flex-col col-span-1 md:col-span-2 border border-slate-700 my-2 mx-2 px-2 py-2 md:px-4 md:py-4 rounded-md bg-slate-200">
     <br>
-    <h2 class="text-xl font-bold text-center"><%= @course.title %> </h2>
+    <h2 class="text-xl md:text-2xl font-bold text-center"><%= @course.title %> </h2>
     <br>
     <p class="text-base"><strong>Description:</strong> <%= @course.description %> </p>
     <p><strong>Short description:</strong> <%= @course.short_description %> </p>
-    <br>
+  </section>
+  <section class="flex flex-col col-span-1 md:col-span-1 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
+    <h2 class="text-base font-bold text-center mb-2 "><%= @course.title %> </h2>
     <p><strong>Language:</strong> <%= @course.language %> </p>
     <br>
     <p><strong>Level:</strong> <%= @course.level %> </p>
@@ -26,28 +28,31 @@
     <br>
     <div class="mb-1">
       <% if current_user.id == @course.user.id %>
-        <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-3 px-5 bg-blue-300 inline-block font-medium hover:bg-blue-400"  %>
+        <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-1 px-2 bg-blue-300 inline-block text-sm hover:bg-blue-400"  %>
       <% end %>
     </div>
     <div class="flex justify-start items-center flex-wrap gap-y-2 gap-x-2">
-      <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300  " %>
+      <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-1 px-2 bg-gray-100 inline-block text-sm hover:bg-gray-300  " %>
       <% if policy(@course).destroy? && policy(@course).update? %>
-        <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300 " %>
+        <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-1 px-2 bg-gray-100 inline-block text-sm hover:bg-gray-300 " %>
         <section class="inline-block ">
-          <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: " rounded-lg py-3 px-5 bg-red-100 font-medium hover:bg-red-300" %>
+          <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: " rounded-lg py-1 px-2 bg-red-100 text-sm hover:bg-red-300" %>
         </section>
       <% end %>
     </div>
   </section>
-  <section class="flex flex-col col-span-1 md:col-span-1 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
-    <p class="mb-4 font-bold">Lessons:</p>
+  <section class="flex flex-col col-span-1 md:col-span-2 mx-2 py-2 ">
+    <div class="flex justify-between">
+      <p class="mb-4 font-bold text-xl">Lessons: <%= @course.user_lessons.count %> / <%= @course.lessons.count %></p>
+      <% if purchased_course(current_user, @course) %>
+        <p class="font-bold text-xl"><%= number_to_percentage((@course.user_lessons.count.to_f  / @course.lessons.count)*100, :precision => 0) %></p>
+      <% end %>
+    </div>
+    <hr class="mb-4">
     <ul>
       <% @course.lessons.map do |lesson| %>
-        <li class="list-disc ml-4">
-          <%= link_to "#{lesson.title} ", course_lesson_path(@course, lesson), class: "font-bold hover:underline" %>
-          <% if lesson.viewed(current_user) %>
-            VIEWED <i class="fa-solid fa-check-square text-lime-500"></i>
-          <% end %>
+        <li class=" flex items-center w-full">
+          <%= render 'lessons/lesson_preview', lesson: lesson %>
         </li>
       <% end %>
     </ul>
