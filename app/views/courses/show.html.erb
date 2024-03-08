@@ -23,7 +23,7 @@
     <br>
     <p><strong>Rating:</strong> <%= @course.average_rating %> <%= display_star_rating(@course.average_rating) %> </p>
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
-    <p><strong>Lessons:</strong> <%= @course.lessons_count %> </p>
+    <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
     <br>
     <br>
     <div class="mb-1">
@@ -57,7 +57,7 @@
     </ul>
     <section>
       <hr class="my-4 text-gray-800">
-      <h3 class="text-xl font-semibold my-4">Reviews: <%= @enrollments_with_reviews.count %></h3>
+      <h3 class="text-xl font-semibold my-4"><%= pluralize(@enrollments_with_reviews.count, "Review") %></h3>
       <% @enrollments_with_reviews.map do |enr| %>
         <%= render 'enrollments/preview_enrollments', enrollment: enr %>
       <% end %>
