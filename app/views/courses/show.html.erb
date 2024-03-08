@@ -1,7 +1,7 @@
 <% content_for(:title) do %>
   Courses | <%= @course.title %>
 <% end %>
-<section class="w-full ml-4">
+<section class="w-full ml-4" data-controller="modal-course">
   <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
   <span class="text-blue-500">/<%= @course.title %></span>
 </section>
@@ -57,7 +57,7 @@
     </ul>
     <section>
       <hr class="my-4">
-      <h3 class="text-xl font-semibold my-4">Reviews</h3>
+      <h3 class="text-xl font-semibold my-4">Reviews: <%= @enrollments_with_reviews.count %></h3>
       <% @enrollments_with_reviews.map do |enr| %>
         <%= render 'enrollments/preview_enrollments', enrollment: enr %>
       <% end %>

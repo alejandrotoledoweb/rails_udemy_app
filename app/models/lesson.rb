@@ -5,7 +5,7 @@ class Lesson < ApplicationRecord
 
   validates :title, :content, :course, presence: true
 
-  has_many :user_lessons
+  has_many :user_lessons, dependent: :destroy
 
   extend FriendlyId
   friendly_id :title, use: :slugged
