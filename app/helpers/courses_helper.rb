@@ -53,4 +53,17 @@ module CoursesHelper
   def purchased_course(user, course)
     course.enrollments.where(user: user).any?
   end
+
+  def display_star_rating(rating)
+    full_stars = rating.floor
+    half_star = rating.modulo(1) >= 0.5 ? 1 : 0
+    empty_stars = 5 - full_stars - half_star
+    content = ''
+
+    full_stars.times { content += tag.i('', class: 'fa-solid fa-star text-yellow-300') }
+    half_star.times { content += tag.i('', class: 'fa-regular fa-star-half-stroke text-yellow-300') }
+    empty_stars.times { content += tag.i('', class: 'fa-regular fa-star text-yellow-300') }
+
+    content.html_safe
+  end
 end

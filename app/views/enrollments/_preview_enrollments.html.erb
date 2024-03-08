@@ -1,0 +1,14 @@
+<section class="my-4 flex flex-wrap border">
+  <div class="px-2 py-2">
+    <p class="text-gray-800 text-sm">
+      <span class="font-semibold"><%= enrollment.user %>: </span> <span class="ml-6 text-gray-600 text-sm">
+        <% enrollment.rating.times do %>
+          <i class="fa-solid fa-star text-yellow-300"></i>
+        <% end %>
+      </span>
+    </p>
+    <span class="ml-6 text-gray-600 text-sm">
+      <%= enrollment.review %>
+    </span>
+  </div>
+</section>

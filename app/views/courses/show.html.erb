@@ -21,7 +21,7 @@
     <br>
     <p><strong>Price:</strong> $ <%= @course.price %> </p>
     <br>
-    <p><strong>Rating:</strong> <%= @course.average_rating %> <%= icon("fa-solid fa-star text-yellow-400 fa-xs", "fa-solid") %> </p>
+    <p><strong>Rating:</strong> <%= @course.average_rating %> <%= display_star_rating(@course.average_rating) %> </p>
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
     <p><strong>Lessons:</strong> <%= @course.lessons_count %> </p>
     <br>
@@ -43,12 +43,11 @@
   </section>
   <section class="flex flex-col col-span-1 md:col-span-2 mx-2 py-2 ">
     <div class="flex justify-between">
-      <p class="mb-4 font-bold text-xl">Lessons: <%= @course.user_lessons.count %> / <%= @course.lessons.count %></p>
+      <h3 class="mb-4 font-semibold text-xl">Lessons: <%= @course.user_lessons.count %> / <%= @course.lessons.count %></h3>
       <% if purchased_course(current_user, @course) %>
         <p class="font-bold text-xl"><%= number_to_percentage(@course.progress(current_user), :precision => 0) %></p>
       <% end %>
     </div>
-    <hr class="mb-4">
     <ul>
       <% @course.lessons.map do |lesson| %>
         <li class=" flex items-center w-full">
@@ -56,5 +55,12 @@
         </li>
       <% end %>
     </ul>
+    <section>
+      <hr class="my-4">
+      <h3 class="text-xl font-semibold my-4">Reviews</h3>
+      <% @enrollments_with_reviews.map do |enr| %>
+        <%= render 'enrollments/preview_enrollments', enrollment: enr %>
+      <% end %>
+    </section>
   </section>
 </div>
