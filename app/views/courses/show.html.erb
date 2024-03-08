@@ -45,7 +45,7 @@
     <div class="flex justify-between">
       <p class="mb-4 font-bold text-xl">Lessons: <%= @course.user_lessons.count %> / <%= @course.lessons.count %></p>
       <% if purchased_course(current_user, @course) %>
-        <p class="font-bold text-xl"><%= number_to_percentage((@course.user_lessons.count.to_f  / @course.lessons.count)*100, :precision => 0) %></p>
+        <p class="font-bold text-xl"><%= number_to_percentage(@course.progress(current_user), :precision => 0) %></p>
       <% end %>
     </div>
     <hr class="mb-4">
