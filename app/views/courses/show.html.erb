@@ -51,7 +51,7 @@
     <ul>
       <% @course.lessons.map do |lesson| %>
         <li class=" flex items-center w-full">
-          <%= render 'lessons/lesson_preview', lesson: lesson %>
+          <%= render 'lessons/lesson_preview', lesson: lesson, active: false %>
         </li>
       <% end %>
     </ul>
