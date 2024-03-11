@@ -1,9 +1,9 @@
 <% content_for(:title) do %>
   Courses | <%= @course.title %>
 <% end %>
-<section class="w-full ml-4" data-controller="modal-course">
-  <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
-  <span class="text-blue-500">/<%= @course.title %></span>
+<section class="w-full md:ml-5 " data-controller="modal-course">
+  <%= link_to "/ Courses", courses_path, class: "text-blue-500 hover:underline"  %>
+  <span class="text-blue-500">/ <%= @course.title %></span>
 </section>
 <div class="mx-auto w-full grid grid-cols-1 md:grid-cols-3 ">
   <section class="flex flex-col col-span-1 md:col-span-2 border border-slate-700 my-2 mx-2 px-2 py-2 md:px-4 md:py-4 rounded-md bg-slate-200">

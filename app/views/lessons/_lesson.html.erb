@@ -1,13 +1,15 @@
 <div id="<%= dom_id lesson %>" class="">
-  <%= link_to "/Courses", courses_path, class: "text-blue-500 hover:underline"  %>
-  <%= link_to "/#{lesson.course.title}", course_path(lesson.course), class: "text-blue-500 hover:underline"  %>
-  <span class="text-blue-500">/<%= lesson.title %></span>
-  <h2 class="text-xl font-bold mt-10">Lesson Details</h2>
-  <% if lesson.viewed(current_user) == true %>
-    VIEWED <i class="fa-solid fa-check-square text-lime-500"></i>
-  <% end %>
-  <h3 class="text-lg mt-4"><strong>Lesson:</strong> <%= lesson.title.capitalize %></h3>
-  <p class="my-5">
+  <%= link_to "/ Courses", courses_path, class: "text-blue-500 hover:underline"  %>
+  <%= link_to "/ #{lesson.course.title}", course_path(lesson.course), class: "text-blue-500 hover:underline"  %>
+  <span class="text-blue-500">/ <%= lesson.title %></span>
+  <section>
+    <h2 class="text-xl font-bold mt-10"> <% if lesson.viewed(current_user) == true %>
+        <i class="fa-solid fa-check-square text-lime-500"></i>
+      <% else %>
+        <i class="fa-regular fa-square text-lime-500"></i>
+      <% end %>
+      <%= lesson.title.capitalize %>
+    </h2>
     <p class="my-5">
       <strong class="block font-medium mb-1">Content:</strong>
       <%= lesson.content %>
@@ -21,4 +23,5 @@
       <%= link_to "Edit this lesson", course_edit_lesson_path(lesson), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
       <hr class="mt-6">
     <% end %>
-  </div>
+  </section>
+</div>

@@ -5,9 +5,9 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :email, use: :slugged
 
-  has_many :courses, dependent: :destroy
-  has_many :enrollments
-  has_many :user_lessons
+  has_many :courses, dependent: :nullify
+  has_many :enrollments, dependent: :nullify
+  has_many :user_lessons, dependent: :nullify
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -21,6 +21,10 @@ class User < ApplicationRecord
 
   def to_s
     email
+  end
+
+  def username
+    self.email.split(/@/).first
   end
 
   def self.ransackable_attributes(_auth_object = nil)
