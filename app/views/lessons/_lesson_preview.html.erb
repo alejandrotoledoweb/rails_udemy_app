@@ -1,6 +1,6 @@
-<section class="w-full border rounded-md py-2 px-2 grid <%= 'grid-cols-3' if policy(lesson).edit? %> <%= 'grid-cols-1' unless policy(lesson).edit? %> <%= 'bg-slate-200' if active %> lg:grid-cols-5 gap-y-2 gap-x-2" data-controller="modal-course">
+<section class="w-full border rounded-md py-2 px-2 grid <%= 'grid-cols-3' if policy(lesson).edit? %> <%= 'grid-cols-1' unless policy(lesson).edit? %> <%= 'bg-slate-200' if active %> xl:grid-cols-5 gap-y-2 gap-x-2" data-controller="modal-course">
   <% if active %>
-    <p class=" lg:col-span-3 ">
+    <p class=" xl:col-span-3 ">
       <% if lesson.viewed(current_user) %>
         <i class="fa-solid fa-check-square text-lime-500 mr-2"></i>
       <% else %>
@@ -9,7 +9,7 @@
       <%= lesson.title %>
     </p>
   <% else %>
-    <%= link_to course_lesson_path(@course, lesson), class: "hover:underline lg:col-span-3" do %>
+    <%= link_to course_lesson_path(@course, lesson), class: "hover:underline xl:col-span-3" do %>
       <% if lesson.viewed(current_user) %>
         <i class="fa-solid fa-check-square text-lime-500 mr-2"></i>
       <% else %>

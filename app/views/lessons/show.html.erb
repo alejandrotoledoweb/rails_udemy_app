@@ -1,8 +1,8 @@
 <% content_for(:title) do %>
   <%= @lesson.course.title.capitalize %> | Lesson: <%= @lesson.title %>
 <% end %>
-<div class="mx-auto md:w-full w-full grid grid-cols-1 md:grid-cols-4" data-controller="modal-course">
-  <section class="md:ml-5 col-span-1 md:col-span-3">
+<div class="mx-auto md:w-full w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-4" data-controller="modal-course">
+  <section class="md:ml-5 col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-3">
     <%= render @lesson %>
     <div class="flex flex-wrap gap-x-2 gap-y-2">
       <button class="inline-block">
@@ -17,7 +17,7 @@
       <% end %>
     </div>
   </section>
-  <section class="col-span-1 mt-10">
+  <section class="col-span-1 sm:col-span-1 md:col-span-2 lg:col-span-1 mt-10">
     <% @lessons.each do |lesson| %>
       <% if lesson == @lesson %>
         <%= render "lessons/lesson_preview", lesson: lesson, active: true %>
