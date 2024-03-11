@@ -9,7 +9,7 @@ import "@rails/actiontext";
 // import "chartkick";
 // import "Chart.bundle";
 
-// import "chartkick/chart.js"; by enabling this the rich text editor crashes
+// import "chartkick/chart.js"; // by enabling this the rich text editor crashes
 
 document.addEventListener("turbo:frame-missing", (event) => {
   const {
