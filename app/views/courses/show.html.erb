@@ -13,7 +13,7 @@
     <p class="text-base"><strong>Description:</strong> <%= @course.description %> </p>
     <p><strong>Short description:</strong> <%= @course.short_description %> </p>
   </section>
-  <section class="flex flex-col col-span-1 md:col-span-1 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
+  <section class=" text-left col-span-1 md:col-span-1 border border-slate-700 my-2 mx-2 px-2 py-2 rounded-md">
     <h2 class="text-base font-bold text-center mb-2 "><%= @course.title %> </h2>
     <p><strong>Language:</strong> <%= @course.language %> </p>
     <br>
@@ -25,7 +25,11 @@
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
     <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
     <br>
+      <%= published(@course) %>
+      <br>
+      <%= approved(@course) %>
     <br>
+    <%= admin_approve_button(@course) %>
     <div class="mb-1">
       <% if current_user.id == @course.user.id %>
         <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-1 px-2 bg-blue-300 inline-block text-sm hover:bg-blue-400"  %>

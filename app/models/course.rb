@@ -18,6 +18,11 @@ class Course < ApplicationRecord
   scope :latest_courses, -> { order(created_at: :desc).limit(3)}
   scope :purchased_courses, -> { joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)}
 
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
+  scope :approved, -> { where(approved: true) }
+  scope :unapproved, -> { where(approved: false) }
+
   def to_s
     title
   end

@@ -20,21 +20,26 @@
       <%= link_to "See review", enrollment_path(course.enrollments.where(user:current_user).first)  %>
     <%# </button> %>
   <% end %>
-  <section class="text-sm text-gray-600 mb-4">
-    User: <%= course.user %>
+  <section class=" text-gray-600 mb-4">
+    Teacher: <%= course.user %>
+    <br>
+    <%= published(course) %>
+    <br>
+    <%= approved(course) %>
+      <br>
+      <br>
+    <%= admin_approve_button(course) %>
   </section>
   <section class="flex flex-wrap gap-x-3 gap-y-3">
     <%# <%= button_to "Enroll", new_course_enrollment_path(course), class: "rounded-lg py-1 mb-2 px-3 bg-teal-200 font-medium mr-2 hover:bg-teal-300"  %>
     <button class="rounded-lg py-1 px-3 bg-lime-100 font-medium hover:bg-lime-300">
       <%= enrollment_button(course) %>
     </button>
-
     <% if purchased_course(current_user, course) %>
       <progress value="<%= course.progress(current_user) %>" max="100" class="w-full">
         <%= course.progress(current_user) %>%
       </progress>
     <% end %>
-
     <%= link_to "Show", course_path(course), class: "rounded-lg py-1 px-3 bg-gray-100 font-medium  hover:bg-gray-300" %>
     <% if policy(course).edit? %>
       <%= link_to raw("#{icon("fa-solid fa-pencil fa-xs", "font-solid")} Edit"), edit_course_path(course), data: { turbo_frame: "edit-modal" }, class: "rounded-lg py-1 px-3 bg-gray-100 font-medium hover:bg-gray-300" %>

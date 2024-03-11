@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :courses do
+    member do
+      patch :approve
+      patch :unapprove
+    end
     get :purchased, :created, on: :collection
     resources :lessons
     resources :enrollments, only: %i[new create]

@@ -40,6 +40,10 @@
     <%= form.label :price %>
     <%= form.number_field :price, in: 0.0..250.0, default_value: 10, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+  <div class="my-5 flex items-center">
+    <%= form.check_box :published, default_value: false, class: "block shadow rounded-md border border-gray-200 outline-none py-1 px-1" %>
+    <%= form.label :published, class: "ml-2" %>
+  </div>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
