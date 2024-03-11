@@ -13,6 +13,7 @@
   <hr class="my-2 text-">
   <p class="my-2">Users created in the last two months</p>
   <%= line_chart User.group_by_day(:created_at).count %>
+  <%= pie_chart @enrollments.joins(:course).group(:'courses.title').count %>
   <hr class="my-2 text-">
   <section class="my-4">
     <!-- <%= icon('fa-brands', 'font-awesome')%>
