@@ -19,8 +19,9 @@
     <% end %>
   <% end %>
   <% if policy(lesson).edit? %>
-    <%= link_to "Edit this lesson", edit_course_lesson_path(@course, lesson), class: " rounded-lg py-1 px-1 bg-gray-100 inline-block font-medium hover:bg-gray-300 self-center text-center text-sm" %>
-    <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
+    <%= link_to "Edit", edit_course_lesson_path(@course, lesson), class: " rounded-lg py-1 px-1 bg-gray-100 inline-block font-medium hover:bg-gray-300 self-center text-center text-sm" %>
+    <%# <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: { %>
+    <%= button_tag  "Destroy", type: "button", data: {
       action: 'click->modal-course#open',
       modal_url_value: course_lesson_path(@course, lesson)
     }, class: "rounded-lg py-1 px-1 bg-red-500 text-white font-medium hover:bg-red-600 self-center text-sm" %>
