@@ -66,8 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_210508) do
     t.float "average_rating", default: 0.0, null: false
     t.integer "enrollments_count", default: 0, null: false
     t.integer "lessons_count", default: 0, null: false
-    t.boolean "published"
-    t.boolean "approved"
+    t.boolean "published", default: false
+    t.boolean "approved", default: false
     t.index ["slug"], name: "index_courses_on_slug", unique: true
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
