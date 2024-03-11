@@ -6,6 +6,10 @@ import "flowbite";
 
 import "trix";
 import "@rails/actiontext";
+import "chartkick";
+import "Chart.bundle";
+
+import "chartkick/chart.js";
 
 document.addEventListener("turbo:frame-missing", (event) => {
   const {

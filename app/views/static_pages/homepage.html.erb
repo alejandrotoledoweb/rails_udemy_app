@@ -11,6 +11,7 @@
   <div class="my-4">
   </div>
   <hr class="my-2 text-">
+  <%= line_chart User.group_by_day(:created_at).count %>
   <section class="my-4">
     <!-- <%= icon('fa-brands', 'font-awesome')%>
   <%= icon('fa-solid', 'user-secret')%>

@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@rails/actiontext": "^7.1.2",
+    "chart.js": "^4.4.2",
+    "chartkick": "^5.0.1",
     "flowbite": "^2.2.1",
     "trix": "^2.0.8"
   }
