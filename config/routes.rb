@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       patch :approve
       patch :unapprove
     end
-    get :purchased, :created, on: :collection
+    get :purchased, :created, :unapproved, on: :collection
     resources :lessons
     resources :enrollments, only: %i[new create]
   end

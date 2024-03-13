@@ -38,8 +38,8 @@ module CoursesHelper
   end
 
   def review_button(course)
-    user_course = course.enrollments.where(user_id: current_user.id )
     if current_user
+      user_course = course.enrollments.where(user_id: current_user.id )
       if user_course.any?
         if user_course.pending_review.any?
           link_to "Add review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
@@ -70,8 +70,8 @@ module CoursesHelper
   def published(course)
     published_icon = tag.i('', class: 'fa-solid fa-check-circle text-lime-500 ml-1 ')
     unpublished_icon = tag.i('', class: 'fa-regular fa-circle text-red-500 ml-1 ')
-    p = tag.p('Published', class: 'w-20 mr-2 inline-flex')
-    up = tag.p('Unpublished', class: 'w-20 mr-2 inline-flex')
+    p = tag.p('Published', class: 'w-24 mr-2 inline-flex')
+    up = tag.p('Unpublished', class: 'w-24 mr-2 inline-flex')
     if course.published
       p + published_icon
     else
@@ -81,8 +81,8 @@ module CoursesHelper
   def approved(course)
     approved_icon = tag.i('', class: 'fa-solid fa-check-circle text-lime-500 ml-1')
     unapproved = tag.i('', class: 'fa-solid fa-x text-red-500 ml-1.5')
-    p = tag.p('Approved', class: 'w-20 mr-2 inline-flex')
-    up = tag.p('Unapproved', class: 'w-20 mr-2 inline-flex')
+    p = tag.p('Approved', class: 'w-24 mr-2 inline-flex')
+    up = tag.p('Unapproved', class: 'w-24 mr-2 inline-flex')
     if course.approved
       p + approved_icon
     else
@@ -91,7 +91,7 @@ module CoursesHelper
   end
 
   def admin_approve_button(course)
-    return unless current_user.has_role?(:admin)
+    return unless current_user && current_user.has_role?(:admin)
 
     content_tag(:p, 'Admin Actions:') +
     if course.approved

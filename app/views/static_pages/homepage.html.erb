@@ -14,18 +14,20 @@
   <%# <p class="my-2">Users created in the last two months</p>
   <%= line_chart User.group_by_day(:created_at).count %>
   <%# <%= pie_chart @enrollments.joins(:course).group(:'courses.title').count %>
-  <hr class="my-2 text-">
+  <%# <hr class="my-2 text-"> %>
   <section class="my-4">
     <!-- <%= icon('fa-brands', 'font-awesome')%>
   <%= icon('fa-solid', 'user-secret')%>
   <%= icon('fa-regular', 'bell')%> -->
-    <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'user')%> Continue Learning</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <% @purchased_courses.each do |course| %>
-        <%= render 'courses/course', course: course %>
-      <% end %>
-    </div>
+    <% if current_user %>
+      <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'user')%> Continue Learning</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% @purchased_courses.each do |course| %>
+          <%= render 'courses/course', course: course %>
+        <% end %>
+      </div>
     <hr class="my-8">
+    <% end %>
     <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'user')%> Popular Courses</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <% @popular_courses.each do |course| %>

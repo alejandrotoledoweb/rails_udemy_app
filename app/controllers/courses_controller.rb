@@ -1,11 +1,12 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy approve unapprove  ]
+  skip_before_action :authenticate_user!, only: %i[show]
 
   def index
     # @courses = Course.all.order(id: :asc)
 
     @ransack_path = courses_path
-    @q = Course.published.ransack(params[:q])
+    @q = Course.published.approved.ransack(params[:q])
     # @courses = @q.result(distinct: true).order(created_at: :desc) #before pagy
     @pagy, @courses = pagy(@q.result(distinct: true).order(created_at: :desc))
   end
@@ -18,12 +19,22 @@ class CoursesController < ApplicationController
     render 'index'
   end
 
+  def unapproved
+    @ransack_path = unapproved_courses_path
+    @q = Course.unapproved.ransack(params[:q])
+    courses = @q.result
+    @pagy, @courses = pagy(courses)
+    render 'index'
+  end
+
   def approve
+    autorize @course, :approve?
     @course.update_attribute(:approved, true)
     redirect_to course_path(@course), notice: "Course approved"
   end
 
   def unapprove
+    autorize @course, :approve?
     @course.update_attribute(:approved, false)
     redirect_to course_path(@course), notice: "Course not approved and hidden"
   end
@@ -37,6 +48,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    authorize @course
     @lessons = @course.lessons
     @enrollments_with_reviews = @course.enrollments.reviewed
   end

@@ -64,6 +64,7 @@ group :development do
   gem "rack-livereload"
   gem "letter_opener"
   gem 'pry', '~> 0.14.2'
+  gem 'rails-erd'
 end
 
 group :test do
@@ -85,3 +86,5 @@ gem "exception_notification"
 gem "pagy" # "~> 6.4" # omit patch digit
 gem "chartkick"
 gem "groupdate"
+
+gem 'ruby-graphviz'

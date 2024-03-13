@@ -22,16 +22,19 @@
     <p><strong>Price:</strong> $ <%= @course.price %> </p>
     <br>
     <p><strong>Rating:</strong> <%= @course.average_rating %> <%= display_star_rating(@course.average_rating) %> </p>
+    <p>
+      <strong>Teacher:</strong> <%= @course.user %>
+    </p>
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
     <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
     <br>
-      <%= published(@course) %>
-      <br>
-      <%= approved(@course) %>
+    <%= published(@course) %>
+    <br>
+    <%= approved(@course) %>
     <br>
     <%= admin_approve_button(@course) %>
     <div class="mb-1">
-      <% if current_user.id == @course.user.id %>
+      <% if current_user.present? && current_user.id == @course.user.id %>
         <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-1 px-2 bg-blue-300 inline-block text-sm hover:bg-blue-400"  %>
       <% end %>
     </div>
