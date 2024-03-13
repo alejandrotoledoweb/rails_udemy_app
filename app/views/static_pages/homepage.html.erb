@@ -20,22 +20,39 @@
   <%= icon('fa-solid', 'user-secret')%>
   <%= icon('fa-regular', 'bell')%> -->
     <% if current_user %>
-      <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'user')%> Continue Learning</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <% @purchased_courses.each do |course| %>
-          <%= render 'courses/course', course: course %>
-        <% end %>
-      </div>
-    <hr class="my-8">
+      <section class="">
+        <div class="flex items-center ">
+          <h2 class="text-left text-xl md:text-2xl font-semibold mr-2 "> <%= icon('fa-regular', 'user')%> Continue Learning</h2>
+          <button class="p-2 bg-lime-600 text-gray-100 rounded-md my-4 hover:bg-lime-700 float-end ">
+            <%= link_to 'See all my courses', purchased_courses_path, class: '' %>
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% @purchased_courses.each do |course| %>
+            <%= render 'courses/course', course: course %>
+          <% end %>
+        </div>
+        <hr class="my-8">
+      </section>
     <% end %>
-    <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'user')%> Popular Courses</h2>
+    <div class="flex items-center ">
+      <h2 class="text-left text-xl md:text-2xl font-semibold mr-2"> <%= icon('fa-regular', 'user')%> Popular Courses</h2>
+      <button class="p-2 bg-lime-600 text-gray-100 rounded-md my-4 hover:bg-lime-700 justify-end">
+        <%= link_to 'See all popular courses', courses_path(q: { s: 'average_rating asc' }), class: "" %>
+      </button>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <% @popular_courses.each do |course| %>
         <%= render 'courses/course', course: course %>
       <% end %>
     </div>
     <hr class="my-8">
-    <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'star')%> Top rated Courses</h2>
+    <div class="flex items-center ">
+      <h2 class="text-left text-xl md:text-2xl font-semibold mr-2"> <%= icon('fa-regular', 'star')%> Top rated Courses</h2>
+      <button class="p-2 bg-lime-600 text-gray-100 rounded-md my-4 hover:bg-lime-700">
+        <%= link_to 'See top rated courses', courses_path(q: {s: 'average_rating desc'}), class: '' %>
+      </button>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <% @top_rated_courses.each do |course| %>
         <%= render 'courses/course', course: course %>

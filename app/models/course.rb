@@ -42,6 +42,7 @@ class Course < ApplicationRecord
       updated_at
       user_id
       average_rating
+      enrollments_count
     ]
   end
 

@@ -28,13 +28,13 @@ class CoursesController < ApplicationController
   end
 
   def approve
-    autorize @course, :approve?
+    authorize @course, :approve?
     @course.update_attribute(:approved, true)
     redirect_to course_path(@course), notice: "Course approved"
   end
 
   def unapprove
-    autorize @course, :approve?
+    authorize @course, :approve?
     @course.update_attribute(:approved, false)
     redirect_to course_path(@course), notice: "Course not approved and hidden"
   end
