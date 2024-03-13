@@ -50,9 +50,10 @@
   </section>
   <section class="flex flex-col col-span-1 md:col-span-2 mx-2 py-2 ">
     <div class="flex justify-between">
-      <h3 class="mb-4 font-semibold text-xl">Lessons: <%= @course.user_lessons.count %> / <%= @course.lessons.count %></h3>
+      <h3 class="mb-4 font-semibold text-xl">Lessons: <%= @course.current_user_lessons(current_user) %> / <%= @course.lessons.count %></h3>
       <% if purchased_course(current_user, @course) %>
         <p class="font-bold text-xl"><%= number_to_percentage(@course.progress(current_user), :precision => 0) %></p>
+        <%=  %>
       <% end %>
     </div>
     <ul>

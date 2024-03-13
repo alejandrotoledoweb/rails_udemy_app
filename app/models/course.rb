@@ -56,10 +56,14 @@ class Course < ApplicationRecord
 
   def progress(user)
     unless self.lessons_count.zero?
-      (user_lessons.where(user: user).count.to_f/self.lessons_count).to_f*100
+      (self.current_user_lessons(user)/self.lessons_count.to_f).to_f*100
     else
       100
     end
+  end
+
+  def current_user_lessons(user)
+    user_lessons.where(user: user).count
   end
 
   def update_rating
