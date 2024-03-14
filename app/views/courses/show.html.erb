@@ -28,11 +28,13 @@
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
     <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
     <br>
-    <%= published(@course) %>
-    <br>
-    <%= approved(@course) %>
-    <br>
-    <%= admin_approve_button(@course) %>
+    <% if policy(@course).admin_or_owner? %>
+      <%= published(@course) %>
+      <br>
+      <%= approved(@course) %>
+      <br>
+      <%= admin_approve_button(@course) %>
+    <% end %>
     <div class="mb-1">
       <% if current_user.present? && current_user.id == @course.user.id %>
         <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-1 px-2 bg-blue-300 inline-block text-sm hover:bg-blue-400"  %>
@@ -57,8 +59,9 @@
       <% end %>
     </div>
     <ul>
-      <% @course.lessons.map do |lesson| %>
+      <% @lessons.map do |lesson| %>
         <li class=" flex items-center w-full">
+          <%= lesson.row_order %>
           <%= render 'lessons/lesson_preview', lesson: lesson, active: false %>
         </li>
       <% end %>

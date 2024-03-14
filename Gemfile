@@ -86,5 +86,5 @@ gem "exception_notification"
 gem "pagy" # "~> 6.4" # omit patch digit
 gem "chartkick"
 gem "groupdate"
-
 gem 'ruby-graphviz'
+gem 'ranked-model'

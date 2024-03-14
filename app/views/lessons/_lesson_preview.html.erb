@@ -8,6 +8,7 @@
       <% end %>
       <%= lesson.title %>
     </p>
+
   <% else %>
     <%= link_to course_lesson_path(@course, lesson), class: "hover:underline xl:col-span-3" do %>
       <% if lesson.viewed(current_user) %>

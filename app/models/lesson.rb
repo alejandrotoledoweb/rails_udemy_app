@@ -1,4 +1,9 @@
 class Lesson < ApplicationRecord
+  include RankedModel
+  ranks :row_order, :with_same => :course_id
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :course, counter_cache: true
   # to update the counter cache for lessons in course table
   # Course.find_each { |course| Course.reset_counters(course.id, :lessons)}
@@ -7,8 +12,6 @@ class Lesson < ApplicationRecord
 
   has_many :user_lessons, dependent: :destroy
 
-  extend FriendlyId
-  friendly_id :title, use: :slugged
 
   has_rich_text :content
 

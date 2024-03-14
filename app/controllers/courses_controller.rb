@@ -49,7 +49,7 @@ class CoursesController < ApplicationController
 
   def show
     authorize @course
-    @lessons = @course.lessons
+    @lessons = @course.lessons.rank(:row_order)
     @enrollments_with_reviews = @course.enrollments.reviewed
   end
 
@@ -83,7 +83,7 @@ class CoursesController < ApplicationController
   def update
     authorize @course
     if @course.update(course_params)
-      redirect_to courses_url, notice: "Course was successfully updated."
+      redirect_to course_path(@course), notice: "Course was successfully updated."
     else
       render(
         turbo_stream: turbo_stream.replace(
@@ -101,7 +101,7 @@ class CoursesController < ApplicationController
     authorize @course
     if @course.destroy
       respond_to do |format|
-        format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
+        format.html { redirect_to courses_path, notice: "Course was successfully destroyed." }
         format.json { head :no_content }
       end
     else
