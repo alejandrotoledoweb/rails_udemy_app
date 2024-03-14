@@ -61,8 +61,7 @@
     <ul>
       <% @lessons.map do |lesson| %>
         <li class=" flex items-center w-full">
-          <%= lesson.row_order %>
-          <%= render 'lessons/lesson_preview', lesson: lesson, active: false %>
+          <%= render 'lessons/lesson_preview', lesson: lesson, active: false, rank: lesson.row_order_rank + 1 %>
         </li>
       <% end %>
     </ul>
