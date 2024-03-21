@@ -25,10 +25,9 @@
         <%= f.submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-400 hover:cursor-pointer" %>
       </div>
     <% end %>
-    <%= link_to "Sign in with Google Post method", user_google_oauth2_omniauth_authorize_path, method: :post %>
+    <%# <%= link_to "Sign in with Google Post method", user_google_oauth2_omniauth_authorize_path, method: :post %>
 
-<br><br>
-    <%= link_to "Sign in with Google with path", user_google_oauth2_omniauth_authorize_path %>
+    <%# <%= link_to "Sign in with Google with path", user_google_oauth2_omniauth_authorize_path %>
 
     <div class="mt-4">
       <%= render "devise/shared/links" %>
