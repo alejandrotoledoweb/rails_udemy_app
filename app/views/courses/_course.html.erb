@@ -22,6 +22,7 @@
   <% end %>
   <section class=" text-gray-600 mb-4">
     Teacher: <%= course.user %>
+    <% if policy(course).admin_or_owner? %>
     <br>
     <%= published(course) %>
     <br>
@@ -29,6 +30,7 @@
       <br>
       <br>
     <%= admin_approve_button(course) %>
+    <% end %>
   </section>
   <section class="flex flex-wrap gap-x-3 gap-y-3">
     <%# <%= button_to "Enroll", new_course_enrollment_path(course), class: "rounded-lg py-1 mb-2 px-3 bg-teal-200 font-medium mr-2 hover:bg-teal-300"  %>

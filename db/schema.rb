@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_11_210508) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_163208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_210508) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "row_order"
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["slug"], name: "index_lessons_on_slug", unique: true
   end

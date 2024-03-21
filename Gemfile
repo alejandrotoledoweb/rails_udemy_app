@@ -65,6 +65,7 @@ group :development do
   gem "letter_opener"
   gem 'pry', '~> 0.14.2'
   gem 'rails-erd'
+  gem 'dotenv'
 end
 
 group :test do
@@ -73,18 +74,21 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'devise', '~> 4.8'
+gem 'omniauth-google-oauth2'
+gem 'ranked-model'
+gem 'recaptcha'
+gem 'ruby-graphviz'
+gem "chartkick"
 gem "dockerfile-rails", ">= 1.6", group: :development
-gem "tailwindcss-rails", "~> 2.2"
-gem "font-awesome-sass", "~> 6.5.1"
+gem "exception_notification"
 gem "faker"
-gem "devise"
+gem "font-awesome-sass", "~> 6.5.1"
 gem "friendly_id", "~> 5.4.0"
+gem "groupdate"
+gem "pagy" # "~> 6.4" # omit patch digit
+gem "pundit"
 gem "ransack"
 gem "rolify"
-gem "pundit"
-gem "exception_notification"
-gem "pagy" # "~> 6.4" # omit patch digit
-gem "chartkick"
-gem "groupdate"
+gem "tailwindcss-rails", "~> 2.2"
 
-gem 'ruby-graphviz'

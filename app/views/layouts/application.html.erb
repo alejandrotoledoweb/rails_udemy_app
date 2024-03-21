@@ -5,6 +5,9 @@
       <%= content_for?(:title) ? yield(:title) : "Udemy Rails App" %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="Alejandro Toledo">
+    <meta name="keywords" content="online education, course platform, video tutorials, udemy clone">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>

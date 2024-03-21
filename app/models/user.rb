@@ -17,6 +17,7 @@ class User < ApplicationRecord
          :rememberable,
          :validatable,
          :trackable
+        #  :omniauthable, omniauth_providers: %i[google_oauth2]
         #  :confirmable # add it when the send email works
 
   def to_s

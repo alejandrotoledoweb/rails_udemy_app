@@ -6,8 +6,10 @@
       <% else %>
         <i class="fa-regular fa-square text-lime-500 mr-2"></i>
       <% end %>
+      <%= rank %>
       <%= lesson.title %>
     </p>
+
   <% else %>
     <%= link_to course_lesson_path(@course, lesson), class: "hover:underline xl:col-span-3" do %>
       <% if lesson.viewed(current_user) %>
@@ -15,6 +17,7 @@
       <% else %>
         <i class="fa-regular fa-square text-lime-500 mr-2"></i>
       <% end %>
+      <%= rank %>
       <%= lesson.title %>
     <% end %>
   <% end %>

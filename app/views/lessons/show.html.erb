@@ -23,9 +23,9 @@
     <% end %>
     <% @lessons.each do |lesson| %>
       <% if lesson == @lesson %>
-        <%= render "lessons/lesson_preview", lesson: lesson, active: true %>
+        <%= render "lessons/lesson_preview", lesson: lesson, active: true,rank: lesson.row_order_rank + 1 %>
       <% else %>
-        <%= render "lessons/lesson_preview", lesson: lesson, active: false %>
+        <%= render "lessons/lesson_preview", lesson: lesson, active: false,rank: lesson.row_order_rank + 1 %>
       <% end %>
     <% end %>
   </section>
