@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   resources :enrollments do
     get :my_students, on: :collection
   end
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: {
+        registrations: 'users/registrations',
+        sessions: 'users/sessions',
+        omniauth_callbacks: 'users/omniauth_callbacks'
+      }
   resources :courses do
     member do
       patch :approve
