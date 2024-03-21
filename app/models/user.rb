@@ -17,7 +17,7 @@ class User < ApplicationRecord
          :rememberable,
          :validatable,
          :trackable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+        #  :omniauthable, omniauth_providers: %i[google_oauth2]
         #  :confirmable # add it when the send email works
 
   def self.from_omniauth(access_token)
@@ -31,7 +31,7 @@ class User < ApplicationRecord
            password: Devise.friendly_token[0,20]
         )
     end
-    userf
+    user
   end
 
   def to_s

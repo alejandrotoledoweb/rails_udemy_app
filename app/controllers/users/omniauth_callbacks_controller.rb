@@ -11,4 +11,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
       end
   end
+
+  def failure
+    flash[:error] = 'There was an error while trying to authenticate you...'
+    redirect_to new_user_session_path
+  end
 end
