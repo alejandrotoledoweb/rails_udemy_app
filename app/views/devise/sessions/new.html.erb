@@ -1,6 +1,6 @@
-<div class="min-h-fit bg-gray-100 flex items-start justify-center px-4">
-  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-8 max-w-md w-full min-w-80">
-    <h2 class="text-2xl font-bold mb-6">Log in</h2>
+<div class="flex items-start justify-center px-4 bg-gray-100 min-h-fit">
+  <div class="w-full max-w-md px-8 pt-6 pb-8 mt-8 mb-4 bg-white rounded shadow-md min-w-80">
+    <h2 class="mb-6 text-2xl font-bold">Log in</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
       <div class="field">
@@ -14,7 +14,7 @@
       </div>
 
       <% if devise_mapping.rememberable? %>
-        <div class="field flex items-center">
+        <div class="flex items-center field">
           <%= f.check_box :remember_me, class: "mr-2 leading-tight" %>
           <%= f.label :remember_me, class: "text-sm text-gray-600" %>
         </div>
@@ -22,8 +22,14 @@
       <%# <%= flash[:recaptcha_error] %>
       <%# <%= recaptcha_tags %>
       <div class="actions">
-        <%= f.submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-400 hover:cursor-pointer" %>
+        <%= f.submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-400 hover:cursor-pointer" %>
       </div>
+    <% end %>
+
+    <%= button_to  user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "border p-2 rounded-md flex items-center hover:bg-gray-100"  do %>
+      <img src="./app/assets/images/google_icon.png" alt="">
+      <%= image_tag "icon_google.svg", alt: 'google_icon.png', class: "w-10 h-10 mr-2 " %>
+      Log in with Google
     <% end %>
 
     <div class="mt-4">

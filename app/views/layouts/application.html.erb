@@ -21,12 +21,12 @@
   <%= render "layouts/header" %>
   <%= render "layouts/messages" %>
   <body>
-    <main class=" mx-auto mt-6 px-5">
+    <main class="px-5 mx-auto mt-6 ">
       <%= yield %>
       <%= turbo_frame_tag "modal" %>
       <%= turbo_frame_tag "edit-modal" %>
     </main>
   </body>
 
-  <footer class="text-center bg-blue-400 w-full h-20 pt-10 text-white text-sm mt-10">Alejandro Toledo: Developer & Creator</footer>
+  <footer class="w-full h-20 pt-10 mt-10 text-sm text-center text-white bg-blue-400">Alejandro Toledo: Developer & Creator</footer>
 </html>

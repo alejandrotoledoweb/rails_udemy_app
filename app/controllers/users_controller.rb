@@ -56,7 +56,11 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.friendly.find(params[:id])
+  Rails.logger.debug "Looking for user with ID: #{params[:id]}"
+  @user = User.friendly.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "User not found."
+    redirect_to root_path
   end
 
   def user_params

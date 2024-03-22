@@ -92,3 +92,5 @@ gem "ransack"
 gem "rolify"
 gem "tailwindcss-rails", "~> 2.2"
 
+gem "omniauth-rails_csrf_protection"
+

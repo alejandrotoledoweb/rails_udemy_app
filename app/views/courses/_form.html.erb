@@ -1,6 +1,6 @@
-<%= form_with(model: course, id: "course_form", data: { turbo_frame: "_top" },class: "contents h-fit") do |form| %>
+<%= form_with(model: course, id: "course_form", data: { turbo_frame: "_top" },class: "contents") do |form| %>
   <% if course.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
       <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
       <ul>
@@ -40,7 +40,7 @@
     <%= form.label :price %>
     <%= form.number_field :price, in: 0.0..250.0, default_value: 10, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-  <div class="my-5 flex items-center">
+  <div class="flex items-center my-5">
     <%= form.check_box :published, default_value: false, class: "block shadow rounded-md border border-gray-200 outline-none py-1 px-1" %>
     <%= form.label :published, class: "ml-2" %>
   </div>
