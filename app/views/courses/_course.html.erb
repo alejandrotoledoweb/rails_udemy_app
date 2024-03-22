@@ -3,15 +3,16 @@
     <%= course.title %>
   </h2>
   <p class="mb-4 text-gray-700 "><%= truncate(course.description.to_plain_text, length: 100, separator: ' ', omission: '...') %>
-
- </p>
+  </p>
   <%#
   <p class="h-20 mb-4 overflow-y-auto text-gray-700"><%= course.short_description </p> %>
   <p class="mb-4 text-gray-700">Language: <%= course.language %></p>
-  <p class="mb-4 text-gray-700">Level: <%= course.level %></p>
+  <section>
+    <p class="mb-4 text-gray-700">Level: <%= course.level %></p>
+    <p class="mb-4 text-gray-700">Rating:  <%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  </p>
+  </section>
   <p class="mb-4 text-gray-700">Price: $ <%= course.price %></p>
   <p class="mb-4 text-gray-700"><%= pluralize(course.lessons_count, "Lesson") %></p>
-  <p class="mb-4 text-gray-700">Rating:  <%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  </p>
   <p class="mb-4 text-gray-700">Students:  <%= course.enrollments_count %> <%= icon("fa-solid fa-users fa-xs text-gray-600", "font-solid") %> </p>
   <% if review_button(course) %>
     <button class="px-3 py-1 mb-4 font-medium bg-blue-100 rounded-lg hover:bg-blue">
@@ -25,13 +26,13 @@
   <section class="mb-4 text-gray-600 ">
     Teacher: <%= course.user %>
     <% if policy(course).admin_or_owner? %>
-    <br>
-    <%= published(course) %>
-    <br>
-    <%= approved(course) %>
+      <br>
+      <%= published(course) %>
+      <br>
+      <%= approved(course) %>
       <br>
       <br>
-    <%= admin_approve_button(course) %>
+      <%= admin_approve_button(course) %>
     <% end %>
   </section>
   <section class="flex flex-wrap gap-x-3 gap-y-3">
