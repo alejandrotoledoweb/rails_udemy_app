@@ -1,29 +1,25 @@
-<article id="<%= dom_id course %>" data-title="<%= course.title.downcase %>" data-search-target="courses" data-controller="modal-course" class="p-4 border rounded-lg border-slate-400 hover:bg-slate-100">
-  <h2 class="mb-2 text-xl font-bold">
-    <%= course.title %>
-  </h2>
-  <p class="mb-4 text-gray-700 "><%= truncate(course.description.to_plain_text, length: 100, separator: ' ', omission: '...') %>
-  </p>
-  <%#
-  <p class="h-20 mb-4 overflow-y-auto text-gray-700"><%= course.short_description </p> %>
-  <p class="mb-4 text-gray-700">Language: <%= course.language %></p>
+<article id="<%= dom_id course %>" data-title="<%= course.title.downcase %>" data-search-target="courses" data-controller="modal-course" class="border rounded-lg border-slate-400 ">
   <section>
-    <p class="mb-4 text-gray-700">Level: <%= course.level %></p>
-    <p class="mb-4 text-gray-700">Rating:  <%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  </p>
+    <h2 class="flex justify-between p-2 text-xl font-bold bg-zinc-300">
+      <%= course.title %>
+    </h2>
+    <p class="text-base font-semibold text-gray-700 px-2 <%= "bg-orange-200 hover:bg-orange-100" if course.level == "Intermediate" %> <%= "bg-green-200 hover:bg-green-100" if course.level == "Beginner" %> <%= "bg-red-200 hover:bg-red-100" if course.level == "Advanced" %> "><%= course.level %></p>
   </section>
-  <p class="mb-4 text-gray-700">Price: $ <%= course.price %></p>
-  <p class="mb-4 text-gray-700"><%= pluralize(course.lessons_count, "Lesson") %></p>
-  <p class="mb-4 text-gray-700">Students:  <%= course.enrollments_count %> <%= icon("fa-solid fa-users fa-xs text-gray-600", "font-solid") %> </p>
-  <% if review_button(course) %>
-    <button class="px-3 py-1 mb-4 font-medium bg-blue-100 rounded-lg hover:bg-blue">
-      <%# <%= link_to "Edit your review", edit_enrollment_path(course.enrollments.where(user:current_user).first) %>
-      <%=   review_button(course) %>
-    </button>
-    <%# <button class="px-3 py-1 mb-4 font-medium bg-blue-100 rounded-lg hover:bg-blue">
-      <%= link_to "See review", enrollment_path(course.enrollments.where(user:current_user).first)  %>
-    <%# </button> %>
-  <% end %>
-  <section class="mb-4 text-gray-600 ">
+  <main class="m-3">
+    <section class="flex justify-between">
+      <p class="mb-4 text-gray-700">Students:  <%= course.enrollments_count %> <%= icon("fa-solid fa-users fa-xs text-gray-600", "font-solid") %> </p>
+      <p class="mb-4 text-yellow-400"><%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  </p>
+    </section>
+    <p class="mb-4 text-gray-700 "><%= truncate(course.description.to_plain_text, length: 80, separator: ' ', omission: '...') %>
+    </p>
+    <p class="text-sm text-gray-700"><%= pluralize(course.lessons_count, "Lesson") %></p>
+    <%#
+  <p class="h-20 mb-4 overflow-y-auto text-gray-700"><%= course.short_description </p> %>
+    <p class="text-sm text-gray-700 "><%= course.language %></p>
+    <p class="text-sm text-gray-700 ">Price: $ <%= course.price %></p>
+  </main>
+
+  <section class="m-3 mb-4 text-sm text-gray-600">
     Teacher: <%= course.user %>
     <% if policy(course).admin_or_owner? %>
       <br>
@@ -35,24 +31,28 @@
       <%= admin_approve_button(course) %>
     <% end %>
   </section>
-  <section class="flex flex-wrap gap-x-3 gap-y-3">
+  <section class="flex flex-wrap m-2 text-base gap-x-3 gap-y-3">
     <%# <%= button_to "Enroll", new_course_enrollment_path(course), class: "rounded-lg py-1 mb-2 px-3 bg-teal-200 font-medium mr-2 hover:bg-teal-300"  %>
     <button class="px-3 py-1 font-medium rounded-lg bg-lime-100 hover:bg-lime-300">
       <%= enrollment_button(course) %>
     </button>
     <% if purchased_course(current_user, course) %>
       <progress value="<%= course.progress(current_user) %>" max="100" class="w-full">
-        <%= course.progress(current_user) %>%
       </progress>
     <% end %>
     <%= link_to "Show", course_path(course), class: "rounded-lg py-1 px-3 bg-gray-100 font-medium  hover:bg-gray-300" %>
     <% if policy(course).edit? %>
       <%= link_to raw("#{icon("fa-solid fa-pencil fa-xs", "font-solid")} Edit"), edit_course_path(course), data: { turbo_frame: "edit-modal" }, class: "rounded-lg py-1 px-3 bg-gray-100 font-medium hover:bg-gray-300" %>
     <% end %>
+    <% if review_button(course) %>
+    <button class="px-3 py-1 mx-2 font-medium bg-blue-100 rounded-lg hover:bg-blue">
+      <%= review_button(course) %>
+    </button>
+  <% end %>
     <!-- <%= button_to raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), course_path(course.id), method: :delete, class: "rounded-lg py-1 mb-2 px-3 ml-3 bg-red-600 text-white font-medium hover:bg-red-700" %> -->
     <% if policy(course).destroy? %>
       <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
-      action: 'click->modal-course#open',
+        action: 'click->modal-course#open',
       modal_url_value: course_path(course)
     }, class: "rounded-lg py-1  px-3  bg-red-500 text-white font-medium hover:bg-red-700" %>
     <% end %>
