@@ -424,6 +424,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener
+  nokogiri
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pagy

@@ -1,4 +1,5 @@
 module CoursesHelper
+  require 'nokogiri'
   include Pagy::Frontend
 
   def language_options
@@ -100,4 +101,5 @@ module CoursesHelper
       button_to 'Approve', approve_course_path(course), method: :patch, class: "hover:underline text-blue-600"
     end
   end
+
 end
