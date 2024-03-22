@@ -1,5 +1,5 @@
 <section data-controller="search">
-  <h1 class="text-3xl font-bold underline mb-4 text-gray-800 text-center font-sans">What do you want to learn today?</h1>
+  <h1 class="mb-4 font-sans text-3xl font-bold text-center text-gray-800 underline">What do you want to learn today?</h1>
   <%= search_form_for @q, url: @ransack_path , html: { class: "flex items-start flex-wrap gap-x-4 gap-y-4 mt-4 mb-4" } do |f| %>
     <%= f.search_field :title_cont, placeholder: "Search by title" ,
                                     class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-60" %>
@@ -19,15 +19,15 @@
     <!-- <%= icon('fa-brands', 'font-awesome')%>
   <%= icon('fa-solid', 'user-secret')%>
   <%= icon('fa-regular', 'bell')%> -->
-    <% if current_user %>
+    <% if current_user && current_user.enrollments.any? %>
       <section class="">
         <div class="flex items-center ">
-          <h2 class="text-left text-xl md:text-2xl font-semibold mr-2 "> <%= icon('fa-regular', 'user')%> Continue Learning</h2>
-          <button class="p-2 bg-lime-600 text-gray-100 rounded-md my-4 hover:bg-lime-700 float-end ">
+          <h2 class="mr-2 text-xl font-semibold text-left md:text-2xl "> <%= icon('fa-regular', 'user')%> Continue Learning</h2>
+          <button class="p-2 my-4 text-gray-100 rounded-md bg-lime-600 hover:bg-lime-700 float-end ">
             <%= link_to 'See all my courses', purchased_courses_path, class: '' %>
           </button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <% @purchased_courses.each do |course| %>
             <%= render 'courses/course', course: course %>
           <% end %>
@@ -36,31 +36,31 @@
       </section>
     <% end %>
     <div class="flex items-center ">
-      <h2 class="text-left text-xl md:text-2xl font-semibold mr-2"> <%= icon('fa-regular', 'user')%> Popular Courses</h2>
-      <button class="p-2 bg-lime-600 text-gray-100 rounded-md my-4 hover:bg-lime-700 justify-end">
+      <h2 class="mr-2 text-xl font-semibold text-left md:text-2xl"> <%= icon('fa-regular', 'user')%> Popular Courses</h2>
+      <button class="justify-end p-2 my-4 text-gray-100 rounded-md bg-lime-600 hover:bg-lime-700">
         <%= link_to 'See all popular courses', courses_path(q: { s: 'average_rating asc' }), class: "" %>
       </button>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <% @popular_courses.each do |course| %>
         <%= render 'courses/course', course: course %>
       <% end %>
     </div>
     <hr class="my-8">
     <div class="flex items-center ">
-      <h2 class="text-left text-xl md:text-2xl font-semibold mr-2"> <%= icon('fa-regular', 'star')%> Top rated Courses</h2>
-      <button class="p-2 bg-lime-600 text-gray-100 rounded-md my-4 hover:bg-lime-700">
+      <h2 class="mr-2 text-xl font-semibold text-left md:text-2xl"> <%= icon('fa-regular', 'star')%> Top rated Courses</h2>
+      <button class="p-2 my-4 text-gray-100 rounded-md bg-lime-600 hover:bg-lime-700">
         <%= link_to 'See top rated courses', courses_path(q: {s: 'average_rating desc'}), class: '' %>
       </button>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <% @top_rated_courses.each do |course| %>
         <%= render 'courses/course', course: course %>
       <% end %>
     </div>
     <hr class="my-8">
-    <h2 class="text-left text-xl md:text-2xl font-semibold mb-6"> <%= icon('fa-regular', 'bell')%> Latest Courses</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <h2 class="mb-6 text-xl font-semibold text-left md:text-2xl"> <%= icon('fa-regular', 'bell')%> Latest Courses</h2>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <% @latest_courses.each do |course| %>
         <%= render 'courses/course', course: course %>
       <% end %>

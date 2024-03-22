@@ -1,9 +1,10 @@
 <%= turbo_frame_tag "modal" do %>
-  <div class="fixed inset-0 grid items-center justify-center grid-cols-6 mx-auto bg-black bg-opacity-75">
-    <div class="z-10 col-span-6 col-start-1 p-8 scale-75 bg-white shadow-lg rounded-xl md:col-start-2 md:col-span-4">
+  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
+    <div class="z-10 p-8 scale-75 bg-white shadow-lg rounded-xl">
       <h1 class="text-4xl font-bold">New course</h1>
       <%= render "form", course: @course %>
       <a href="<%= request.referrer %>" class="inline-block px-5 py-3 ml-2 bg-gray-100 rounded-lg font-lg hover:bg-slate-300">Cancel</a>
     </div>
   </div>
+</div>
 <% end %>
