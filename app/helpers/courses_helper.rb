@@ -21,7 +21,7 @@ module CoursesHelper
           # course.user_lessons.where(user: current_user).count
           # course.lessons_count
           else
-            "See you certification"
+            "Completed 100% -> See your certification"
           end
         end
       elsif course.price > 0
@@ -70,7 +70,7 @@ module CoursesHelper
 
   def published(course)
     published_icon = tag.i('', class: 'fa-solid fa-check-circle text-lime-500 ml-1 ')
-    unpublished_icon = tag.i('', class: 'fa-regular fa-circle text-red-500 ml-1 ')
+    unpublished_icon = tag.i('', class: 'fa-regular fa-x text-red-500 ml-1 ')
     p = tag.p('Published', class: 'w-24 mr-2 inline-flex')
     up = tag.p('Unpublished', class: 'w-24 mr-2 inline-flex')
     if course.published

@@ -13,8 +13,6 @@
     <p class="mb-4 text-gray-700 "><%= truncate(course.description.to_plain_text, length: 80, separator: ' ', omission: '...') %>
     </p>
     <p class="text-sm text-gray-700"><%= pluralize(course.lessons_count, "Lesson") %></p>
-    <%#
-  <p class="h-20 mb-4 overflow-y-auto text-gray-700"><%= course.short_description </p> %>
     <p class="text-sm text-gray-700 "><%= course.language %></p>
     <p class="text-sm text-gray-700 ">Price: $ <%= course.price %></p>
   </main>
@@ -33,7 +31,7 @@
   </section>
   <section class="flex flex-wrap m-2 text-base gap-x-3 gap-y-3">
     <%# <%= button_to "Enroll", new_course_enrollment_path(course), class: "rounded-lg py-1 mb-2 px-3 bg-teal-200 font-medium mr-2 hover:bg-teal-300"  %>
-    <button class="px-3 py-1 font-medium rounded-lg bg-lime-100 hover:bg-lime-300">
+    <button class="px-3 py-1 font-medium rounded-lg bg-lime-100 hover:bg-lime-200">
       <%= enrollment_button(course) %>
     </button>
     <% if purchased_course(current_user, course) %>
