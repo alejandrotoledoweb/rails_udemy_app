@@ -20,19 +20,19 @@
     </p>
     <footer>
       <% unless lesson.prev.nil?  %>
-        <button class="my-4 bg-gray-100 p-2 rounded-md hover:bg-gray-200 w-32">
+        <button class="my-4 bg-gray-200 p-2 rounded-md hover:bg-gray-200 w-32">
           <%= link_to raw("#{icon('fa-solid fa-arrow-left mr-2', 'font-solid')} Previous"), course_lesson_url(@course, lesson.prev), class: ''  %>
         </button>
       <% end %>
       <% unless lesson.next.nil?  %>
-        <button class="my-4 bg-gray-100 p-2 rounded-md hover:bg-slate-200 w-32">
+        <button class="my-4 bg-gray-200 p-2 rounded-md hover:bg-slate-200 w-32">
           <%= link_to raw("Next #{icon('fa-solid fa-arrow-right ml-2', 'font-solid')} "), course_lesson_url(@course, lesson.next), class: ''  %>
         </button>
       <% end %>
     </footer>
     <% if action_name != "show" %>
-      <%= link_to "Show this lesson", lesson, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
-      <%= link_to "Edit this lesson", course_edit_lesson_path(lesson), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium hover:bg-gray-300" %>
+      <%= link_to "Show this lesson", lesson, class: "rounded-lg py-3 px-5 bg-gray-200 inline-block font-medium hover:bg-gray-300" %>
+      <%= link_to "Edit this lesson", course_edit_lesson_path(lesson), class: "rounded-lg py-3 ml-2 px-5 bg-gray-200 inline-block font-medium hover:bg-gray-300" %>
       <hr class="mt-6">
     <% end %>
   </section>

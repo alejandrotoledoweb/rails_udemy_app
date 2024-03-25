@@ -14,13 +14,13 @@
 
 .pagy-nav .page a,
 .pagy-nav .page.active,
-/* .pagy-nav .page.prev.disabled, */
+.pagy-nav .page.prev.disabled,
 .pagy-nav .page.next.disabled,
 .pagy-nav-js .page a,
 .pagy-nav-js .page.active,
 .pagy-nav-js .page.prev.disabled,
 .pagy-nav-js .page.next.disabled {
-  @apply block px-3 py-1 text-sm font-semibold text-gray-500 bg-gray-200 rounded-lg shadow-md;
+  @apply block px-3 py-1 text-sm font-semibold text-gray-800 bg-gray-200 rounded-lg shadow-md;
   &:hover{
     @apply bg-gray-300;
   }

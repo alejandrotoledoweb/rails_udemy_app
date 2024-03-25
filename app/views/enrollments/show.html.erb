@@ -8,7 +8,7 @@
     </section>
     <section>
       <% if policy(@enrollment).edit? %>
-        <%= link_to "Edit this review", edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Edit this review", edit_enrollment_path(@enrollment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-200 inline-block font-medium" %>
         <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
      action: 'click->modal-course#open',
       modal_url_value: enrollment_path(@enrollment)
@@ -17,7 +17,7 @@
         <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex hidden items-center justify-center">
           <%= render 'shared/destroy_review_modal', enrollment: @enrollment %>
         </div>
-        <a href="<%= request.referrer %>" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-lg hover:bg-slate-300">Go back</a>
+        <a href="<%= request.referrer %>" class="ml-2 rounded-lg py-3 px-5 bg-gray-200 inline-block font-lg hover:bg-slate-300">Go back</a>
       <% end %>
     </section>
   </div>

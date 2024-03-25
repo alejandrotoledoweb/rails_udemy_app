@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   protect_from_forgery
   before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -18,6 +19,13 @@ class ApplicationController < ActionController::Base
       format.json { render json: { error: "You are not authorized to perform this action." }, status: :forbidden }
       format.js   { head :forbidden } # or render a JS response if needed
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
 end

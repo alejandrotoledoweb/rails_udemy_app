@@ -3,7 +3,7 @@
   <%= search_form_for @q, url: @ransack_path , html: { class: "flex items-start flex-wrap gap-x-4 gap-y-4 mt-4 mb-4" } do |f| %>
     <%= f.search_field :title_cont, placeholder: "Search by title" ,
                                     class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-60" %>
-    <%= button_tag(type: 'submit', class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md shadow hover:cursor-pointer flex items-center justify-center gap-2") do %>
+    <%= button_tag(type: 'submit', class: "px-4 py-2 text-white bg-blue-900 hover:bg-blue-800 rounded-md shadow hover:cursor-pointer flex items-center justify-center gap-2") do %>
       <i class="fa-solid fa-magnifying-glass"></i>
       Search
     <% end %>
@@ -23,7 +23,7 @@
       <section class="">
         <div class="flex items-center ">
           <h2 class="mr-2 text-xl font-semibold text-left md:text-2xl "> <%= icon('fa-regular', 'user mr-2')%> Continue Learning</h2>
-          <button class="p-2 my-4 text-blue-500 underline rounded-md hover:text-blue-700 float-end ">
+          <button class="p-2 my-4 text-blue-600 underline rounded-md hover:text-blue-700 float-end ">
             <%= link_to 'See all my courses', purchased_courses_path, class: '' %>
             <i class="ml-1 fa-solid fa-arrow-right"></i>
           </button>
@@ -38,7 +38,7 @@
     <% end %>
     <div class="flex items-center ">
       <h2 class="mr-2 text-xl font-semibold text-left md:text-2xl"> <%= icon('fa-regular', 'user mr-2')%> Popular Courses</h2>
-      <button class="p-2 my-4 text-blue-500 underline rounded-md hover:text-blue-700 float-end">
+      <button class="p-2 my-4 text-blue-600 underline rounded-md hover:text-blue-700 float-end">
         <%= link_to 'See all popular courses', courses_path(q: { s: 'average_rating asc' }), class: "" %>
         <i class="ml-1 fa-solid fa-arrow-right"></i>
       </button>

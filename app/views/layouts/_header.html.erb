@@ -1,6 +1,6 @@
-<nav class="bg-blue-500 border-gray-200 dark:bg-gray-900" data-controller="header">
-  <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-2 px-4 mx-auto text-sm lg:text-base">
-    <%= link_to raw("#{icon('fa-solid fa-gem fa-xl', 'font-solid')} Rails Udemy"), root_path , class: "flex items-center space-x-3 rtl:space-x-reverse text-gray-100 hover:text-white gap-x-2 text-xl font-semibold" %>
+<nav class="bg-blue-900 border-gray-200 dark:bg-gray-900" data-controller="header">
+  <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-2 px-4 mx-auto text-sm  lg:text-base">
+    <%= link_to raw("#{icon('fa-solid fa-gem fa-xl', 'font-solid')} Rails Udemy"), root_path , class: " items-center space-x-3 rtl:space-x-reverse text-gray-100 hover:text-white gap-x-2 text-xl font-semibold bg-blue-900 py-2" %>
     <button data-collapse-toggle="navbar-default" type="button"
       class="inline-flex items-center justify-center w-10 h-10 px-1 my-2 text-sm text-gray-200 rounded-lg md:hidden hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       aria-controls="navbar-default" aria-expanded="false">
@@ -10,9 +10,9 @@
           d="M1 1h15M1 7h15M1 13h15" />
       </svg>
     </button>
-    <section class="hidden w-full bg-blue-500 md:block md:w-auto" id="navbar-default">
+    <section class="hidden w-full bg-blue-900 md:block md:w-auto" id="navbar-default">
       <ul
-        class="flex flex-col p-4 mt-4 font-medium bg-blue-500 border border-gray-100 rounded-lg md:items-center md:py-2 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        class="flex flex-col p-4 mt-4 font-medium bg-blue-900 border border-gray-100 rounded-lg md:items-center md:py-2 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
           <% unless current_user %>
             <%= link_to raw("#{icon('fa-solid fa-graduation-cap', 'font-solid')} Courses"), root_path,
@@ -25,17 +25,17 @@
         <% if !current_user %>
           <li>
             <%= link_to "Log in", new_user_session_path,
-                class: "#{ 'font-bold' if current_page?(courses_path) } block py-2 px-3 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 " %>
+                class: "#{ 'font-bold' if current_page?(courses_path) } block py-2 px-3 text-gray-100 rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 " %>
           </li>
           <li>
             <%= link_to "Sign Up", new_user_registration_path,
-                class: "#{ 'font-bold' if current_page?(courses_path) } block py-2 px-3 text-gray-100 rounded hover:bg-gray-100 hover:text-white md:hover:bg-transparent md:border-0 md:p-0 " %>
+                class: "#{ 'font-bold' if current_page?(courses_path) } block py-2 px-3 text-gray-100 rounded hover:bg-gray-200 hover:text-white md:hover:bg-transparent md:border-0 md:p-0 " %>
           </li>
         <% end %>
         <% if current_user %>
           <li>
             <span
-              class="block px-3 py-2 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-white md:p-0 ">
+              class="block px-3 py-2 text-gray-100 rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 hover:text-white md:p-0 ">
               <%= link_to "Account #{current_user.email}" , edit_user_registration_path %>
             </span>
           </li>
@@ -53,12 +53,12 @@
           <% end %>
           <% if current_user.has_role? :teacher %>
             <li class="relative">
-              <button data-action="click->header#toggleTeacher" class="block px-3 py-2 text-gray-100 rounded md:p-0 dark:text-white hover:bg-gray-100 md:hover:bg-transparent hover:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
+              <button data-action="click->header#toggleTeacher" class="block px-3 py-2 text-gray-100 rounded md:p-0 dark:text-white hover:bg-gray-200 md:hover:bg-transparent hover:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
                 Teacher <i class="fas fa-chevron-down"></i>
               </button>
               <ul data-header-target="teacherMenu" class="hidden pt-4 text-gray-700 md:absolute w-36 -left-6">
                 <li>
-                  <%= link_to raw("#{icon('fa-solid fa-plus w-8', 'font-solid pl-2 my-2 ')} New course"), new_course_path, class: "#{'font-bold' if current_page?(new_course_path)} block py-2 px-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded bg-gray-100 md:border-0 md:p-0 " %>
+                  <%= link_to raw("#{icon('fa-solid fa-plus w-8', 'font-solid pl-2 my-2 ')} New course"), new_course_path, class: "#{'font-bold' if current_page?(new_course_path)} block py-2 px-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded bg-gray-200 md:border-0 md:p-0 " %>
                 </li>
                 <li>
                   <%= link_to raw("#{icon('fa-solid fa-book w-8', 'font-solid pl-2 my-2 pr-1')} My courses"), created_courses_path, class: "#{'font-bold' if current_page?(created_courses_path)} block py-2 px-3 rounded md:border-0 text-gray-700 bg-gray-200 hover:bg-gray-300 md:p-0 " %>
@@ -71,7 +71,7 @@
           <% end %>
           <% if current_user.has_role? :admin %>
             <li class="relative">
-              <button data-action="click->header#toggle" class="block px-3 py-2 text-gray-100 rounded md:p-0 dark:text-white hover:bg-gray-100 md:hover:bg-transparent hover:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
+              <button data-action="click->header#toggle" class="block px-3 py-2 text-gray-100 rounded md:p-0 dark:text-white hover:bg-gray-200 md:hover:bg-transparent hover:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
                 Admin <i class="fas fa-chevron-down"></i>
               </button>
               <ul data-header-target="menu" class="hidden w-40 pt-4 text-left text-gray-700 md:absolute -left-6">
@@ -95,7 +95,7 @@
           <% end %>
           <li>
             <span
-            class="block px-3 py-2 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-white md:p-0 text-bold">
+            class="block px-3 py-2 text-gray-100 rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 hover:text-white md:p-0 text-bold">
               <%= form_with url: destroy_user_session_path, method: :delete do %>
                 <%= submit_tag 'Log out', class: "hover:cursor-pointer" %>
               <% end %>

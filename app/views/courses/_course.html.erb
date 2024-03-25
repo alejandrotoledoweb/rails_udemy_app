@@ -8,7 +8,7 @@
   <main class="m-3">
     <section class="flex justify-start">
     </p>
-    <p class="mb-4 text-yellow-400"><%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  <span class="text-gray-700">(<%= icon("fa-solid fa-users fa-xs text-gray-600 mr-2", "font-solid") %><%= course.enrollments_count %>)</span> </p>
+    <p class="mb-4 text-yellow-600"><%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  <span class="text-gray-600">(<%= icon("fa-solid fa-users fa-xs text-gray-600 mr-2", "font-solid") %><%= course.enrollments_count %>)</span> </p>
   </section>
   <p class="h-12 mb-4 text-gray-700"><%= truncate(course.description.to_plain_text, length: 80, separator: ' ', omission: '...') %>
   </p>
@@ -30,19 +30,19 @@
 </section>
 <section class="flex flex-wrap m-2 text-base gap-x-3 gap-y-3">
   <%# <%= button_to "Enroll", new_course_enrollment_path(course), class: "rounded-lg py-1 mb-2 px-3 bg-teal-200 font-medium mr-2 hover:bg-teal-300"  %>
-  <button class="px-3 py-1 font-medium rounded-lg bg-slate-400 hover:bg-slate-500">
+  <button class="px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700">
     <%= enrollment_button(course) %>
   </button>
   <% if purchased_course(current_user, course) %>
     <progress value="<%= course.progress(current_user) %>" max="100" class="w-full">
     </progress>
   <% end %>
-  <%= link_to "Show", course_path(course), class: "rounded-lg py-1 px-3 bg-gray-100 font-medium  hover:bg-gray-300" %>
+  <%= link_to "Show", course_path(course), class: "rounded-lg py-1 px-3 bg-gray-300 font-medium  hover:bg-gray-400" %>
   <% if policy(course).edit? %>
-    <%= link_to raw("#{icon("fa-solid fa-pencil fa-xs", "font-solid")} Edit"), edit_course_path(course), data: { turbo_frame: "edit-modal" }, class: "rounded-lg py-1 px-3 bg-gray-100 font-medium hover:bg-gray-300" %>
+    <%= link_to raw("#{icon("fa-solid fa-pencil fa-xs", "font-solid")} Edit"), edit_course_path(course), data: { turbo_frame: "edit-modal" }, class: "rounded-lg py-1 px-3 bg-gray-300 font-medium hover:bg-gray-400" %>
   <% end %>
   <% if review_button(course) %>
-    <button class="px-3 py-1 mx-2 font-medium bg-blue-100 rounded-lg hover:bg-blue-200">
+    <button class="px-3 py-1 mx-2 font-medium bg-blue-300 rounded-lg hover:bg-blue-400">
       <%= review_button(course) %>
     </button>
   <% end %>
@@ -51,7 +51,7 @@
     <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
         action: 'click->modal-course#open',
       modal_url_value: course_path(course)
-    }, class: "rounded-lg py-1  px-3  bg-red-500 text-white font-medium hover:bg-red-700" %>
+    }, class: "rounded-lg py-1  px-3  bg-red-700 text-white font-medium hover:bg-red-600" %>
   <% end %>
   <!-- modal -->
   <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex items-center justify-center hidden">
