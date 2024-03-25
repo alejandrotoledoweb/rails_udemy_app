@@ -1,1 +1,18 @@
-<footer class="w-full h-20 pt-10 mt-10 text-sm text-center text-white bg-blue-400">Alejandro Toledo: Developer & Creator</footer>
+<footer class="w-full h-56 pt-10 mt-10 text-sm text-center text-white bg-slate-900">
+
+  <main class="flex flex-col items-stretch justify-between px-3 text-white">
+    <h4 class="px-3 text-xl text-left">More Information <i class="ml-2 fa-solid fa-comment"></i></h4>
+    <section class="flex flex-col items-start px-3 my-4">
+      <%= link_to "Courses", courses_path, class: "hover:underline"  %>
+      <%= link_to "About", courses_path, class: "hover:underline"  %>
+      <%= link_to "Contact", courses_path, class: "hover:underline"  %>
+
+    </section>
+    <section class="flex items-center justify-between mx-3">
+
+      <%= link_to raw("#{icon('fa-solid fa-gem fa-xl', 'font-solid')} Rails Udemy"), root_path , class: "flex items-center space-x-3 rtl:space-x-reverse text-gray-100 hover:text-white gap-x-2 text-base font-semibold" %>
+
+      <p><a href="github.com/alejandrotoledoweb">Alejandro Toledo</a></p>
+    </section>
+  </main>
+</footer>
