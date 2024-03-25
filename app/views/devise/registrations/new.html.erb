@@ -32,9 +32,13 @@
       </div>
     <% end %>
 
-    <%= button_to  user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "bg-white border p-2 rounded-md flex items-center hover:bg-gray-200 my-4"  do %>
+    <%= button_to  user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "bg-white border p-2 rounded-md flex items-center hover:bg-gray-200 my-4 w-full flex justify-center"  do %>
       <%= image_tag "icon_google.svg", alt: 'icon_google.png', class: "w-10 h-10 mr-2 " %>
       Sign Up with Google
+    <% end %>
+    <%= button_to  user_github_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "bg-white border p-2 rounded-md flex items-center hover:bg-gray-200 my-4 w-full flex justify-center"  do %>
+      <%= image_tag "icons8-github.svg", alt: 'icons8-github.png', class: "w-10 h-10 mr-2 " %>
+      Sign Up with Github
     <% end %>
     <div class="mt-4">
       <%= render "devise/shared/links" %>
