@@ -17,7 +17,7 @@ class User < ApplicationRecord
          :rememberable,
          :validatable,
          :trackable,
-         :omniauthable, omniauth_providers: %i[google_oauth2]
+         :omniauthable, omniauth_providers: %i[google_oauth2 github]
         #  :confirmable # add it when the send email works
 
   def self.from_omniauth(access_token)

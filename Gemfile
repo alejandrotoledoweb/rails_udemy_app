@@ -91,6 +91,7 @@ gem "pundit"
 gem "ransack"
 gem "rolify"
 gem "tailwindcss-rails", "~> 2.2"
+gem 'omniauth-github', '~> 2.0.0'
 
 gem "omniauth-rails_csrf_protection"
 

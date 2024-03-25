@@ -1,18 +1,15 @@
 <div class="flex items-start justify-center px-4 bg-gray-100 min-h-fit">
   <div class="w-full max-w-md px-8 pt-6 pb-8 mt-8 mb-4 bg-white rounded shadow-md min-w-80">
     <h2 class="mb-6 text-2xl font-bold">Log in</h2>
-
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
       <div class="field">
         <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
-
       <div class="field">
         <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= f.password_field :password, autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
-
       <% if devise_mapping.rememberable? %>
         <div class="flex items-center field">
           <%= f.check_box :remember_me, class: "mr-2 leading-tight" %>
@@ -22,15 +19,21 @@
       <%# <%= flash[:recaptcha_error] %>
       <%# <%= recaptcha_tags %>
       <div class="actions">
-        <%= f.submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-400 hover:cursor-pointer" %>
+        <%= f.submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-400 hover:cursor-pointer w-full" %>
       </div>
     <% end %>
-
-    <%= button_to  user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "border p-2 rounded-md flex items-center hover:bg-gray-100"  do %>
+    <%= button_to  user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "border p-2 rounded-md flex items-center hover:bg-gray-100 w-full flex justify-center"  do %>
       <%= image_tag "icon_google.svg", alt: 'icon_google.png', class: "w-10 h-10 mr-2 " %>
-      Log in with Google
+      <span class="mr-2">
+        Log in with Google
+      </span>
     <% end %>
-
+    <%= button_to  user_github_omniauth_authorize_path, method: :post, data: { turbo: 'false' }, class: "border p-2 rounded-md flex items-center hover:bg-gray-100 mt-2 w-full flex justify-center"  do %>
+      <%= image_tag "icons8-github", alt: 'icons8-github', class: "w-10 h-10 mr-2 " %>
+      <span class="mr-2">
+        Log in with Github
+      </span>
+    <% end %>
     <div class="mt-4">
       <%= render "devise/shared/links" %>
     </div>

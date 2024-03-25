@@ -11,9 +11,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
       end
   end
+  def github
+      # You need to implement the method below in your model (e.g. app/models/user.rb)
+      @user = User.from_omniauth(request.env['omniauth.auth'])
 
-  def failure
-    flash[:error] = 'There was an error while trying to authenticate you...'
-    redirect_to new_user_session_path
+      if @user.persisted?
+        flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Github'
+        sign_in_and_redirect @user, event: :authentication
+      else
+        session['devise.github.data'] = request.env['omniauth.auth'].except('extra') # Removing extra as it can overflow some session stores
+        redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
+      end
   end
+
 end
