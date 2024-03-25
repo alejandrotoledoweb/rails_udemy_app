@@ -1,9 +1,9 @@
-<div class=" mx-auto w-full ">
-  <div class="flex justify-around items-center">
-    <h1 class="font-bold text-4xl">Enrollments</h1>
+<div class="w-full mx-auto ">
+  <div class="flex items-center justify-around">
+    <h1 class="text-4xl font-bold">Enrollments</h1>
     <%# <%= link_to "New enrollment", new_enrollment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-  <div class="border-collapse lg:w-11/12 mx-auto mt-4 w-full">
+  <div class="w-full mx-auto mt-4 border-collapse lg:w-11/12">
 
     <%= search_form_for @q, url: @ransack_path , html: { class: "flex space-x-4" } do |f| %>
     <%= f.search_field :course_title_cont, placeholder: "Search by course title",
@@ -15,24 +15,24 @@
     <%= f.search_field :price_eq, placeholder: "Price",
                                     class: "block px-2 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-20" %>
     <%= f.submit "Search",
-                 class: "px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow hover:cursor-pointer" %>
+                 class: "px-4 py-2 text-white bg-blue-900 hover:bg-blue-800 rounded-md shadow hover:cursor-pointer" %>
   <% end %>
 
-  <%= button_to raw("#{icon('fa-solid fa-refresh fa-md mr-2', 'font-solid')} Refresh"), @ransack_path, method: :get,class: "mt-2 px-4 py-2 text-white bg-blue-500 rounded-md shadow hover:bg-blue-600" %>
+  <%= button_to raw("#{icon('fa-solid fa-refresh fa-md mr-2', 'font-solid')} Refresh"), @ransack_path, method: :get,class: "mt-2 px-4 py-2 text-white bg-blue-900 rounded-md shadow hover:bg-blue-800" %>
   </div>
   <div id="enrollments" class="min-w-full overflow-auto">
-    <table class="border-collapse lg:w-11/12 mx-auto mt-4 w-full">
+    <table class="w-full mx-auto mt-4 border-collapse lg:w-11/12">
       <thead class="h-16 border border-blue-500">
         <tr>
-          <th class="text-center pl-2 sm:px-1 border border-blue-500">ID</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Date</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Course</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Price</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">User</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Updated</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Rating</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500 min-w-52">Review</th>
-          <th class="text-left pl-2 sm:px-1 border border-blue-500">Price</th>
+          <th class="pl-2 text-center border border-blue-500 sm:px-1">ID</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">Date</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">Course</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">Price</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">User</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">Updated</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">Rating</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1 min-w-52">Review</th>
+          <th class="pl-2 text-left border border-blue-500 sm:px-1">Price</th>
           <% if action_name != "show" %>
             <th>Actions</th>
           <% end %>

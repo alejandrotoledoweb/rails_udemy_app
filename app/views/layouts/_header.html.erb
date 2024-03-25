@@ -1,5 +1,5 @@
 <nav class="bg-blue-900 border-gray-200 dark:bg-gray-900" data-controller="header">
-  <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-2 px-4 mx-auto text-sm  lg:text-base">
+  <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-2 px-4 mx-auto text-sm lg:text-base">
     <%= link_to raw("#{icon('fa-solid fa-gem fa-xl', 'font-solid')} Rails Udemy"), root_path , class: " items-center space-x-3 rtl:space-x-reverse text-gray-100 hover:text-white gap-x-2 text-xl font-semibold bg-blue-900 py-2" %>
     <button data-collapse-toggle="navbar-default" type="button"
       class="inline-flex items-center justify-center w-10 h-10 px-1 my-2 text-sm text-gray-200 rounded-lg md:hidden hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -76,7 +76,7 @@
               </button>
               <ul data-header-target="menu" class="hidden w-40 pt-4 text-left text-gray-700 md:absolute -left-6">
                 <li>
-                  <%= link_to unapproved_courses_path, class: "#{'font-bold' if current_page?(users_path)} block py-2 px-3 text-gray-700 rounded bg-gray-200 md:border-0 hover:bg-gray-300 md:p-0  flex" do %>
+                  <%= link_to unapproved_courses_path, class: "#{'font-bold' if current_page?(unapproved_courses_path)} block py-2 px-3 text-gray-700 rounded bg-gray-200 md:border-0 hover:bg-gray-300 md:p-0  flex" do %>
                     <i class="w-8 pl-2 my-2 mr-2 fa-brands fa-leanpub font-solid"></i>
                     Unapproved Courses
                     <span class="flex items-center justify-center w-8 h-8 p-1 m-1 rounded-sm bg-amber-300">
