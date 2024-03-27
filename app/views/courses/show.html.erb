@@ -43,9 +43,9 @@
     <div class="flex flex-wrap items-center justify-start gap-y-2 gap-x-2">
       <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-1 px-2 bg-gray-300 inline-block text-sm hover:bg-gray-400  " %>
       <% if policy(@course).destroy? && policy(@course).update? %>
-        <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')} Edit course"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-1 px-2 bg-gray-200 inline-block text-sm hover:bg-gray-300 " %>
+        <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')}"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-1 px-2 bg-gray-300 inline-block text-sm hover:bg-gray-400 " %>
         <section class="inline-block ">
-          <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')} Destroy this course"), course_path(@course), method: :delete, class: " rounded-lg py-1 px-2 bg-red-100 text-sm hover:bg-red-300" %>
+          <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')}"), course_path(@course), method: :delete, class: " rounded-lg py-1 px-2 bg-red-300 text-sm hover:bg-red-400" %>
         </section>
       <% end %>
     </div>

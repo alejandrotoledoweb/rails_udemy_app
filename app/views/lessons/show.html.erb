@@ -6,7 +6,7 @@
     <%= render @lesson %>
     <div class="flex flex-wrap gap-x-2 gap-y-2">
       <% if policy(@lesson).edit? %>
-        <%= link_to "Edit this lesson", edit_course_lesson_path(@course, @lesson), class: " rounded-lg py-2 px-2 bg-gray-200 inline-block font-medium hover:bg-gray-300" %>
+        <%= link_to "Edit this lesson", edit_course_lesson_path(@course, @lesson), class: " rounded-lg py-2 px-2 bg-gray-300 inline-block font-medium hover:bg-gray-400" %>
         <%= button_tag raw("#{icon("fa-solid fa-trash fa-xs", "font-solid")} Destroy"), type: "button", data: {
         action: 'click->modal-course#open',
         modal_url_value: course_lesson_path(@course, @lesson)
@@ -16,7 +16,7 @@
   </section>
   <section class="col-span-1 sm:col-span-1 md:col-span-2 lg:col-span-1 mt-10">
     <button class="inline-block w-full">
-      <%= link_to raw("#{icon('fa-solid fa-arrow-left mr-2', 'font-solid')} Back to - #{@lesson.course.title}"), course_path(@lesson.course.id), class: "rounded-lg py-2 px-2 bg-gray-200 inline-block font-medium hover:bg-gray-300 w-full" %>
+      <%= link_to raw("#{icon('fa-solid fa-arrow-left mr-2', 'font-solid')} Back to - #{@lesson.course.title}"), course_path(@lesson.course.id), class: "rounded-lg py-2 px-2 bg-gray-300 inline-block font-medium hover:bg-gray-400 w-full" %>
     </button>
     <% if purchased_course(current_user, @course) %>
       <p class="font-semibold text-base p-1 border rounded-md flex justify-center">Progress: <%= number_to_percentage(@course.progress(current_user), :precision => 0) %></p>

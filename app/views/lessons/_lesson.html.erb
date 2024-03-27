@@ -20,12 +20,12 @@
     </p>
     <footer>
       <% unless lesson.prev.nil?  %>
-        <button class="my-4 bg-gray-200 p-2 rounded-md hover:bg-gray-200 w-32">
+        <button class="my-4 bg-gray-300 p-2 rounded-md hover:bg-gray-400 w-32">
           <%= link_to raw("#{icon('fa-solid fa-arrow-left mr-2', 'font-solid')} Previous"), course_lesson_url(@course, lesson.prev), class: ''  %>
         </button>
       <% end %>
       <% unless lesson.next.nil?  %>
-        <button class="my-4 bg-gray-200 p-2 rounded-md hover:bg-slate-200 w-32">
+        <button class="my-4 bg-gray-300 p-2 rounded-md hover:bg-slate-400 w-32">
           <%= link_to raw("Next #{icon('fa-solid fa-arrow-right ml-2', 'font-solid')} "), course_lesson_url(@course, lesson.next), class: ''  %>
         </button>
       <% end %>
