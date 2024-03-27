@@ -20,13 +20,13 @@
 
   <%= render "layouts/header" %>
   <%= render "layouts/messages" %>
-  <body class="bg-gray-100">
-    <main class="px-5 mx-auto mt-6 ">
+  <body class="bg-gray-100 flex flex-col justify-between w-full h-screen justify-items-stretch">
+    <main class="px-4 mx-auto mt-6 justify-self-start">
       <%= yield %>
       <%= turbo_frame_tag "modal" %>
       <%= turbo_frame_tag "edit-modal" %>
     </main>
+  <%= render "layouts/footer", class: "justify-items-end" %>
   </body>
 
-  <%= render "layouts/footer" %>
 </html>
