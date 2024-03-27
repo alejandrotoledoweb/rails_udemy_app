@@ -69,7 +69,7 @@ module CoursesHelper
   end
 
   def published(course)
-    published_icon = tag.i('', class: 'fa-solid fa-check-circle text-lime-500 ml-1 ')
+    published_icon = tag.i('', class: 'fa-solid fa-check-circle text-green-500 ml-1 ')
     unpublished_icon = tag.i('', class: 'fa-regular fa-x text-red-500 ml-1 ')
     p = tag.p('Published', class: 'w-24 mr-2 inline-flex')
     up = tag.p('Unpublished', class: 'w-24 mr-2 inline-flex')
@@ -80,7 +80,7 @@ module CoursesHelper
     end
   end
   def approved(course)
-    approved_icon = tag.i('', class: 'fa-solid fa-check-circle text-lime-500 ml-1')
+    approved_icon = tag.i('', class: 'fa-solid fa-check-circle text-green-500 ml-1')
     unapproved = tag.i('', class: 'fa-solid fa-x text-red-500 ml-1.5')
     p = tag.p('Approved', class: 'w-24 mr-2 inline-flex')
     up = tag.p('Unapproved', class: 'w-24 mr-2 inline-flex')

@@ -1,7 +1,7 @@
 <% content_for(:title) do %>
   <%= @lesson.course.title.capitalize %> | Lesson: <%= @lesson.title %>
 <% end %>
-<div class="mx-auto md:w-full w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-4" data-controller="modal-course">
+<div class="min-h-[900px] mx-auto max-w-[1440px] w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-4" data-controller="modal-course">
   <section class="md:ml-5 col-span-1 sm:col-span-2 md:col-span-4 lg:col-span-3">
     <%= render @lesson %>
     <div class="flex flex-wrap gap-x-2 gap-y-2">

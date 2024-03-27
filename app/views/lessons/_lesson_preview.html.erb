@@ -2,9 +2,9 @@
   <% if active %>
     <p class=" xl:col-span-3 ">
       <% if lesson.viewed(current_user) %>
-        <i class="fa-solid fa-check-square text-lime-500 mr-2"></i>
+        <i class="fa-solid fa-check-square text-green-500 mr-2"></i>
       <% else %>
-        <i class="fa-regular fa-square text-lime-500 mr-2"></i>
+        <i class="fa-regular fa-square text-green-500 mr-2"></i>
       <% end %>
       <%= rank %>
       <%= lesson.title %>
@@ -13,9 +13,9 @@
   <% else %>
     <%= link_to course_lesson_path(@course, lesson), class: "hover:underline xl:col-span-3" do %>
       <% if lesson.viewed(current_user) %>
-        <i class="fa-solid fa-check-square text-lime-500 mr-2"></i>
+        <i class="fa-solid fa-check-square text-green-500 mr-2"></i>
       <% else %>
-        <i class="fa-regular fa-square text-lime-500 mr-2"></i>
+        <i class="fa-regular fa-square text-green-500 mr-2"></i>
       <% end %>
       <%= rank %>
       <%= lesson.title %>

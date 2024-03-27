@@ -4,9 +4,9 @@
   <span class="text-blue-500">/ <%= lesson.title %></span>
   <section>
     <h2 class="text-xl font-bold mt-10"> <% if lesson.viewed(current_user) == true %>
-        <i class="fa-solid fa-check-square text-lime-500"></i>
+        <i class="fa-solid fa-check-square text-green-500"></i>
       <% else %>
-        <i class="fa-regular fa-square text-lime-500"></i>
+        <i class="fa-regular fa-square text-green-500"></i>
       <% end %>
       <%= lesson.title.capitalize %>
     </h2>
