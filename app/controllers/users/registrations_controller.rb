@@ -99,6 +99,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  protected
+
+  # Overriding the method to not require current password for OAuth users
+  def update_resource(resource, params)
+    if resource.provider? # Check if the user signed up via OAuth
+      resource.update_without_password(params.except("current_password"))
+    else
+      super
+    end
+  end
+
   private
 
   # def validate_form_captcha
