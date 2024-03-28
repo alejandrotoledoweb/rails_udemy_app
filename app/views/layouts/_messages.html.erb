@@ -1,15 +1,19 @@
 <!-- In _messages.html.erb -->
 <section data-controller="flash">
   <% if notice %>
-    <p class="py-2 px-3 bg-green-50 mb-2 mt-4 ml-4 text-green-500 font-medium rounded-lg inline-block" id="notice">
-      <%= notice %>
-      <button type="button" class="close-button close mx-2 my-2 hover:cursor-pointer" data-action="flash#dismiss" aria-label="Close">&times;</button>
+    <p class="inline-flex flex-row items-center justify-start py-2 px-3 bg-green-200 mb-2 mt-4 ml-4 text-gray-900 font-medium rounded-lg" id="notice">
+      <span class="flex-auto overflow-hidden whitespace-nowrap text-overflow-ellipsis">
+        <%= notice %>
+      </span>
+      <button type="button" class="close-button hover:cursor-pointer text-2xl pl-4 pr-2" data-action="flash#dismiss" aria-label="Close"><i class="fa-solid fa-x fa-2xs"></i></button>
     </p>
   <% end %>
   <% if alert %>
-    <p class="py-2 px-3 bg-red-50 mb-2 mt-4 ml-4 text-red-500 font-medium rounded-lg inline-block" id="alert">
-      <%= alert %>
-      <button type="button" class="close-button close mx-2 my-2 hover:cursor-pointer" data-action="flash#dismiss" aria-label="Close">&times;</button>
+    <p class="inline-flex flex-row items-center justify-start py-2 px-3 bg-red-200 mb-2 mt-4 ml-4 text-gray-900 font-medium rounded-lg" id="alert">
+      <span class="flex-auto overflow-hidden whitespace-nowrap text-overflow-ellipsis">
+        <%= alert %>
+      </span>
+      <button type="button" class="close-button hover:cursor-pointer text-2xl pl-4 pr-2" data-action="flash#dismiss" aria-label="Close"><i class="fa-solid fa-x fa-2xs"></i></button>
     </p>
   <% end %>
 </section>
