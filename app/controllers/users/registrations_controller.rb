@@ -104,7 +104,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # Overriding the method to not require current password for OAuth users
   def update_resource(resource, params)
-    binding.pry
+    # binding.pry
     unless params[:password].present? && params[:password_confirmation].present?
       resource.update_without_password(params.except("current_password"))
     else
