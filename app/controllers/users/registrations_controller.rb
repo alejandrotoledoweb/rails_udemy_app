@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'pry'
+# require 'pry'
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
