@@ -51,7 +51,7 @@
     <hr class="my-8">
     <div class="flex items-center ">
       <h2 class="mr-2 text-xl font-semibold text-left md:text-2xl"> <%= icon('fa-regular', 'star mr-2')%> Top rated Courses</h2>
-      <button class="p-2 my-4 text-blue-400 underline rounded-md hover:text-blue-700 float-end">
+      <button class="p-2 my-4 text-blue-600 underline rounded-md hover:text-blue-700 float-end">
         <%= link_to 'See top rated courses', courses_path(q: {s: 'average_rating desc'}), class: '' %>
         <i class="ml-1 fa-solid fa-arrow-right"></i>
       </button>

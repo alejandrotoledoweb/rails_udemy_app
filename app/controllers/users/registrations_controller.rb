@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'pry'
+# require 'pry'
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -104,7 +104,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # Overriding the method to not require current password for OAuth users
   def update_resource(resource, params)
-    binding.pry
+    # binding.pry
     unless params[:password].present? && params[:password_confirmation].present?
       resource.update_without_password(params.except("current_password"))
     else
