@@ -63,9 +63,9 @@ group :development do
   gem "guard-livereload", "~> 2.5", require: false
   gem "rack-livereload"
   gem "letter_opener"
-  gem 'pry', '~> 0.14.2'
-  gem 'rails-erd'
-  gem 'dotenv'
+  gem "pry", "~> 0.14.2"
+  gem "rails-erd"
+  gem "dotenv"
 end
 
 group :test do
@@ -74,11 +74,11 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'devise', '~> 4.8'
-gem 'omniauth-google-oauth2'
-gem 'ranked-model'
-gem 'recaptcha'
-gem 'ruby-graphviz'
+gem "devise", "~> 4.8"
+gem "omniauth-google-oauth2"
+gem "ranked-model"
+gem "recaptcha"
+gem "ruby-graphviz"
 gem "chartkick"
 gem "dockerfile-rails", ">= 1.6", group: :development
 gem "exception_notification"
@@ -91,7 +91,8 @@ gem "pundit"
 gem "ransack"
 gem "rolify"
 gem "tailwindcss-rails", "~> 2.2"
-gem 'omniauth-github', '~> 2.0.0'
+gem "omniauth-github", "~> 2.0.0"
 
 gem "omniauth-rails_csrf_protection"
-
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
