@@ -1,6 +1,6 @@
 @import "./fonts.css";
 .certificate-container {
-  font-family: 'Georgia', serif;
+  font-family: 'Good Sans', serif;
   padding: 10mm 20mm; /* Adjusted padding */
   width: 297mm;
   height: 210mm;
@@ -62,6 +62,7 @@
 .badge-section {
   text-align: left;
   float: left;
+  margin-left: 140px;
 }
 
 .badge-section img {
