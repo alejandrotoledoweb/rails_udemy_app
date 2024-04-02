@@ -12,7 +12,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
     <%= favicon_link_tag 'ruby-icon.svg' %>
@@ -20,7 +20,7 @@
 
   <%= render "layouts/header" %>
   <%= render "layouts/messages" %>
-  <body class="bg-gray-100 flex flex-col justify-between w-full h-screen justify-items-stretch">
+  <body class="flex flex-col justify-between w-full h-screen bg-gray-100 justify-items-stretch">
     <main class="px-4 mx-auto mt-6 justify-self-start">
       <%= yield %>
       <%= turbo_frame_tag "modal" %>
