@@ -1,43 +1,72 @@
 @import "./fonts.css";
-.pdf-body {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border: 2px solid black;
-  border-radius: 10px;
-  font-family: "Good Sans", sans-serif;
-  height: 885px;
-  width: 1300px;
+.certificate-container {
+  font-family: 'Georgia', serif;
+  padding: 10mm 20mm; /* Adjusted padding */
+  width: 297mm;
+  height: 210mm;
+  position: relative; /* For absolute positioning of elements */
 }
 
-#header img {
-  width: 400px;
-  height: auto;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 20px 0;
-
+.background-image {
+  background: url('certificate_background.jpg') no-repeat center center;
+  background-size: cover; /* Cover entire area */
+  position: absolute; /* Ensure it covers the certificate container */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* Keep it behind the text */
 }
 
-#header h1 {
-  font-family: "Certification from the Queen", sans-serif;
-  font-size: 60px;
-}
-
-#content {
-  color:rgb(42, 42, 42);
-}
-
-#content h2 {
-  padding: 30px 0;
-  font-size: 40px;
-}
-
-.user-name {
-  text-decoration: underline;
+.certificate-header {
   font-size: 36px;
+  text-align: center;
+  margin-bottom: 30mm;
 }
+
+.certificate-desc {
+  text-align: center;
+  margin-bottom: 20mm;
+  margin-top: 40mm;
+  font-size: 26px;
+  display: block;
+}
+
+.certificate-user-name, .certificate-course-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.certificate-section {
+  margin-top: 25mm;
+}
+
+.signature-section {
+  text-align: right;
+  position: absolute;
+  display: block;
+  top: 140mm;
+  bottom: 30mm;
+  right: 20mm;
+}
+
+.signature-text {
+  font-size: 22px;
+}
+
+.signature-image {
+  width: 50mm;
+}
+
+.badge-section {
+  text-align: left;
+  float: left;
+}
+
+.badge-section img {
+  text-align: left;
+  height: 250px;
+  width: auto;
+}
+

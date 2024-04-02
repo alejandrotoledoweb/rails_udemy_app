@@ -1,6 +1,7 @@
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy certification]
   before_action :set_course, only: %i[new]
+  skip_before_action :authenticate_user!, only: %i[certification]
 
   def index
     @ransack_path = enrollments_path

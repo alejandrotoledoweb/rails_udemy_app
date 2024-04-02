@@ -5,34 +5,35 @@
     <%= wicked_pdf_stylesheet_link_tag "pdf" %>
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
   </head>
-  <body onload='number_pages' class="pdf-body">
-    <main id="content">
-      <%= yield %>
-      <section id="header">
-        <h1>
-          Certificate of Achievement
-        </h1>
-        <%= image_tag wicked_pdf_asset_base64('rails-logo.jpg') %>
+  <body onload='number_pages'>
+    <div class="certificate-container">
+      <div class="background-image"></div>
+ <!-- Background image layer -->
+      <main id="content">
+        <section class="certificate-header">
+          <h1>Certificate of Achievement</h1>
+        </section>
+        <section class="badge-section">
+          <%= image_tag wicked_pdf_asset_base64('Badge.jpeg') %>
+        </section>
+        <section class="certificate-desc">
+          <p>We Certificate that:</p>
+          <p class="certificate-user-name"><%= @enrollment.user.name %></p>
+          <p>completed the course:</p>
+          <h2 class="certificate-course-title"><%= @enrollment.course.title %></h2>
+        </section>
+        <section class="certificate-section">
+          <p>Certification ID: <span><%= @enrollment.id %></span></p>
+          <p>Certificate url: <span><%= request.base_url %><%= request.original_fullpath %></span></p>
+          <p>User: <span><%= @enrollment.user.name %></span></p>
+          <p><span><%= @enrollment.user.email %></span></p>
+        </section>
+      </main>
+      <section class="signature-section">
+        <p class="signature-text">Head Department Signature</p>
+        <%= image_tag wicked_pdf_asset_base64( 'signature.jpg'), alt: "signature", class: "signature-image" %>
+        <p class="signature-text">Date: <%= Date.today.strftime("%B %d, %Y") %></p>
       </section>
-      <section>
-        <p>We Certificate that:</p>
-        <p class="user-name"><%= @enrollment.user.name %></p>
-        <p>
-          completed the course:
-        </p>
-        <h2 class="pdf-course">
-          <%= @enrollment.course.title %>
-        </h2>
-      </section>
-
-      <section>
-
-
-      <p>Certification ID: <span><%= @enrollment.id %></span></p>
-      <p>Certificate url: <span><%= request.base_url %><%= request.original_fullpath %></span></p>
-      <p>User: <span><%= current_user.email %></span></p>
-
-      </section>
-    </main>
+    </div>
   </body>
 </html>
