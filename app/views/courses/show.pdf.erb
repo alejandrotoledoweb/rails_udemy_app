@@ -1,23 +1,30 @@
-
 <!doctype html>
 <html>
   <head>
     <meta charset='utf-8' />
-    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_stylesheet_link_tag "pdf.css" %>
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
   </head>
   <body onload='number_pages'>
-    <div id="header">
-      <%= wicked_pdf_image_tag 'mysite.jpg' %>
-    </div>
     <div id="content">
       <%= yield %>
-      Hello new User
-      Course title
-      <h1>
-
-        <%= @course.title %>
-      </h1>
+      <div id="header">
+        <h1>
+          Certificate from Rails Udemy
+        </h1>
+        <%= image_tag wicked_pdf_asset_base64('rails-logo.jpg') %>
+      </div>
+      <section>
+        <p>We Certificate that:</p>
+        <p class="user-name"><%= current_user.name %></p>
+        <p>
+          completed the course:
+        </p>
+        <h2>
+          <%= @course.title %>
+        </h2>
+      </section>
+      <%= current_user.email %>
     </div>
   </body>
 </html>
