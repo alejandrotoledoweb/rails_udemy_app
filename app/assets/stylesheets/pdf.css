@@ -1,25 +1,43 @@
-body {
-  display: flex;
+@import "./fonts.css";
+.pdf-body {
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  display: table-cell;
   text-align: center;
+  vertical-align: middle;
   border: 2px solid black;
   border-radius: 10px;
+  font-family: "Good Sans", sans-serif;
+  height: 885px;
+  width: 1300px;
 }
 
 #header img {
-  width: 200px;
+  width: 400px;
   height: auto;
   border: 1px solid black;
   border-radius: 5px;
+  margin: 20px 0;
 
+}
+
+#header h1 {
+  font-family: "Certification from the Queen", sans-serif;
+  font-size: 60px;
 }
 
 #content {
   color:rgb(42, 42, 42);
 }
 
+#content h2 {
+  padding: 30px 0;
+  font-size: 40px;
+}
+
 .user-name {
   text-decoration: underline;
+  font-size: 36px;
 }

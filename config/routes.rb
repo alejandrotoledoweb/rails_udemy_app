@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :enrollments do
     get :my_students, on: :collection
+    member do
+      get :certification
+    end
   end
   # devise_for :users
   devise_for :users, controllers: {

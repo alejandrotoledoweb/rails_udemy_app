@@ -1,5 +1,5 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show edit update destroy ]
+  before_action :set_enrollment, only: %i[ show edit update destroy certification]
   before_action :set_course, only: %i[new]
 
   def index
@@ -17,7 +17,23 @@ class EnrollmentsController < ApplicationController
     render 'index'
   end
 
+  def certification
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
+        template: "enrollments/show",
+        formats: [:pdf],
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
+  end
+
   def show
+
   end
 
   def new

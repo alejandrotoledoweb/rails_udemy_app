@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./fonts.css";
+
 /*
    Add the following markup AFTER your import statements
    Notice: this style contains all the rules for pagy-nav, pagy-nav-js and pagy-combo-nav-js
@@ -75,4 +77,8 @@
 .pagy-combo-nav-js .page.prev.disabled,
 .pagy-combo-nav-js .page.next.disabled {
   @apply text-gray-400 cursor-default;
+}
+
+body {
+  font-family: "Good Sans", sans-serif;
 }
