@@ -24,9 +24,9 @@
         </section>
         <section class="certificate-section">
           <p>Certification ID: <span><%= @enrollment.id %></span></p>
-          <p>Certificate url: <span><%= request.base_url %><%= request.original_fullpath %></span></p>
           <p>User: <span><%= @enrollment.user.name %></span></p>
           <p><span><%= @enrollment.user.email %></span></p>
+          <p>Certificate url: <span><%= request.base_url %><%= request.original_fullpath %></span></p>
         </section>
       </main>
       <section class="signature-section">
