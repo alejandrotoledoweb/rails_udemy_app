@@ -29,7 +29,7 @@ class EnrollmentsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
-        template: "enrollments/show",
+        template: "enrollments/certificate",
         formats: [:pdf],
         orientation: "Landscape",
         lowquality: true,
