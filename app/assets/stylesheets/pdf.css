@@ -1,7 +1,7 @@
 @import "./fonts.css";
 .certificate-container {
   font-family: 'Good Sans', serif;
-  padding: 10mm 20mm; /* Adjusted padding */
+  padding: 10mm 20mm;
   width: 297mm;
   height: 210mm;
   position: relative; /* For absolute positioning of elements */
@@ -9,13 +9,13 @@
 
 .background-image {
   background: url('certificate_background.jpg') no-repeat center center;
-  background-size: cover; /* Cover entire area */
-  position: absolute; /* Ensure it covers the certificate container */
+  background-size: cover;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1; /* Keep it behind the text */
+  z-index: -1;
 }
 
 .certificate-header {

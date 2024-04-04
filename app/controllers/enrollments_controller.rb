@@ -1,6 +1,7 @@
+require 'pry'
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy certification]
-  before_action :set_course, only: %i[new]
+  before_action :set_course, only: %i[new certification]
   skip_before_action :authenticate_user!, only: %i[certification]
 
   def index
@@ -19,6 +20,11 @@ class EnrollmentsController < ApplicationController
   end
 
   def certification
+    if @course.progress(current_user) < 100
+      redirect_to course_path(@course)
+      return
+    end
+
     respond_to do |format|
       format.html
       format.pdf do
@@ -87,6 +93,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def set_enrollment
+    # binding.pry
     @enrollment = Enrollment.find(params[:id])
   end
 
