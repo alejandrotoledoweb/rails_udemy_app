@@ -1,4 +1,4 @@
-# require 'green'
+
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy certification]
   before_action :set_course, only: %i[new certification]
@@ -93,7 +93,6 @@ class EnrollmentsController < ApplicationController
   end
 
   def set_enrollment
-    # binding.green
     @enrollment = Enrollment.find(params[:id])
   end
 

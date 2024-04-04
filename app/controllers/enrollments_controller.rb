@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy certification]
   before_action :set_course, only: %i[new certification]
