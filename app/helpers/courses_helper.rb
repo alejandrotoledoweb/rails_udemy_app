@@ -24,7 +24,7 @@ module CoursesHelper
             end
           else
             link_to certification_enrollment_path(course.enrollments.where(user: current_user).first.id, course_id: course, format: :pdf) do
-            "Completed 100% -> See your certification"
+            "Completed 100% - See your certification"
             end
           end
       elsif course.price > 0
