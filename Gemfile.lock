@@ -340,6 +340,7 @@ GEM
       rexml
     ruby-vips (2.2.1)
       ffi (~> 1.12)
+    ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -348,6 +349,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sendgrid-ruby (6.7.0)
+      ruby_http_client (~> 3.4)
     shellany (0.0.1)
     snaky_hash (2.0.1)
       hashie
@@ -447,6 +450,7 @@ DEPENDENCIES
   rolify
   ruby-graphviz
   selenium-webdriver
+  sendgrid-ruby
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 2.2)

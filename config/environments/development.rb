@@ -44,7 +44,8 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { host: "https://rails-udemy-app.fly.dev" }
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.action_mailer.default_options = { from: "atoledofr@gmail.com" }
-  config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.smtp_settings = {
@@ -56,6 +57,16 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
+
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.mailgun.org',
+  #   port: 587,
+  #   domain: ENV['MAILGUN_DOMAIN'],
+  #   user_name: ENV['MAILGUN_SMTP_LOGIN'],
+  #   password: ENV['MAILGUN_SMTP_PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

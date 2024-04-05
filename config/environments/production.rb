@@ -26,24 +26,24 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  # config.action_mailer.smtp_settings = {
-  #   user_name: "apikey",
-  #   password: ENV["SENDGRID_API_KEY"],
-  #   domain: "rails-udemy-app-8bf8770dde9f.herokuapp.com",
-  #   address: "smtp.sendgrid.net",
-  #   port: 587,
-  #   authentication: :plain,
-  #   enable_starttls_auto: true
-  # }
   config.action_mailer.smtp_settings = {
-    user_name: ENV["MAIL_GUN_USER_NAME"],
-    password: ENV["MAIL_GUN_API_KEY"],
+    user_name: "apikey",
+    password: ENV["SENDGRID_API_KEY"],
     domain: "rails-udemy-app-8bf8770dde9f.herokuapp.com",
-    address: "smtp.mailgun.org",
+    address: "smtp.sendgrid.net",
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
   }
+  # config.action_mailer.smtp_settings = {
+  #   user_name: ENV["MAIL_GUN_USER_NAME"],
+  #   password: ENV["MAIL_GUN_API_KEY"],
+  #   domain: "rails-udemy-app-8bf8770dde9f.herokuapp.com",
+  #   address: "smtp.mailgun.org",
+  #   port: 587,
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
