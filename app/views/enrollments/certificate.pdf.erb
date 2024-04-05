@@ -4,6 +4,7 @@
     <meta charset='utf-8' />
     <%= wicked_pdf_stylesheet_link_tag "pdf" %>
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
+    <%= favicon_link_tag wicked_pdf_asset_base64('ruby-icon.svg') %>
   </head>
   <body onload='number_pages'>
     <div class="certificate-container">
@@ -24,9 +25,9 @@
         </section>
         <section class="certificate-section">
           <p>Certification ID: <span><%= @enrollment.id %></span></p>
-          <p>Certificate url: <span><%= request.base_url %><%= request.original_fullpath %></span></p>
           <p>User: <span><%= @enrollment.user.name %></span></p>
           <p><span><%= @enrollment.user.email %></span></p>
+          <p>Certificate url: <span><%= request.base_url %><%= request.original_fullpath %></span></p>
         </section>
       </main>
       <section class="signature-section">

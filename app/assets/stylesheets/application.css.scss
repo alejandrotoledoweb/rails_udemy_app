@@ -24,23 +24,23 @@ progress {
           appearance: none;
 
   /* Track color */
-  color: #7c7c7c; /* This sets the base color for WebKit browsers */
+  color: #5c78ab; /* This sets the base color for WebKit browsers */
   border-radius: 10px;
 }
 
 /* WebKit-based browsers */
 progress::-webkit-progress-bar {
-  background-color: #999999; /* Light gray track color */
+  background-color: #c6c6c6; /* Light gray track color */
   border-radius: 10px;
 }
 
 progress::-webkit-progress-value {
-  background-color: #434343; /* Blue fill color */
+  background-color: #5c78ab; /* Blue fill color */
   border-radius: 10px;
 }
 
 /* Firefox */
 progress::-moz-progress-bar {
-  background-color: #2a2a2a; /* Blue fill color */
+  background-color: #5c78ab; /* Blue fill color */
   border-radius: 10px;
 }

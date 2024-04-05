@@ -1,4 +1,4 @@
-# require 'pry'
+
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy certification]
   before_action :set_course, only: %i[new certification]
@@ -29,7 +29,7 @@ class EnrollmentsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
-        template: "enrollments/certificate",
+        template: "enrollments/show",
         formats: [:pdf],
         orientation: "Landscape",
         lowquality: true,
@@ -60,7 +60,6 @@ class EnrollmentsController < ApplicationController
     else
       @enrollment = current_user.buy_course(@course)
       redirect_to course_path(@course), notice: "Successfully enrolled the course!"
-      EnrollmentMailer.new_enrollment(@enrollment).deliver_later
     end
   end
 
@@ -94,7 +93,6 @@ class EnrollmentsController < ApplicationController
   end
 
   def set_enrollment
-    # binding.pry
     @enrollment = Enrollment.find(params[:id])
   end
 

@@ -1,6 +1,6 @@
-<%= form_with(model: enrollment, class: "contents") do |form| %>
+<%= form_with(model: enrollment, class: "contents md:min-w-[400px]") do |form| %>
   <% if enrollment.errors.any? %>
-    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
+    <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50 ">
       <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
       <ul>
         <% enrollment.errors.each do |error| %>

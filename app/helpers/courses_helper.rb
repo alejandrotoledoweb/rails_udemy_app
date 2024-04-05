@@ -15,15 +15,18 @@ module CoursesHelper
       if course.user === current_user
          link_to "See Analytics", course_path(course)
       elsif course.enrollments.where(user_id: current_user.id, course_id: course.id).any?
-        link_to course_path(course) do
+
           if course.progress(current_user) < 100
+            link_to course_path(course) do
             "Continue Learning #{number_to_percentage(course.progress(current_user), :precision => 0)}"
           # course.user_lessons.where(user: current_user).count
           # course.lessons_count
+            end
           else
-            "Completed 100% -> See your certification"
+            link_to certification_enrollment_path(course.enrollments.where(user: current_user).first.id, course_id: course, format: :pdf) do
+            "Completed 100% - See your certification"
+            end
           end
-        end
       elsif course.price > 0
         link_to "Buy this course", new_course_enrollment_path(course)
 
