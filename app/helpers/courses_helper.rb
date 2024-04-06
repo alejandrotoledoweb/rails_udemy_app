@@ -13,31 +13,31 @@ module CoursesHelper
   def enrollment_button(course)
     if current_user
       if course.user === current_user
-         link_to "See Analytics", course_path(course)
+         link_to "See Analytics", course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
       elsif course.enrollments.where(user_id: current_user.id, course_id: course.id).any?
 
           if course.progress(current_user) < 100
-            link_to course_path(course) do
+            link_to course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700" do
             "Continue Learning #{number_to_percentage(course.progress(current_user), :precision => 0)}"
           # course.user_lessons.where(user: current_user).count
           # course.lessons_count
             end
           else
-            link_to certification_enrollment_path(course.enrollments.where(user: current_user).first.id, course_id: course, format: :pdf) do
+            link_to certification_enrollment_path(course.enrollments.where(user: current_user).first.id, course_id: course, format: :pdf), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700" do
             "Completed 100% - See your certification"
             end
           end
       elsif course.price > 0
-        link_to "Buy this course", new_course_enrollment_path(course)
+        link_to "Buy this course", new_course_enrollment_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
 
       else
-        link_to "Free", new_course_enrollment_path(course)
+        link_to "Free", new_course_enrollment_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
 
       end
       #logic to buy
     else
       # check price and buy,
-      link_to "Check price", course_path(course)
+      link_to "Check price", course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
     end
   end
 
@@ -46,9 +46,9 @@ module CoursesHelper
       user_course = course.enrollments.where(user_id: current_user.id )
       if user_course.any?
         if user_course.pending_review.any?
-          link_to "Add review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
+          link_to "Add review", edit_enrollment_path(course.enrollments.where(user:current_user).first), class: "px-3 py-1 font-medium bg-blue-300 rounded-lg hover:bg-blue-400"
         else
-          link_to "Edit review", edit_enrollment_path(course.enrollments.where(user:current_user).first)
+          link_to "Edit review", edit_enrollment_path(course.enrollments.where(user:current_user).first), class: "px-3 py-1 font-medium bg-blue-300 rounded-lg hover:bg-blue-400"
         end
       end
     end
