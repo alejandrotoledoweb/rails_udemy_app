@@ -28,7 +28,7 @@ class EnrollmentsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
+        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.name}",
         template: "enrollments/certificate",
         formats: [:pdf],
         orientation: "Landscape",

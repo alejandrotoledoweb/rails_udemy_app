@@ -17,7 +17,7 @@
   <p class="text-sm text-gray-700 ">Price: $ <%= course.price %></p>
 </main>
 <section class="m-3 mb-4 text-sm text-gray-600">
-  Teacher: <%= course.user %>
+  Teacher: <%= course.user.name.present? ? course.user.name : course.user.email.split("@").first %>
   <% if policy(course).admin_or_owner? %>
     <br>
     <%= published(course) %>

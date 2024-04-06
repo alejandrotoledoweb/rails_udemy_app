@@ -23,7 +23,7 @@
     <br>
     <p><strong>Rating:</strong> <%= @course.average_rating %> <%= display_star_rating(@course.average_rating) %> </p>
     <p>
-      <strong>Teacher:</strong> <%= @course.user %>
+      <strong>Teacher:</strong> <%= @course.user.name.present? ? @course.user.name : @course.user.email.split("@").first %>
     </p>
     <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
     <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
