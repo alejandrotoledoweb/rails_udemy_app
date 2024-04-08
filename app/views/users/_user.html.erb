@@ -54,6 +54,24 @@
           <%= @user.last_sign_in_ip || "N/A" %>
         </td>
       </tr>
+      <tr>
+        <td class="border px-4 py-2 text-sm"><strong>Income:</strong></td>
+        <td class="border px-4 py-2 text-sm">
+          <%= @user.course_income %>
+        </td>
+      </tr>
+      <tr>
+        <td class="border px-4 py-2 text-sm"><strong>Expenses:</strong></td>
+        <td class="border px-4 py-2 text-sm">
+          <%= @user.enrollment_expences %>
+        </td>
+      </tr>
+      <tr>
+        <td class="border px-4 py-2 text-sm"><strong>Balance:</strong></td>
+        <td class="border px-4 py-2 text-sm">
+          <%= @user.balance %>
+        </td>
+      </tr>
 
       <tr>
         <td class="border px-4 py-2 text-sm min-w-9 max-w-36"><strong>Confirmed email:</strong></td>

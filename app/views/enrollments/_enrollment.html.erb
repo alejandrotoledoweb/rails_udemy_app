@@ -47,6 +47,8 @@
       action: 'click->modal-course#open',
       modal_url_value: enrollment_path(enrollment)
     }, class: "rounded-lg py-1 px-3 ml-3 bg-red-500 text-white font-medium hover:bg-red-700" %>
+
+    <%= button_to "Destroy Enrollment", enrollment_path(enrollment), method: :delete, class: "underline mx-3"  %>
       <!-- modal -->
       <div data-modal-course-target="modalCourse" id="modalCourse" class="fixed inset-0 flex items-center justify-center hidden">
         <%= render 'shared/destroy_review_modal', enrollment: enrollment %>

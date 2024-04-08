@@ -24,9 +24,18 @@ class Enrollment < ApplicationRecord
     end
   end
 
+  after_create :calculate_balance
+  after_destroy :calculate_balance
+
+  def calculate_balance
+    course.calculate_income
+    user.calculate_enrollment_expenses
+  end
+
   after_destroy do
     course.update_rating
   end
+
 
   def self.ransackable_attributes(auth_object = nil)
     %w[course_id created_at id price rating review updated_at user_id course user]

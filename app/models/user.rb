@@ -67,6 +67,17 @@ class User < ApplicationRecord
     end
   end
 
+  def calculate_course_income
+    update_column :course_income, (courses.map(&:income).sum)
+    # update_column :enrollment_expences, (enrollments.map(&:price).sum)
+    update_column :balance, (course_income - enrollment_expences)
+  end
+
+  def calculate_enrollment_expenses
+    update_column :enrollment_expences, (enrollments.map(&:price).sum)
+    update_column :balance, (course_income - enrollment_expences)
+  end
+
   def provider?
     provider.present?
   end

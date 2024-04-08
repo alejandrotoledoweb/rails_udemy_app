@@ -54,14 +54,17 @@ class EnrollmentsController < ApplicationController
   def create
     @course = Course.friendly.find(params[:enrollment][:course_id])
 
-    if @course.price > 0
-      redirect_to new_course_enrollment_path(@course), notice: "You can't access paid courses yet."
+    @enrollment = current_user.buy_course(@course)
+    redirect_to course_path(@course), notice: "Successfully enrolled the course!"
+    EnrollmentMailer.new_enrollment(@enrollment).deliver_later
+    # if @course.price > 0
+    #   redirect_to new_course_enrollment_path(@course), notice: "You can't access paid courses yet."
 
-    else
-      @enrollment = current_user.buy_course(@course)
-      redirect_to course_path(@course), notice: "Successfully enrolled the course!"
-      EnrollmentMailer.new_enrollment(@enrollment).deliver_later
-    end
+    # else
+    #   @enrollment = current_user.buy_course(@course)
+    #   redirect_to course_path(@course), notice: "Successfully enrolled the course!"
+    #   EnrollmentMailer.new_enrollment(@enrollment).deliver_later
+    # end
   end
 
   def update

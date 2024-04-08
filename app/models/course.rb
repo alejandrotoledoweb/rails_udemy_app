@@ -62,6 +62,11 @@ class Course < ApplicationRecord
     end
   end
 
+  def calculate_income
+    update_column :income, (enrollments.map(&:price).sum)
+    user.calculate_course_income
+  end
+
   def current_user_lessons(user)
     user_lessons.where(user: user).count
   end

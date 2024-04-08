@@ -1,13 +1,13 @@
 @font-face {
     font-family: "Good Sans";
     font-weight: 100;
-    src: url("GoodSans Sans Regular.woff") format("woff");
+    src: url("/fonts/GoodSans Sans Regular.woff") format("woff");
     font-display: swap;
 }
 @font-face {
     font-family: "Queen";
     font-weight: 200;
-    src: url("Certification from the Queen.woff") format("woff");
+    src: url("/fonts/Certification from the Queen.woff") format("woff");
     font-display: swap;
 }
 
