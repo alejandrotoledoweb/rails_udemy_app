@@ -12,3 +12,4 @@ Rails.application.config.assets.version = "1.0"
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += ['pdf.css']
 Rails.application.config.assets.paths << '/node_modules'
+Rails.application.config.assets.precompile += %w( *.woff *.woff2 )

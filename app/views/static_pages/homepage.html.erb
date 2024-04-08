@@ -1,5 +1,5 @@
-<section data-controller="search">
-  <h1 class="my-8 font-sans text-3xl font-bold text-center text-gray-800 underline md:text-5xl">What do you want to learn today?</h1>
+<section data-controller="search" class="font-sans">
+  <h1 class="my-20 font-sans text-3xl font-bold text-center text-gray-800 md:text-5xl">What do you want to learn today?</h1>
   <%= search_form_for @q, url: @ransack_path , html: { class: "flex items-start flex-wrap gap-x-4 gap-y-4 mt-4 mb-4" } do |f| %>
     <%= f.search_field :title_cont, placeholder: "Search by title" ,
                                     class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-60" %>
@@ -15,6 +15,9 @@
   <%= line_chart User.group_by_day(:created_at).count %>
   <%# <%= pie_chart @enrollments.joins(:course).group(:'courses.title').count %>
   <%# <hr class="my-2 text-"> %>
+
+  <%# <p class="font-sans">TEST</p>
+  <p class="font-serif">TEST</p> %>
   <section class="my-4">
     <!-- <%= icon('fa-brands', 'font-awesome')%>
   <%= icon('fa-solid', 'user-secret')%>

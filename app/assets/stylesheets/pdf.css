@@ -24,6 +24,11 @@
   margin-bottom: 30mm;
 }
 
+.certificate-header h1 {
+  font-family: 'Queen', serif;
+  /* @apply font-serif; */
+}
+
 .certificate-desc {
   text-align: center;
   margin-bottom: 20mm;

@@ -20,7 +20,7 @@
 
   <%= render "layouts/header" %>
   <%= render "layouts/messages" %>
-  <body class="flex flex-col justify-between w-full  h-screen bg-gray-100 justify-items-stretch mx-auto">
+  <body class="flex flex-col justify-between w-full h-screen mx-auto bg-gray-100 justify-items-stretch">
     <main class="px-4 mx-auto mt-6 justify-self-start md:max-w-[1100px]">
       <%= yield %>
       <%= turbo_frame_tag "modal" %>

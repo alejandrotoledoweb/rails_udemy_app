@@ -1,6 +1,6 @@
 <article id="<%= dom_id course %>" data-title="<%= course.title.downcase %>" data-search-target="courses" data-controller="modal-course" class="grid content-between border rounded-lg border-slate-400">
   <section class="items-start">
-    <h2 class="px-3 py-2 text-xl font-bold  bg-zinc-300">
+    <h2 class="px-3 py-2 text-xl font-bold bg-zinc-300">
       <%= course.title %>
     </h2>
     <p class="text-base font-semibold text-gray-700 px-3 <%= "bg-yellow-200 hover:bg-yellow-100" if course.level == "Intermediate" %> <%= "bg-green-200 hover:bg-green-100" if course.level == "Beginner" %> <%= "bg-red-200 hover:bg-red-100" if course.level == "Advanced" %> "><%= course.level %></p>
