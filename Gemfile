@@ -97,3 +97,4 @@ gem "omniauth-rails_csrf_protection"
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"
 gem 'sendgrid-ruby'
+gem 'google-cloud-storage', '~> 1.31', require: false

@@ -1,6 +1,13 @@
 <main class="flex items-center justify-center px-4 bg-gray-200">
   <section class="w-full max-w-xl min-w-[400px] p-8 my-6 bg-gray-300 rounded shadow-md">
     <header class="text-2xl font-bold text-center">Edit <%= resource_name.to_s.humanize %></header>
+    <% if current_user.avatar.attached? %>
+    <section class="flex justify-enter">
+      <%= image_tag current_user.avatar, class: "mx-auto my-4" %>
+    </section>
+    <% else %>
+      <p>No avatar uploaded</p>
+    <% end %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-4" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <fieldset>
@@ -12,12 +19,12 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id: "email", disabled: true %>
         <% else %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id: "email" %>
-
         <% end %>
+        <label for="avatar" class="block my-4 text-sm font-bold text-gray-700">Avatar:</label>
+        <%= f.file_field :avatar, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p class="text-sm text-gray-600">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
-
         <% if !resource.provider? %>
           <label for="password" class="block my-2 text-sm font-bold text-gray-700">New Password: <i>(leave blank if you don't want to change it)</i></label>
           <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id: "password" %>
@@ -26,9 +33,7 @@
           <label for="current_password" class="block my-2 text-sm font-bold text-gray-700">Current Password: <i>(we need your current password to confirm your changes)</i></label>
           <%= f.password_field :current_password, autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", id: "current_password" %>
         <% end %>
-
       </fieldset>
-
       <footer class="flex items-center justify-between">
         <%= f.submit "Update", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer" %>
       </footer>

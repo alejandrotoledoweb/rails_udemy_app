@@ -36,7 +36,11 @@
           <li>
             <span
               class="block px-3 py-2 text-gray-100 rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 hover:text-white md:p-0 ">
-              <%= link_to "Account #{current_user.name}" , edit_user_registration_path %>
+              <%= link_to edit_user_registration_path, class: "flex justify-center items-center"  do %>
+                <%= image_tag current_user.avatar, class: "h-8 w-8 mr-2" %>
+                <%= current_user.name %>
+              <% end %>
+
             </span>
           </li>
           <% if current_user.has_role? :student %>

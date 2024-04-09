@@ -100,7 +100,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :name, :email, :password, :password_confirmation, :current_password])
+  end
 
   # Overriding the method to not require current password for OAuth users
   def update_resource(resource, params)
