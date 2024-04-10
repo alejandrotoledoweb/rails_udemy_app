@@ -38,7 +38,7 @@
               class="block px-3 py-2 text-gray-100 rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 hover:text-white md:p-0 ">
               <%= link_to edit_user_registration_path, class: "flex justify-center items-center"  do %>
                 <% if current_user.avatar.attached? %>
-                  <%= image_tag current_user.avatar, class: "h-8 w-8 mr-2" %>
+                  <%= image_tag current_user.avatar, class: "h-8 w-8 mr-2 rounded-full" %>
                   <%= current_user.name %>
                 <% else %>
                   Account <%= current_user.name %>

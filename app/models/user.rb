@@ -1,3 +1,5 @@
+# require "pry"
+
 class User < ApplicationRecord
   rolify
   after_create :assign_default_role # this line has to be below rolify or the role is going to be duplicated
@@ -20,25 +22,41 @@ class User < ApplicationRecord
          :validatable,
          :trackable,
          :omniauthable, omniauth_providers: %i[google_oauth2 github]
-        #  :confirmable # add it when the send email works
+  #  :confirmable # add it when the send email works
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.where(email: data['email']).first
+
+    user = User.where(email: data["email"]).first
+
+    if user && !user.avatar.attached?
+      attach_user_avatar_from_url(user, data["image"]) if data["image"]
+    end
+
+    if user && user.name.blank? && data["first_name"] && data["last_name"]
+      user.name = "#{data["first_name"]} #{data["last_name"]}"
+    end
+
     if user
       user.provider = "yes"
       user.save!
     end
 
+    # user.save! if user.changed?
     # Uncomment the section below if you want users to be created if they don't exist
     unless user
-        user = User.create(name: data['name'],
-           email: data['email'],
-           password: Devise.friendly_token[0,20],
-           provider: 'yes'
-        )
+      user = User.create(name: data["name"],
+                         email: data["email"],
+                         password: Devise.friendly_token[0, 20],
+                         provider: "yes")
     end
     user
+  end
+
+  def self.attach_user_avatar_from_url(user, url)
+    require "open-uri"
+    file = URI.open(url)
+    user.avatar.attach(io: file, filename: File.basename(URI.parse(url).path))
   end
 
   def to_s
