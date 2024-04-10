@@ -4,8 +4,13 @@
       <%= course.title %>
     </h2>
     <p class="text-base font-semibold text-gray-700 px-3 <%= "bg-yellow-200 hover:bg-yellow-100" if course.level == "Intermediate" %> <%= "bg-green-200 hover:bg-green-100" if course.level == "Beginner" %> <%= "bg-red-200 hover:bg-red-100" if course.level == "Advanced" %> "><%= course.level %></p>
+    <% if course.image.attached? %>
+      <%= image_tag course.image, alt: "#{course.title}", class: "w-full h-32 object-cover mb-2 rounded-b-md" %>
+    <% end %>
   </section>
   <main class="m-3">
+
+
     <section class="">
       </p>
       <p class="mb-4 text-yellow-600"><%= course.average_rating %> <%= display_star_rating(course.average_rating) %>  <span class="text-gray-600">(<%= icon("fa-solid fa-users fa-xs text-gray-600 mr-2", "font-solid") %><%= course.enrollments_count %>)</span> </p>

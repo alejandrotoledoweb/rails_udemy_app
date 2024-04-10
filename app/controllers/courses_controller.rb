@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy approve unapprove  ]
+  before_action :set_course, only: %i[ show edit update destroy approve unapprove ]
   skip_before_action :authenticate_user!, only: %i[show]
 
   def index
@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
     @q = Course.ransack(params[:q])
     courses = @q.result.joins(:enrollments).where(enrollments: { user: current_user })
     @pagy, @courses = pagy(courses)
-    render 'index'
+    render "index"
   end
 
   def unapproved
@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
     @q = Course.unapproved.ransack(params[:q])
     courses = @q.result
     @pagy, @courses = pagy(courses)
-    render 'index'
+    render "index"
   end
 
   def approve
@@ -42,9 +42,9 @@ class CoursesController < ApplicationController
   def created
     @ransack_path = created_courses_path
     @q = Course.ransack(params[:q])
-    courses = @q.result.where(  user: current_user )
+    courses = @q.result.where(user: current_user)
     @pagy, @courses = pagy(courses)
-    render 'index'
+    render "index"
   end
 
   def show
@@ -116,6 +116,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published)
+    params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published, :image)
   end
 end

@@ -13,10 +13,12 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons
 
-  scope :popular_courses, -> { order(enrollments_count: :desc).limit(3)}
-  scope :top_rated_courses, -> { order(average_rating: :desc, created_at: :desc).limit(3)}
-  scope :latest_courses, -> { order(created_at: :desc).limit(3)}
-  scope :purchased_courses, -> { joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)}
+  has_one_attached :image
+
+  scope :popular_courses, -> { order(enrollments_count: :desc).limit(3) }
+  scope :top_rated_courses, -> { order(average_rating: :desc, created_at: :desc).limit(3) }
+  scope :latest_courses, -> { order(created_at: :desc).limit(3) }
+  scope :purchased_courses, -> { joins(:enrollments).where(enrollments: { user: current_user }).order(created_at: :desc).limit(3) }
 
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
@@ -56,7 +58,7 @@ class Course < ApplicationRecord
 
   def progress(user)
     unless self.lessons_count.zero?
-      (self.current_user_lessons(user)/self.lessons_count.to_f).to_f*100
+      (self.current_user_lessons(user) / self.lessons_count.to_f).to_f * 100
     else
       100
     end
