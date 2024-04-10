@@ -9,69 +9,73 @@
   <section class="flex flex-col col-span-1 px-2 py-2 mx-2 my-2 border rounded-md md:col-span-2 border-slate-700 md:px-4 md:py-4 bg-slate-200">
     <br>
     <h2 class="text-xl font-bold text-center md:text-2xl"><%= @course.title %> </h2>
-    <br>
+    <% if @course.image.attached? %>
+      <%= image_tag @course.image, alt: "#{@course.title}", class: "w-96 h-44 object-cover mb-2 rounded-md mx-auto" %>
+    <% else %>
+      <%= image_tag "https://placehold.co/600x400", alt: "#{@course.title}", class: "w-96 h-44 object-cover mb-2 rounded-md mx-auto" %>
+    <% end %>
     <p class="text-base"><strong>Description:</strong> <%= @course.description %> </p>
     <p><strong>Short description:</strong> <%= @course.short_description %> </p>
   </section>
   <section class="col-span-1 px-2 py-2 mx-2 my-2 text-left border rounded-md md:col-span-1 border-slate-700">
     <%# <h2 class="mb-2 text-base font-bold text-center "><%= @course.title %> </h2>
-    <p><strong>Language:</strong> <%= @course.language %> </p>
+  <p><strong>Language:</strong> <%= @course.language %> </p>
+  <br>
+  <p><strong>Level:</strong> <%= @course.level %> </p>
+  <br>
+  <p><strong>Price:</strong> $ <%= @course.price %> </p>
+  <br>
+  <p><strong>Rating:</strong> <%= @course.average_rating %> <%= display_star_rating(@course.average_rating) %> </p>
+  <p>
+    <strong>Teacher:</strong> <%= @course.user.name.present? ? @course.user.name : @course.user.email.split("@").first %>
+  </p>
+  <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
+  <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
+  <br>
+  <% if policy(@course).admin_or_owner? %>
+    <%= published(@course) %>
     <br>
-    <p><strong>Level:</strong> <%= @course.level %> </p>
+    <%= approved(@course) %>
     <br>
-    <p><strong>Price:</strong> $ <%= @course.price %> </p>
-    <br>
-    <p><strong>Rating:</strong> <%= @course.average_rating %> <%= display_star_rating(@course.average_rating) %> </p>
-    <p>
-      <strong>Teacher:</strong> <%= @course.user.name.present? ? @course.user.name : @course.user.email.split("@").first %>
-    </p>
-    <p><strong>Students:</strong> <%= @course.enrollments_count %> </p>
-    <p class="font-bold"><%= pluralize(@course.lessons_count, "Lesson") %> </p>
-    <br>
-    <% if policy(@course).admin_or_owner? %>
-      <%= published(@course) %>
-      <br>
-      <%= approved(@course) %>
-      <br>
-      <%= admin_approve_button(@course) %>
+    <%= admin_approve_button(@course) %>
+  <% end %>
+  <%= @course.income %>
+  <div class="mb-1">
+    <% if current_user.present? && current_user.id == @course.user.id %>
+      <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-1 px-2 bg-blue-300 inline-block text-sm hover:bg-blue-400"  %>
     <% end %>
-    <%= @course.income %>
-    <div class="mb-1">
-      <% if current_user.present? && current_user.id == @course.user.id %>
-        <%= link_to "Add new lesson", new_course_lesson_path(@course), class: "mt-2 rounded-lg py-1 px-2 bg-blue-300 inline-block text-sm hover:bg-blue-400"  %>
-      <% end %>
-    </div>
-    <div class="flex flex-wrap items-center justify-start gap-y-2 gap-x-2">
-      <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-1 px-2 bg-gray-300 inline-block text-sm hover:bg-gray-400  " %>
-      <% if policy(@course).destroy? && policy(@course).update? %>
-        <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')}"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-1 px-2 bg-gray-300 inline-block text-sm hover:bg-gray-400 " %>
-        <section class="inline-block ">
-          <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')}"), course_path(@course), method: :delete, class: " rounded-lg py-1 px-2 bg-red-300 text-sm hover:bg-red-400" %>
-        </section>
-      <% end %>
-    </div>
+  </div>
+  <div class="flex flex-wrap items-center justify-start gap-y-2 gap-x-2">
+    <%= link_to raw("#{icon('fa-solid fa-arrow-left', 'font-solid')} Back to courses"), courses_path, class: " my-2 rounded-lg py-1 px-2 bg-gray-300 inline-block text-sm hover:bg-gray-400  " %>
+    <% if policy(@course).destroy? && policy(@course).update? %>
+      <%= link_to raw("#{icon('fa-solid fa-pencil', 'font-solid')}"), edit_course_path(@course), data: { turbo_frame: "edit-modal" }, class: " rounded-lg py-1 px-2 bg-gray-300 inline-block text-sm hover:bg-gray-400 " %>
+      <section class="inline-block ">
+        <%= button_to raw("#{icon('fa-solid fa-trash', 'font-solid')}"), course_path(@course), method: :delete, class: " rounded-lg py-1 px-2 bg-red-300 text-sm hover:bg-red-400" %>
+      </section>
+    <% end %>
+  </div>
+</section>
+<section class="flex flex-col col-span-1 py-2 mx-2 md:col-span-2 ">
+  <div class="flex justify-between">
+    <h3 class="mb-4 text-xl font-semibold">Lessons: <%= @course.current_user_lessons(current_user) %> / <%= @course.lessons.count %></h3>
+    <% if purchased_course(current_user, @course) %>
+      <p class="text-xl font-bold"><%= number_to_percentage(@course.progress(current_user), :precision => 0) %></p>
+      <%=  %>
+    <% end %>
+  </div>
+  <ul>
+    <% @lessons.map do |lesson| %>
+      <li class="flex items-center w-full ">
+        <%= render 'lessons/lesson_preview', lesson: lesson, active: false, rank: lesson.row_order_rank + 1 %>
+      </li>
+    <% end %>
+  </ul>
+  <section>
+    <hr class="my-4 text-gray-800">
+    <h3 class="my-4 text-xl font-semibold"><%= pluralize(@enrollments_with_reviews.count, "Review") %></h3>
+    <% @enrollments_with_reviews.map do |enr| %>
+      <%= render 'enrollments/preview_enrollments', enrollment: enr %>
+    <% end %>
   </section>
-  <section class="flex flex-col col-span-1 py-2 mx-2 md:col-span-2 ">
-    <div class="flex justify-between">
-      <h3 class="mb-4 text-xl font-semibold">Lessons: <%= @course.current_user_lessons(current_user) %> / <%= @course.lessons.count %></h3>
-      <% if purchased_course(current_user, @course) %>
-        <p class="text-xl font-bold"><%= number_to_percentage(@course.progress(current_user), :precision => 0) %></p>
-        <%=  %>
-      <% end %>
-    </div>
-    <ul>
-      <% @lessons.map do |lesson| %>
-        <li class="flex items-center w-full ">
-          <%= render 'lessons/lesson_preview', lesson: lesson, active: false, rank: lesson.row_order_rank + 1 %>
-        </li>
-      <% end %>
-    </ul>
-    <section>
-      <hr class="my-4 text-gray-800">
-      <h3 class="my-4 text-xl font-semibold"><%= pluralize(@enrollments_with_reviews.count, "Review") %></h3>
-      <% @enrollments_with_reviews.map do |enr| %>
-        <%= render 'enrollments/preview_enrollments', enrollment: enr %>
-      <% end %>
-    </section>
-  </section>
+</section>
 </div>

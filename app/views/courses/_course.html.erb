@@ -6,6 +6,8 @@
     <p class="text-base font-semibold text-gray-700 px-3 <%= "bg-yellow-200 hover:bg-yellow-100" if course.level == "Intermediate" %> <%= "bg-green-200 hover:bg-green-100" if course.level == "Beginner" %> <%= "bg-red-200 hover:bg-red-100" if course.level == "Advanced" %> "><%= course.level %></p>
     <% if course.image.attached? %>
       <%= image_tag course.image, alt: "#{course.title}", class: "w-full h-32 object-cover mb-2 rounded-b-md" %>
+      <% else %>
+      <%= image_tag "https://placehold.co/350x150", alt: "#{course.title}", class: "w-full h-32 object-cover mb-2 rounded-b-md" %>
     <% end %>
   </section>
   <main class="m-3">
