@@ -49,6 +49,7 @@ class User < ApplicationRecord
                          email: data["email"],
                          password: Devise.friendly_token[0, 20],
                          provider: "yes")
+      attach_user_avatar_from_url(user, data["image"]) if data["image"]
     end
     user
   end
