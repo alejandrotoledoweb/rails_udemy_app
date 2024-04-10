@@ -14,6 +14,7 @@ class Course < ApplicationRecord
   has_many :user_lessons, through: :lessons
 
   has_one_attached :image
+  after_save :replace_image, if: -> { image.attached? && saved_change_to_attribute?(:image) }
 
   scope :popular_courses, -> { order(enrollments_count: :desc).limit(3) }
   scope :top_rated_courses, -> { order(average_rating: :desc, created_at: :desc).limit(3) }
@@ -78,6 +79,15 @@ class Course < ApplicationRecord
       update_column :average_rating, (enrollments.average(:rating).round(2).to_f)
     else
       update_column :average_rating, (0)
+    end
+  end
+
+  private
+
+  def replace_image
+    if image.previous_changes.any?
+      # This ensures we only attempt to purge if there was a previous file
+      image.attachment.purge_later
     end
   end
 end

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :user_lessons, dependent: :nullify
 
   has_one_attached :avatar
+  after_save :replace_avatar, if: -> { avatar.attached? && saved_change_to_attribute?(:avatar) }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -101,5 +102,14 @@ class User < ApplicationRecord
 
   def provider?
     provider.present?
+  end
+
+  private
+
+  def replace_avatar
+    if avatar.previous_changes.any?
+      # This ensures we only attempt to purge if there was a previous file
+      avatar.attachment.purge_later
+    end
   end
 end
