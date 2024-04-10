@@ -22,12 +22,12 @@
                                     class: "block px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-900 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 " %>
     <div class="gap-y-2">
       <%= f.label :language, 'Language', class: "text-base font-bold my-auto" %>
-      <%= f.select :language_cont, language_options, {include_blank: true},
+      <%= f.select :language_cont, language_options, {include_blank: 'All Languages'},
                                     class: " px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div class="gap-y-2">
       <%= f.label :level, 'Level', class: "text-base font-bold my-auto" %>
-      <%= f.select :level_cont, level_options, {include_blank: true},
+      <%= f.select :level_cont, level_options, {include_blank: "All levels"},
                                     class: "px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <%= f.submit "Search",
