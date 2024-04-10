@@ -3,7 +3,7 @@
     <header class="text-2xl font-bold text-center">Edit <%= resource_name.to_s.humanize %></header>
     <% if current_user.avatar.attached? %>
     <section class="flex justify-enter">
-      <%= image_tag current_user.avatar, class: "mx-auto my-4" %>
+      <%= image_tag current_user.avatar, class: "mx-auto my-4 w-24 h-24" %>
     </section>
     <% else %>
       <p>No avatar uploaded</p>
