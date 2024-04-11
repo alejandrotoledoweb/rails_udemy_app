@@ -1,5 +1,5 @@
 module CoursesHelper
-  require 'nokogiri'
+  require "nokogiri"
   include Pagy::Frontend
 
   def language_options
@@ -13,26 +13,23 @@ module CoursesHelper
   def enrollment_button(course)
     if current_user
       if course.user === current_user
-         link_to "See Analytics", course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
+        link_to "See Analytics", course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
       elsif course.enrollments.where(user_id: current_user.id, course_id: course.id).any?
-
-          if course.progress(current_user) < 100
-            link_to course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700" do
+        if course.progress(current_user) < 100
+          link_to course_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700" do
             "Continue Learning #{number_to_percentage(course.progress(current_user), :precision => 0)}"
-          # course.user_lessons.where(user: current_user).count
-          # course.lessons_count
-            end
-          else
-            link_to certification_enrollment_path(course.enrollments.where(user: current_user).first.id, course_id: course, format: :pdf), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700" do
-            "Completed 100% - See your certification"
-            end
+            # course.user_lessons.where(user: current_user).count
+            # course.lessons_count
           end
+        else
+          link_to certification_enrollment_path(course.enrollments.where(user: current_user).first.id, course_id: course, format: :pdf), target: "_blank", class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700" do
+            "Completed 100% - See your certification"
+          end
+        end
       elsif course.price > 0
         link_to "Buy this course", new_course_enrollment_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
-
       else
         link_to "Free", new_course_enrollment_path(course), class: "px-3 py-1 font-medium text-gray-100 rounded-lg bg-slate-800 hover:bg-slate-700"
-
       end
       #logic to buy
     else
@@ -43,12 +40,12 @@ module CoursesHelper
 
   def review_button(course)
     if current_user
-      user_course = course.enrollments.where(user_id: current_user.id )
+      user_course = course.enrollments.where(user_id: current_user.id)
       if user_course.any?
         if user_course.pending_review.any?
-          link_to "Add review", edit_enrollment_path(course.enrollments.where(user:current_user).first), class: "px-3 py-1 font-medium bg-blue-300 rounded-lg hover:bg-blue-400"
+          link_to "Add review", edit_enrollment_path(course.enrollments.where(user: current_user).first), class: "px-3 py-1 font-medium bg-blue-300 rounded-lg hover:bg-blue-400"
         else
-          link_to "Edit review", edit_enrollment_path(course.enrollments.where(user:current_user).first), class: "px-3 py-1 font-medium bg-blue-300 rounded-lg hover:bg-blue-400"
+          link_to "Edit review", edit_enrollment_path(course.enrollments.where(user: current_user).first), class: "px-3 py-1 font-medium bg-blue-300 rounded-lg hover:bg-blue-400"
         end
       end
     end
@@ -62,31 +59,32 @@ module CoursesHelper
     full_stars = rating.floor
     half_star = rating.modulo(1) >= 0.5 ? 1 : 0
     empty_stars = 5 - full_stars - half_star
-    content = ''
+    content = ""
 
-    full_stars.times { content += tag.i('', class: 'fa-solid fa-star text-yellow-500') }
-    half_star.times { content += tag.i('', class: 'fa-regular fa-star-half-stroke text-yellow-500') }
-    empty_stars.times { content += tag.i('', class: 'fa-regular fa-star text-yellow-500') }
+    full_stars.times { content += tag.i("", class: "fa-solid fa-star text-yellow-500") }
+    half_star.times { content += tag.i("", class: "fa-regular fa-star-half-stroke text-yellow-500") }
+    empty_stars.times { content += tag.i("", class: "fa-regular fa-star text-yellow-500") }
 
     content.html_safe
   end
 
   def published(course)
-    published_icon = tag.i('', class: 'fa-solid fa-check-circle text-green-500 ml-1 ')
-    unpublished_icon = tag.i('', class: 'fa-regular fa-x text-red-500 ml-1 ')
-    p = tag.p('Published', class: 'w-24 mr-2 inline-flex')
-    up = tag.p('Unpublished', class: 'w-24 mr-2 inline-flex')
+    published_icon = tag.i("", class: "fa-solid fa-check-circle text-green-500 ml-1 ")
+    unpublished_icon = tag.i("", class: "fa-regular fa-x text-red-500 ml-1 ")
+    p = tag.p("Published", class: "w-24 mr-2 inline-flex")
+    up = tag.p("Unpublished", class: "w-24 mr-2 inline-flex")
     if course.published
       p + published_icon
     else
       up + unpublished_icon
     end
   end
+
   def approved(course)
-    approved_icon = tag.i('', class: 'fa-solid fa-check-circle text-green-500 ml-1')
-    unapproved = tag.i('', class: 'fa-solid fa-x text-red-500 ml-1.5')
-    p = tag.p('Approved', class: 'w-24 mr-2 inline-flex')
-    up = tag.p('Unapproved', class: 'w-24 mr-2 inline-flex')
+    approved_icon = tag.i("", class: "fa-solid fa-check-circle text-green-500 ml-1")
+    unapproved = tag.i("", class: "fa-solid fa-x text-red-500 ml-1.5")
+    p = tag.p("Approved", class: "w-24 mr-2 inline-flex")
+    up = tag.p("Unapproved", class: "w-24 mr-2 inline-flex")
     if course.approved
       p + approved_icon
     else
@@ -97,12 +95,11 @@ module CoursesHelper
   def admin_approve_button(course)
     return unless current_user && current_user.has_role?(:admin)
 
-    content_tag(:p, 'Admin Actions:') +
+    content_tag(:p, "Admin Actions:") +
     if course.approved
-      button_to 'Unapprove', unapprove_course_path(course), method: :patch, class: "hover:underline text-blue-600"
+      button_to "Unapprove", unapprove_course_path(course), method: :patch, class: "hover:underline text-blue-600"
     else
-      button_to 'Approve', approve_course_path(course), method: :patch, class: "hover:underline text-blue-600"
+      button_to "Approve", approve_course_path(course), method: :patch, class: "hover:underline text-blue-600"
     end
   end
-
 end
